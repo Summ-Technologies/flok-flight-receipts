@@ -1,0 +1,303 @@
+Alaska Airlines
+USA
+AS / ASA
+American Airlines
+USA
+AA / AAL
+Air Canada
+Canada
+AC / ACA
+Aeromexico
+Mexico
+AM / AMX
+Continental Airlines
+USA
+CO / COA
+Delta Airlines
+USA
+DL / DAL
+FedEx
+USA
+FX / FDX
+Hawaiian Airlines
+USA
+HA / HAL
+Northwest Airlines
+USA
+NW / NWA
+Polar Air Cargo
+USA
+PO / PAC
+Southwest Airlines
+USA
+SW / SWA
+United Airlines
+USA
+UA / UAL
+United Parcel (UPS)
+USA
+5X / UPS
+Virgin Atlantic
+USA
+VS / VIR
+VivaAerobús
+Mexico
+VB / VIV
+WestJet
+Canada
+WS / WJA
+Aerolineas Argentinas Airlines
+Argentina
+AR / ARG
+Avianca Airlines
+Colombia
+AV / AVA
+Azul Brazilian Airlines
+Brazil
+AD / AZU
+Boliviana de Aviación
+Bolivia
+OB / BOV
+Conviasa
+Venezuela
+V0 / VCV
+Copa Airlines
+Panama
+CM / CMP
+Gol Transportes Aéreos
+Brazil
+G3 / GLO
+Insel Air
+Curaçao
+7I / INC
+LATAM Airlines
+Chile
+LA / LAN
+Línea Aérea Amaszonas
+Bolivia
+Z8 / AZN
+TAME
+Ecuador
+EQ / TAE
+Viva Air Colombia
+Colombia
+VH / VVC
+Aegean Airlines
+Greece
+A3 / AEE
+Aer Lingus Airlines
+Ireland
+EI / EIN
+Alitalia
+Italy
+AZ / AZA
+Air Europa
+Spain
+UX / AEA
+Air France
+France
+AF / AFR
+Austrian Airlines
+Austria
+OS / AUA
+Aeroflot Russian Airlines
+Russia
+SU / AFL
+British Airways
+UK
+BA / BAW
+Cargolux Airlines International
+Luxembourg
+CV / CLX
+Dalavia Far East Airways
+Russia
+H8 / KHB
+EasyJet
+Austria
+EC / EJU
+Finnair
+Finland
+AY / FIN
+Jet Story
+Poland
+JDI
+Royal Dutch Airlines
+Netherlands
+KL / KLM
+Ryanair
+Ireland
+FR / RYR
+Lufthansa Cargo
+Germany
+LH / DLH
+Norwegian Air Shuttle
+Norway
+DY / NAX
+Scandinavian Airlines
+Sweden
+SK / SAS
+Swiss International Airlines
+Switzerland
+LX / SWR
+Wizz Air
+Hungary
+W9 / WUK
+Air Arabia
+United Arab Emirates
+G9 / ABY
+EgyptAir
+Egypt
+MS / MSR
+Emirates Sky Cargo
+United Arab Emirates
+EK / UAE
+Etihad Airways
+United Arab Emirates
+EY / ETD
+Iran Air
+Iran
+IR / IRA
+Libyan Airlines
+Libya
+LYW
+Pakistan Airlines
+Pakistan
+PK / PIA
+Royal Air Maroc
+Morocco
+AT / RAM
+Saudia
+Saudi Arabia
+SV / SVA
+Sama Airlines
+Saudi Arabia
+ZS / SMY
+Tunisair
+Tunisia
+TU / TAR
+Turkish Airlines
+Turkey
+TK / THY
+Uzbekistan Airways
+Uzbekistan
+HY / UZB
+Arik Air
+Nigeria
+ARA
+Air Algérie
+Algeria
+AH / DAH
+Air Mauritius
+Mauritius
+MK / MAU
+Comair
+South Africa
+MN / CAW
+Ethiopian Airlines
+Ethiopia
+ET / ETH
+Kenya Airways
+Kenya
+KQ / KQA
+Mango
+South Africa
+JE / MNO
+South African Airways
+South Africa
+SA / SAA
+Air Calendonie International
+Caledonia
+SB / ACI
+Air New Zealand
+New Zealand
+NZ
+Air India
+India
+AI / AIC
+All Nippon Airways
+Japan
+NH / ANA
+Air Tahiti Nui
+Tahiti
+TB / THT
+Air Pacific (Fiji Airways)
+Fiji
+FJ / FJI
+Air Hong Kong
+Hong Kong
+LD / AHK
+Air Niugini
+Papua New Guinea
+PX / ANG
+Air Nippon
+Japan
+EL / ANK
+Asiana Airlines
+Korea
+OZ / AAR
+Air China
+China
+CA / CCA
+Cathay Dragon
+Hong Kong
+KA / HAD
+Cathay Pacific Airways
+Hong Kong
+CX / CPA
+China Airlines
+Taiwan
+CI / CAL
+China Eastern Airlines
+China
+MU / CES
+China Southern Airlines
+China
+CZ / CSN
+Eva Airways
+Taiwan
+BR / EVA
+Garuda Indonesia
+Indonesia
+GA / GIA
+Japan Airlines
+Japan
+JL / JAL
+Japan Asia Airways
+Japan
+EG / JAA
+Korean Airlines
+Korea
+KE / KAL
+Malaysia Airlines
+Malaysia
+MH / MAS
+Miat-Mongolian Airlines
+Mongolia
+OM / MGL
+Nippon Cargo Airlines
+Japan
+KZ / NCA
+Philippine Airlines
+Philippines
+PR / PAL
+Qantas Airways
+Australia
+QF / QFA
+Royal Nepal Airlines
+Nepal
+RA / RNA
+Srilankan Airlines
+Sri Lanka
+UL / ALK
+Singapore Airlines
+Singapore
+SQ / SQC
+Shanghai Airlines
+China
+FM
+Thai Airways International
+Thailand
+TG / THA
+Vietnam Airlines
+Vietnam
+VN / HVN
