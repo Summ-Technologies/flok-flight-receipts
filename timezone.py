@@ -10,7 +10,8 @@ def getTimezone(location: str) -> str:
     
     # getting Latitude and Longitude
     location = geolocator.geocode(location)
-
+    if location == None:
+        return None
     # pass the Latitude and Longitude
     # into a timezone_at
     # and it return timezone
@@ -18,15 +19,15 @@ def getTimezone(location: str) -> str:
     result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
     return result
 
-def tzDiff(date, tz1, tz2):
+def tzDiff(date, zone1, zone2):
     '''
-    Returns the difference in hours between timezone1 and timezone2
+    Returns the difference in seconds between zone1 and zone2
     for a given date.
     '''
-    tz1, tz2 = timezone(tz1), timezone(tz2)
+    tz1, tz2 = timezone(zone1), timezone(zone2)
     date = pd.to_datetime(date)
 
     if (tz1.localize(date) > tz2.localize(date).astimezone(tz1)):
-        return (tz1.localize(date) - tz2.localize(date).astimezone(tz1)).seconds
+        return -(tz1.localize(date) - tz2.localize(date).astimezone(tz1)).seconds
     else:
         return (tz2.localize(date) - tz1.localize(date).astimezone(tz2)).seconds

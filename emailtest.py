@@ -28,11 +28,13 @@ def main():
     emails = [preprocess(p) for p in parts]
 
     for i, email in enumerate(emails):
+        if i+1 < 13:
+            continue
         print(i+1)
         parse(email, airport_codes, airline_codes)
         print('\n')
 
-def parse(email, airport_codes, airline_codes) -> None:
+def parse(email, airport_codes, airline_codes, threshold=0) -> None:
     '''
     Prints summary of parsed email. Assumes there are 2 flights (FIX THIS)
     The if ... == None structure is a temporary hack.
@@ -44,65 +46,57 @@ def parse(email, airport_codes, airline_codes) -> None:
             Returns:
                         None
     '''
-    cost, confirmation, duration1, duration2, = None, None, None, None
-    airport1, airport2, flight_1, flight_2, name = None, None, None, None, None
-    arr1_date, arr2_date, dep1_date, dep2_date = None, None, None, None
-    arr1_time, arr2_time, dep1_time, dep2_time = None, None, None, None
+    cost, confirmation, name = None, None, None
     counter = dict()
+    airports, flights = [], []
+    arr_dates, arr_times, dep_dates, dep_times, durations = [], [], [], [], []
+
+    da_flag = True      # alternates b/w appending to dep_time or arr_time
+    err_flag = False    # set if potential parsing errors
 
     for i in range(len(email)):
-        email_lower = email[i].lower()
+        current_lower = email[i].lower()
         # find flights
-        if i + 1 < len(email):
-            if flight_1 == None:
-                flight_1 = follows(email, i, ['flight #'])
-            elif flight_2 == None:
-                flight_2 = follows(email, i, ['flight #'])
-            if (email_lower in airline_codes or email_lower in {'flight'}) \
+        if i + 2 < len(email):
+            flight = follows(email, i, ['flight #'])
+            if flight != None:
+                flights.append(flight)
+            elif (current_lower in airline_codes or current_lower in {'flight'}) \
                 and bool(re.match("^([1-9][0-9]{1,3})$", email[i+1])):
-                if flight_1 == None:
-                    flight_1 = email[i] + " " + email[i+1]
-                elif flight_2 == None:
-                    flight_2 = email[i] + " " + email[i+1]
-            chars, nums = splitCharDig(email[i])
-            if chars != None and chars.lower() in airline_codes and bool(re.match("^([1-9][0-9]{1,3})$", nums)):
-                if flight_1 == None:
-                    flight_1 = chars + " " + nums
-                elif flight_2 == None:
-                    flight_2 = chars + " " + nums
+                flights.append(email[i] + " " + email[i+1])
+            else:
+                chars, nums = splitCharDig(email[i])
+                if chars != None and chars.lower() in airline_codes and bool(re.match("^([1-9][0-9]{1,3})$", nums)):
+                    flights.append(chars + " " + nums)
             
-        # find dates
-        temp = isValidDate(email, i)
-        if temp != None:
-            if dep1_date == None:
-                dep1_date = temp
-            elif dep2_date == None:
-                dep2_date = temp
         # find times
         if isValidTime(email, i):
-            time = email_lower
+            time = current_lower
             if 'am' in time:
                 time = time[:time.find('am')] + " AM" 
             elif 'pm' in time:
                 time = time[:time.find('pm')] + " PM"
             elif i < len(email) - 1 and email[i+1].lower() in ['am', 'pm']:
                 time = email[i] + " " + email[i+1]
+
+            if da_flag:
+                dep_times.append(time)
+            else:
+                arr_times.append(time)
+            da_flag = not da_flag
+        
+        # find dates
+        date = isValidDate(email, i)
+        if date != None:
+            dep_dates.append(date)
+        # assigns dateless flights to most recent date
+        elif len(dep_dates) < len(dep_times):
+            dep_dates.append(dep_dates[-1])
             
-            if dep1_time == None:
-                dep1_time = time
-            elif arr1_time == None:
-                arr1_time = time
-            elif dep2_time == None:
-                dep2_time = time
-            elif arr2_time == None:
-                arr2_time = time
         # find airports
         temp = email[i].strip('()')
         if temp in airport_codes:
-            if airport1 == None:
-                airport1 = temp
-            elif airport2 == None:
-                airport2 = temp
+            airports.append(temp)
         # find cost
         if cost == None and follows(email, i, ['total paid:', 'total paid', 'total:', 'total']) != None:
             for j in range(min(len(email)-i, 5)):
@@ -125,64 +119,134 @@ def parse(email, airport_codes, airline_codes) -> None:
                 name = name.strip(',')
         # find confirmation number
         temp = follows(email, i, ['record locator:','confirmation code is', 'confirmation code', 'confirmation code:', 'confirmation number:', 'confirmation #:', 'confirmation #'])
-        if temp != None:
+        if temp != None and confirmation == None:
             confirmation = temp
         # find airline
-        if email_lower in airlineIATA:
-            if email_lower in counter:
-                counter[email_lower] += 1
+        if current_lower in airlineIATA:
+            if current_lower in counter:
+                counter[current_lower] += 1
             else:
-                counter[email_lower] = 1
+                counter[current_lower] = 1
     
     # airline appears most is selected
     airline = max(counter.items(), key=operator.itemgetter(1))[0]
-    
+
+    # heuristic for calculating # flights
+    num_flights = min(len(dep_times), len(arr_times))
+
+    # packaging individual flight data
+    times = []
+    for i in range(num_flights):
+        times.append((dep_times[i], arr_times[i]))
+    dates = [(d, d) for d in dep_dates]
+    airport_pairs = findLongestChain(airports)
+
     # timezones
-    if airport1 != None and airport2 != None:
-        t1, t2 = getTimezone(airport_codes[airport1]), getTimezone(airport_codes[airport2])
+    timezones = dict()
+    for pair in airport_pairs:
+        timezones[pair[0]] = getTimezone(airport_codes[pair[0]])
+    if len(airport_pairs) > 0:
+        timezones[airport_pairs[-1][1]] = getTimezone(airport_codes[airport_pairs[-1][1]])
 
-    # get durations from date
-    arr1_date, arr2_date = dep1_date, dep2_date # FIXME
-    if dep1_date != None and arr1_date != None and dep1_time != None and arr1_time != None:
-        delta1 = getDateTime(dep1_date,arr1_time)-getDateTime(dep1_date,dep1_time)
-        offset = tzDiff(dep1_date, t1, t2)
-        duration1 = secondsToHours(delta1.total_seconds() - offset)
+    # calculate durations
+    for i in range(min(len(dates), len(times), len(airport_pairs))):
+        dep_date, arr_date = dates[i]
+        dep_time, arr_time = times[i]
+        a1, a2 = airport_pairs[i]
+        t1, t2 = timezones[a1], timezones[a2]
+        departure, arrival = getDateTime(dep_date,dep_time), getDateTime(arr_date,arr_time)
+        if dep_time[-2:] == "PM" and arr_time[-2:] == "AM":
+            arrival += timedelta(days=1) #FIXME
+        delta = arrival - departure
+        offset = tzDiff(dep_date, t1, t2)
+        if delta.total_seconds() + offset:
+            durations.append(secondsToHours(delta.total_seconds() + offset))
+        else:
+            durations.append(None)
+            err_flag = True
 
-    if dep2_date != None and arr2_date != None and dep2_time != None and arr2_time != None:
-        delta2 = getDateTime(dep2_date,arr2_time)-getDateTime(dep2_date,dep2_time)
-        offset = tzDiff(dep2_date, t1, t2)
-        duration2 = secondsToHours(delta2.total_seconds() + offset)
+    # if too many flights get rid of possible duplicates, raise warning
+    if len(flights) > num_flights:
+        flights = list(set(flights))
+        err_flag = True
 
     # fix flight number if needed
-    temp = flight_1.split()
-    if temp[0].lower() in {"flight", "alaska"}:
-        flight_1 = airlineIATA[airline] + " " + temp[1]
-        flight_2 = airlineIATA[airline] + " " + temp[1]
-    if len(temp) == 1:
-        flight_1 = airlineIATA[airline] + " " + temp[0]
-        flight_2 = airlineIATA[airline] + " " + temp[0]
+    for i, flight in enumerate(flights):
+        f = flight.split()
+        if f[0].lower() in {"flight", "alaska"}:
+            flights[i] = airlineIATA[airline] + " " + f[1]
+        elif len(f) == 1:
+            flights[i] = airlineIATA[airline] + " " + f[0]
 
-    # summary
-    print(
-        f"Passenger: {name}   Confirmation Number: {confirmation}\n"
-        f"Airline: {airline.capitalize()}\n"
-        f"========================================================\n"
-        f"Flight: {flight_1} from {airport1} to {airport2}\n\n"
-        f"Departs on {dep1_date} at {dep1_time}\nArrives at {arr1_time}\n"
-        f"Flight duration: {duration1}\n\n"
-        f"--------------------------------------------------------\n"
-        f"Flight: {flight_2} from {airport2} to {airport1}\n\n"
-        f"Departs on {dep2_date} at {dep2_time}\nArrives at {arr2_time}\n\n"
-        f"Flight duration: {duration2}\n\n\n"
-        f"Total Cost: {cost}\n"
-        f"========================================================\n"
-    )
+    # print("\nairports", airport_pairs)
+    # print("flights", flights)
+    # print("dates", dates)
+    # print("times", times)
+    # print("durations", durations)
+    # print("total # flights:", num_flights, '\n\n')
 
+    # pad missing values with None
+    pad([times, dates, airport_pairs, flights, durations], [(None, None),(None, None),(None, None),None,None])
+
+    info = {
+        "name": name,
+        "confirmation_num": confirmation,
+        "airline": airline.capitalize(),
+        "cost": cost,
+        "flights": []
+    }
+
+    for i in range(num_flights):
+        info["flights"].append({
+            "flight": flights[i],
+            "airport1": airport_pairs[i][0],
+            "airport2": airport_pairs[i][1],
+            "dep_date": dates[i][0],
+            "arr_date": dates[i][1],
+            "dep_time": times[i][0],
+            "arr_time": times[i][1],
+            "duration": durations[i]
+        })
+    
+    summary(info)
+
+    missing = countNone(info)
+    print_err = False
+    err_msg = ""
+    if err_flag or airline == "delta":
+        err_msg += "There are potential parsign errors.\n"
+        print_err = True
+    if missing > threshold:
+        err_msg += f"{missing} values are missing, please check output.\n"
+        print_err = True
+    
+    if print_err:
+        print("**** WARNING ****\n" + err_msg + "*****************")
+    
+    
 '''
 ===============================
 ------ Helper functions -------
 ===============================
 '''
+
+def summary(info):
+    print(
+        f"Passenger: {info['name']}   Confirmation Number: {info['confirmation_num']}\n"
+        f"Airline: {info['airline']}\n"
+        f"========================================================\n"
+    )
+    for f in info["flights"]:
+        print(
+            f"Flight: {f['flight']} from {f['airport1']} to {f['airport2']}\n\n"
+            f"Departs on {f['dep_date']} at {f['dep_time']}\nArrives on {f['arr_date']} at {f['arr_time']}\n"
+            f"Flight duration: {f['duration']}\n\n"
+            f"--------------------------------------------------------\n"
+        )
+    print(
+        f"\nTotal Cost: {info['cost']}\n"
+        f"========================================================\n"
+    )
 
 def preprocess(part) -> str:
     '''
@@ -201,6 +265,19 @@ def preprocess(part) -> str:
     email = replace(email, ['-', '*', '\u2014', '\u2013']).split()
     return email
 
+def countNone(obj):
+    '''
+    Recursively counts # of None values in obj
+    '''
+    if obj == None:
+        return 1
+    elif type(obj) == list or type(obj) == tuple:
+        return sum([countNone(o) for o in obj])
+    elif type(obj) == dict:
+        return sum([countNone(obj[k]) for k in obj.keys()])
+    else:
+        return 0
+
 def soupify(part, parser="lxml"):
     '''
     Extracts email and converts to BeautifulSoup object
@@ -213,6 +290,26 @@ def soupify(part, parser="lxml"):
     '''
     html = decode(part["body"]["data"])
     return BeautifulSoup(html, parser)
+
+def pad(lists, values=None):
+    '''
+    Pads lists to match max length list with value
+
+            Params:
+                        lists (list[list[...]]): lists to pad
+                        value (list[...]): values to pad with, default None (same len as lists)
+            Returns:
+                        None
+    '''
+    N = max([len(l) for l in lists])
+    if values == None:
+        for l in lists:
+            l += [None] * (N - len(l))
+    else:
+        assert len(values) == len(lists)
+        for i, l in enumerate(lists):
+            l += [values[i]] * (N-len(l))
+                    
 
 def isValidTime(email, i):
     if ':' not in email[i]:
@@ -242,10 +339,16 @@ def getDateTime(date_string: str, time_string: str) -> datetime:
 
 def isValidDate(email, i):
     if i < len(email) - 1 and email[i].lower()[:-1] in days:
+        # 6/18/2021
         if bool(re.match("\d{1,2}/\d{2}/(\d{2}|\d{4})",email[i+1])):
             return email[i+1]
+        # Sun, 09Aug
+        day, month = splitDigChar(email[i+1])
+        if month.lower() in months and day != '' and 1 < int(day) and int(day) < 32:
+            return str(months[month.lower()]) + "/" + day + "/" +str(date.today().year) # FIXME
     if i > len(email) - 3:
         return None
+    # Mon, July 20
     weekday, month, day = email[i].lower(), email[i+1].lower(), email[i+2].lower()
     if month == ',':
         weekday += ","
@@ -254,7 +357,7 @@ def isValidDate(email, i):
     if weekday[:-1] in days and weekday[-1] == ',' and month in months:
         if day[-1] == ',':
             day = day[:-1]
-        if day.isnumeric() and int(day) > 0 and int(day) < 32:
+        if day.isnumeric() and 1 < int(day) and int(day) < 32:
             return str(months[month])+"/"+str(day)+"/"+str(date.today().year) # FIXME
         else:
             return None
@@ -297,7 +400,33 @@ def before(email, i, words, before=1):
             continue
         if " ".join(email[i-j:i]).lower() == word:
             return " ".join(email[i-j-before:i-j])
-    return None               
+    return None
+
+def findLongestChain(chain):
+    '''
+    Return the longest sequence of connected pairs in chain.
+
+    >>> findLongestChain(['OAK', 'DEN', 'OAK', 'DEN', 'DEN', 'OAK'])
+    [('OAK', 'DEN'), ('DEN', 'OAK')]
+    
+    '''
+    if len(chain) == 0:
+        return None
+    grouped = []
+    for i in range(0,len(chain)-1,2):
+        grouped.append((chain[i], chain[i+1]))
+    end, prev = 0, grouped[0]
+    curr_len, max_len = 0, 0
+    for i, v in enumerate(grouped):
+        if prev[1] == v[0]:
+            curr_len += 1
+        else:
+            curr_len = 1
+        if curr_len > max_len:
+            max_len = curr_len
+            end = i + 1
+        prev = v
+    return grouped[end - max_len:end]
 
 def getTextString(soup):
     res = ""
@@ -351,7 +480,7 @@ def replace(text, characters, by=' '):
 def secondsToHours(seconds):
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
-    return str(int(hours)) + " hr, " + str(int(minutes)) + " min"
+    return str(int(hours)) + "h, " + str(int(minutes)) + "m"
 
 def unicodetoascii(text):
 
@@ -394,10 +523,15 @@ def splitCharDig(txt):
         if txt[i].isnumeric():
             return txt[:i], txt[i:]
     return None, None
+def splitDigChar(txt):
+    for i in range(len(txt)):
+        if txt[i].isalpha():
+            return txt[:i], txt[i:]
+    return None, None
 
 # utility
 days = { 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday',
-        'sun', 'mon', 'tue','tues', 'wed', 'thurs', 'thur', 'fri', 'sat' }
+        'sun', 'mon', 'tue','tues', 'wed', 'thurs', 'thur', 'fri', 'sat', 'thu' }
 months = { 'january':1, 'february':2, 'march':3, 'april':4, 'may':5, 'june':6, 'july':7, 'august':8, 'september':9, 'october':10, 'november':11, 'december':12,
             'jan':1, 'feb':2, 'mar':3, 'apr':4, 'may':5, 'jun':6, 'jul':7, 'aug':8, 'sep':9, 'sept':9, 'oct':10, 'nov':11, 'dec':12}
 airlineIATA = { 'delta':'DL', 'american':'AA', 'united':'UA', 'southwest':'WN', 'jetblue':'B6', 'alaska':'AS'}
@@ -407,3 +541,116 @@ if __name__ == '__main__':
     main()
     end = time.time()
     print(f"Time ellapsed: {round(end - start, 4)} s")
+
+# for i in range(len(email)):
+#         current_lower = email[i].lower()
+#         # find flights
+#         if i + 1 < len(email):
+#             if flight_1 == None:
+#                 flight_1 = follows(email, i, ['flight #'])
+#             elif flight_2 == None:
+#                 flight_2 = follows(email, i, ['flight #'])
+#             if (current_lower in airline_codes or current_lower in {'flight'}) \
+#                 and bool(re.match("^([1-9][0-9]{1,3})$", email[i+1])):
+#                 if flight_1 == None:
+#                     flight_1 = email[i] + " " + email[i+1]
+#                 elif flight_2 == None:
+#                     flight_2 = email[i] + " " + email[i+1]
+#             chars, nums = splitCharDig(email[i])
+#             if chars != None and chars.lower() in airline_codes and bool(re.match("^([1-9][0-9]{1,3})$", nums)):
+#                 if flight_1 == None:
+#                     flight_1 = chars + " " + nums
+#                 elif flight_2 == None:
+#                     flight_2 = chars + " " + nums
+            
+#         # find dates
+#         temp = isValidDate(email, i)
+#         if temp != None:
+#             if dep1_date == None:
+#                 dep1_date = temp
+#             elif dep2_date == None:
+#                 dep2_date = temp
+#         # find times
+#         if isValidTime(email, i):
+#             time = current_lower
+#             if 'am' in time:
+#                 time = time[:time.find('am')] + " AM" 
+#             elif 'pm' in time:
+#                 time = time[:time.find('pm')] + " PM"
+#             elif i < len(email) - 1 and email[i+1].lower() in ['am', 'pm']:
+#                 time = email[i] + " " + email[i+1]
+            
+#             if dep1_time == None:
+#                 dep1_time = time
+#             elif arr1_time == None:
+#                 arr1_time = time
+#             elif dep2_time == None:
+#                 dep2_time = time
+#             elif arr2_time == None:
+#                 arr2_time = time
+#         # find airports
+#         temp = email[i].strip('()')
+#         if temp in airport_codes:
+#             if airport1 == None:
+#                 airport1 = temp
+#             elif airport2 == None:
+#                 airport2 = temp
+#         # find cost
+#         if cost == None and follows(email, i, ['total paid:', 'total paid', 'total:', 'total']) != None:
+#             for j in range(min(len(email)-i, 5)):
+#                 m = re.match("\$*\d+\.\d{2}", email[i+j])
+#                 if bool(m):
+#                     cost = m.group(0)
+#                     break
+#         if cost != None and cost[0] != '$':
+#             cost = '$' + cost
+
+#         # find name
+#         if i < len(email) - 2 and name == None:
+#             name_len = 2
+#             name = before(email, i, ['join the aadvantage','aadvantage'], name_len)
+#             if name == None:
+#                 name = follows(email, i, ['hi','name:','traveler details','travelers','passenger','passenger:',], name_len, ['passenger info'])
+#             if name != None:
+#                 if '/' in name:
+#                     name = name.split()[0]
+#                 name = name.strip(',')
+#         # find confirmation number
+#         temp = follows(email, i, ['record locator:','confirmation code is', 'confirmation code', 'confirmation code:', 'confirmation number:', 'confirmation #:', 'confirmation #'])
+#         if temp != None:
+#             confirmation = temp
+#         # find airline
+#         if current_lower in airlineIATA:
+#             if current_lower in counter:
+#                 counter[current_lower] += 1
+#             else:
+#                 counter[current_lower] = 1
+    
+#     # airline appears most is selected
+#     airline = max(counter.items(), key=operator.itemgetter(1))[0]
+    
+#     # timezones
+#     if airport1 != None and airport2 != None:
+#         t1, t2 = getTimezone(airport_codes[airport1]), getTimezone(airport_codes[airport2])
+
+#     offset1, offset2 = None, None
+#     # get durations from date
+#     arr1_date, arr2_date = dep1_date, dep2_date # FIXME
+#     if dep1_date != None and arr1_date != None and dep1_time != None and arr1_time != None:
+#         delta1 = getDateTime(dep1_date,arr1_time)-getDateTime(dep1_date,dep1_time)
+#         offset1 = tzDiff(dep1_date, t1, t2)
+#         duration1 = secondsToHours(delta1.total_seconds() + offset1)
+
+#     if dep2_date != None and arr2_date != None and dep2_time != None and arr2_time != None:
+#         delta2 = getDateTime(dep2_date,arr2_time)-getDateTime(dep2_date,dep2_time)
+#         offset2 = tzDiff(dep2_date, t2, t1)
+#         duration2 = secondsToHours(delta2.total_seconds() + offset2)
+
+#     # fix flight number if needed
+#     temp = flight_1.split()
+#     if temp[0].lower() in {"flight", "alaska"}:
+#         flight_1 = airlineIATA[airline] + " " + temp[1]
+#         flight_2 = airlineIATA[airline] + " " + temp[1]
+#     if len(temp) == 1:
+#         flight_1 = airlineIATA[airline] + " " + temp[0]
+#         flight_2 = airlineIATA[airline] + " " + temp[0]
