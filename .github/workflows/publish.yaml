@@ -1,0 +1,26 @@
+name: Publish CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  python-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build and push python packages
+        uses: docker://jaredhanson11/python-builder
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_REPOSITORY_URL: "https://nexus.goflok.com/repository/pypi-internal/"
+        with:
+          entrypoint: /scripts/github-workflows/publish-python.sh
+      - name: Build and publish docker image
+        uses: docker://jaredhanson11/cicd-tools
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+          PIP_EXTRA_INDEX_URL: ${{ secrets.PIP_EXTRA_INDEX_URL }}
+        with:
+          entrypoint: /scripts/github-workflows/publish-docker.sh
