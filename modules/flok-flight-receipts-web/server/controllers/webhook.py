@@ -6,6 +6,12 @@ from summ_web import responses
 from webargs import fields
 from webargs.flaskparser import use_args
 
+from hawk_rmq.queue import NEW_FLIGHT_EMAIL_RECEIPT_QUEUE, NewFlightEmailReceiptMessage
+
+from .. import rmq
+
+flight_email_receipt_publisher = rmq.get_publisher(NEW_FLIGHT_EMAIL_RECEIPT_QUEUE)
+
 logger = logging.getLogger(__name__)
 
 
@@ -27,6 +33,10 @@ class WebhookController(Resource):
             parser.get_codes(parser.CodeType.AIRLINE),
         )
 
-        
-
         return responses.success(infos)
+
+
+class WebhookPublisherTestController(Resource):
+    def get(self):
+        flight_email_receipt_publisher.publish(NewFlightEmailReceiptMessage())
+        return responses.success("Success")

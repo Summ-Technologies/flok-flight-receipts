@@ -15,3 +15,4 @@ def route(path: str, version: str):
 
 def add_routes(api: Api):
     api.add_resource(webhook.WebhookController, route_v1("/webhook"))
+    api.add_resource(webhook.WebhookPublisherTestController, route_v1("/webhook/test"))
