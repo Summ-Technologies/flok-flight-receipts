@@ -35,7 +35,6 @@ class WebhookController(Resource):
 
         return responses.success(infos)
 
-
 class WebhookPublisherTestController(Resource):
     def get(self):
         flight_email_receipt_publisher.publish(NewFlightEmailReceiptMessage())

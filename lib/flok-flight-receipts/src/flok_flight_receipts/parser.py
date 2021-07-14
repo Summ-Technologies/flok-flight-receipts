@@ -6,6 +6,7 @@ import os.path
 import pickle
 import re
 import time
+import json
 from base64 import urlsafe_b64decode as decode
 from datetime import date, datetime, timedelta
 
@@ -13,6 +14,7 @@ from bs4 import BeautifulSoup
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from google.oauth2 import service_account
 from pytz import utc
 
 from .timezone import getTimezone, tzDiff
@@ -20,18 +22,15 @@ from .timezone import getTimezone, tzDiff
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 
-# user
-_userId = "testflok0@gmail.com"
-
 curr_file_dir = os.path.dirname(os.path.realpath(__file__))
 
 
 def main():
 
     # fetching from gmail API
-    service = createService()
-    messages = fetchEmailList(service)
-    parts = fetchEmailHtml(service, messages)
+    service = build_service()
+    messages = fetch_email_list(service)
+    parts = fetch_email_html(service, messages)
 
     # processing
     airport_codes = pickle.load(open(_data_file("airport_codes.pickle"), "rb"))
@@ -45,6 +44,23 @@ def main():
         info = parse(email, airport_codes, airline_codes)
         infos.append(info)
         print("\n")
+
+    return infos
+
+def parse_emails(parts, logging=False):
+    # processing
+    airport_codes = pickle.load(open(_data_file("airport_codes.pickle"), "rb"))
+    airline_codes = pickle.load(open(_data_file("airline_codes.pickle"), "rb"))
+    
+    emails = [preprocess(p) for p in parts]
+
+    infos = []
+    if logging:
+        for email in progressBar(emails, prefix = 'Progress:', suffix = 'Complete', length = 50):
+            infos.append(parse(email, airport_codes, airline_codes))
+    else:
+        for email in emails:
+            infos.append(parse(email, airport_codes, airline_codes))
 
     return infos
 
@@ -64,7 +80,7 @@ def local():
     return infos
 
 
-def parse(email, airport_codes, airline_codes, threshold=0) -> None:
+def parse(email, airport_codes, airline_codes, threshold=0, logging=False) -> None:
     """
     Prints summary of parsed email.
 
@@ -99,12 +115,12 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
                 and bool(re.match("^([1-9][0-9]{1,3})$", email[i+1])):
                 flights.append(email[i] + " " + email[i+1])
             else:
-                chars, nums = splitCharDig(email[i])
+                chars, nums = split_char_dig(email[i])
                 if chars != None and chars.lower() in airline_codes and bool(re.match("^([1-9][0-9]{1,3})$", nums)):
                     flights.append(chars + " " + nums)
             
         # find times
-        if isValidTime(email, i):
+        if is_valid_time(email, i):
             time = current_lower
             if 'am' in time:
                 time = time[:time.find('am')] + " AM" 
@@ -120,7 +136,7 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
             da_flag = not da_flag
         
         # find dates
-        date = isValidDate(email, i)
+        date = is_valid_date(email, i)
         if date != None:
             dep_dates.append(date)
         # assigns dateless flights to most recent date
@@ -163,7 +179,12 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
                 counter[current_lower] = 1
 
     # airline appears most is selected
-    airline = max(counter.items(), key=operator.itemgetter(1))[0]
+    if counter:
+        airline = max(counter.items(), key=operator.itemgetter(1))[0]
+    else:
+        print("Receipt not of a supported airline")
+        print(" ".join(email[:50]))
+        return
 
     # heuristic for calculating # flights
     num_flights = min(len(dep_times), len(arr_times))
@@ -173,7 +194,7 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
     for i in range(num_flights):
         times.append((dep_times[i], arr_times[i]))
     dates = [(d, d) for d in dep_dates]
-    airport_pairs = findLongestChain(airports)
+    airport_pairs = find_longest_chain(airports)
 
     # timezones
     timezones = dict()
@@ -190,7 +211,7 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
         dep_time, arr_time = times[i]
         a1, a2 = airport_pairs[i]
         t1, t2 = timezones[a1], timezones[a2]
-        departure, arrival = getDateTime(dep_date, dep_time), getDateTime(
+        departure, arrival = get_date_time(dep_date, dep_time), get_date_time(
             arr_date, arr_time
         )
         if dep_time[-2:] == "PM" and arr_time[-2:] == "AM":
@@ -198,7 +219,7 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
         delta = arrival - departure
         offset = tzDiff(dep_date, t1, t2)
         if delta.total_seconds() + offset:
-            durations.append(secondsToHours(delta.total_seconds() + offset))
+            durations.append(seconds_to_hours(delta.total_seconds() + offset))
         else:
             durations.append(None)
             err_flag = True
@@ -244,20 +265,21 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
             }
         )
 
-    summary(info)
-
     missing = countNone(info)
-    print_err = False
     err_msg = ""
     if err_flag or airline == "delta":
         err_msg += "There are potential parsign errors.\n"
-        print_err = True
     if missing > threshold:
         err_msg += f"{missing} values are missing, please check output.\n"
-        print_err = True
 
-    if print_err:
+    if logging:
         print("**** WARNING ****\n" + err_msg + "*****************")
+    
+    if err_flag:
+        info["error"] = err_msg
+    else:
+        info["error"] = None
+
     return info
 
 
@@ -267,6 +289,33 @@ def parse(email, airport_codes, airline_codes, threshold=0) -> None:
 ===============================
 """
 
+def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iterable    - Required  : iterable object (Iterable)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+    """
+    total = len(iterable)
+    # Progress Bar Printing Function
+    def printProgressBar (iteration):
+        percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+        filledLength = int(length * iteration // total)
+        bar = fill * filledLength + '-' * (length - filledLength)
+        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+    # Initial Call
+    printProgressBar(0)
+    # Update Progress Bar
+    for i, item in enumerate(iterable):
+        yield item
+        printProgressBar(i + 1)
+    # Print New Line on Complete
+    print()
 
 def summary(info):
     print(
@@ -285,6 +334,8 @@ def summary(info):
         f"\nTotal Cost: {info['cost']}\n"
         f"========================================================\n"
     )
+    if info["error"] != None:
+        print("**** WARNING ****\n" + info["error"] + "*****************\n")
 
 
 def preprocess(part) -> str:
@@ -303,7 +354,7 @@ def preprocess(part) -> str:
         for string in all_strings
         if string != None and string.parent != None and len(string.strip()) > 100
     ]
-    email = unicodetoascii(getTextString(soup))
+    email = unicode_to_ascii(get_text_string(soup))
     email = replace(email, ["-", "*", "\u2014", "\u2013"]).split()
     return email
 
@@ -356,7 +407,7 @@ def pad(lists, values=None):
             l += [values[i]] * (N - len(l))
 
 
-def isValidTime(email, i):
+def is_valid_time(email, i):
     if ":" not in email[i]:
         return False
     pattern = "^([0-9]{1,2}:[0-9][0-9])([aA]|[pP]m){0,1}"
@@ -364,7 +415,7 @@ def isValidTime(email, i):
         return True
 
 
-def getDateTime(date_string: str, time_string: str) -> datetime:
+def get_date_time(date_string: str, time_string: str) -> datetime:
     """
     Creates datetime from date and time strings.
 
@@ -384,13 +435,13 @@ def getDateTime(date_string: str, time_string: str) -> datetime:
     return datetime(year, month, day, hour, minute, 0, tzinfo=utc)
 
 
-def isValidDate(email, i):
+def is_valid_date(email, i):
     if i < len(email) - 1 and email[i].lower()[:-1] in days:
         # 6/18/2021
         if bool(re.match("\d{1,2}/\d{2}/(\d{2}|\d{4})", email[i + 1])):
             return email[i + 1]
         # Sun, 09Aug
-        day, month = splitDigChar(email[i + 1])
+        day, month = split_dig_char(email[i + 1])
         if month.lower() in months and day != "" and 1 < int(day) and int(day) < 32:
             return (
                 str(months[month.lower()]) + "/" + day + "/" + str(date.today().year)
@@ -462,11 +513,11 @@ def before(email, i, words, before=1, until=[]):
     return None
 
 
-def findLongestChain(chain):
+def find_longest_chain(chain):
     """
     Return the longest sequence of connected pairs in chain.
 
-    >>> findLongestChain(['OAK', 'DEN', 'OAK', 'DEN', 'DEN', 'OAK'])
+    >>> find_longest_chain(['OAK', 'DEN', 'OAK', 'DEN', 'DEN', 'OAK'])
     [('OAK', 'DEN'), ('DEN', 'OAK')]
 
     """
@@ -489,14 +540,17 @@ def findLongestChain(chain):
     return grouped[end - max_len : end]
 
 
-def getTextString(soup):
+def get_text_string(soup):
     res = ""
     for string in soup.stripped_strings:
         res += string + " "
     return res
 
-def createService():
-    creds = None
+def build_service_acc(service_acc_info):
+    creds = service_account.Credentials.from_service_account_info(service_acc_info, scopes=SCOPES)
+    return build('gmail','v1',credentials=creds)
+
+def build_service(creds=None):
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
@@ -517,13 +571,13 @@ def createService():
 
     return build('gmail', 'v1', credentials=creds)
 
-def fetchEmailList(service, count=100):
+def fetch_email_list(service, _userId, count=100):
     results = (
         service.users().messages().list(userId=_userId, labelIds=['INBOX'], maxResults=min(count, 500)).execute()
     )
     return results.get('messages', [])
 
-def fetchEmailHtml(service, messages):
+def fetch_email_html(service, messages, _userId):
     """Returns message content from gmail API
     """
     ret = []
@@ -542,13 +596,13 @@ def replace(text, characters, by=" "):
     return text
 
 
-def secondsToHours(seconds):
+def seconds_to_hours(seconds):
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     return str(int(hours)) + "h, " + str(int(minutes)) + "m"
 
 
-def unicodetoascii(text):
+def unicode_to_ascii(text):
 
     TEXT = (
         text.
@@ -598,14 +652,14 @@ def strip(txt):
     )
 
 
-def splitCharDig(txt):
+def split_char_dig(txt):
     for i in range(len(txt)):
         if txt[i].isnumeric():
             return txt[:i], txt[i:]
     return None, None
 
 
-def splitDigChar(txt):
+def split_dig_char(txt):
     for i in range(len(txt)):
         if txt[i].isalpha():
             return txt[:i], txt[i:]

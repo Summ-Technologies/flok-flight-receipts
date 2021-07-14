@@ -1,0 +1,4 @@
+summ-logging<=0.1.0
+hawk-rmq<=0.1.0
+hawk-core<=0.1.0
+sqlalchemy==1.3.20
