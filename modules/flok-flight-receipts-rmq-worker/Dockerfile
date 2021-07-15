@@ -7,7 +7,7 @@ ARG PIP_TRUSTED_HOST
 
 # Install required packages
 COPY requirements.txt ./requirements.txt
-RUN apt-get install -y libpq-dev python3-dev \
+RUN apt-get install -y libpq-dev python3-dev gcc \
     && pip install --pre --no-cache -r requirements.txt \
     && rm requirements.txt
 
