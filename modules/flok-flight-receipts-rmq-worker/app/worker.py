@@ -24,9 +24,9 @@ def parse_new_flight_receipt(
         gmail_service = build_service_acc(service_acc_info)
         
         # query most recent based on date_added
-+        res: EmailLog = (
-+            session.query(EmailLog).order_by(EmailLog.date_added.desc()).first()
-+        )
+        res: EmailLog = (
+            session.query(EmailLog).order_by(EmailLog.date_added.desc()).first()
+        )
 
         # get list of emails (most recent first)
         userId = config["GOOGLE_SERVICE_WORKER_USER_ID"]
