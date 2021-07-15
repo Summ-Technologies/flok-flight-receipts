@@ -546,8 +546,8 @@ def get_text_string(soup):
         res += string + " "
     return res
 
-def build_service_acc(service_acc_info):
-    creds = service_account.Credentials.from_service_account_info(service_acc_info, scopes=SCOPES)
+def build_service_acc(service_acc_info, userId):
+    creds = service_account.Credentials.from_service_account_info(service_acc_info, scopes=SCOPES).with_subject(userId)
     return build('gmail','v1',credentials=creds)
 
 def build_service(creds=None):

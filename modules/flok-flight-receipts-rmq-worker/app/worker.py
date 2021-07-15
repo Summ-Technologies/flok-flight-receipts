@@ -17,11 +17,12 @@ def parse_new_flight_receipt(
 ) -> None:
     logger.info(f"Received new user email message, {message.serialize()}")
     try:
+        userId = config["GOOGLE_SERVICE_WORKER_USER_ID"]
         # database setup
         session = db.setup_db_session(config["SQLALCHEMY_DATABASE_URI"])
         # gmail client setup
         service_acc_info = json.load(open(config["GOOGLE_SERVICE_ACC_FILE"], 'r'))
-        gmail_service = build_service_acc(service_acc_info)
+        gmail_service = build_service_acc(service_acc_info, userId)
         
         # query most recent based on date_added
         res: EmailLog = (
@@ -29,7 +30,6 @@ def parse_new_flight_receipt(
         )
 
         # get list of emails (most recent first)
-        userId = config["GOOGLE_SERVICE_WORKER_USER_ID"]
         messages = fetch_email_list(gmail_service, _userId=userId)
         if len(messages) == 0:
             logger.info("No emails found")

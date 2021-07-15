@@ -1,0 +1,1 @@
+APP_CONFIG=$PWD/modules/flok-flight-receipts-rmq-worker/config.py env $(cat .env) python modules/flok-flight-receipts-rmq-worker/run.py
