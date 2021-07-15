@@ -3,8 +3,7 @@ import json
 from datetime import datetime
 from typing import Any, Dict
 from flok_flight_receipts.parser import build_service_acc, fetch_email_list, fetch_email_html, parse_emails, summary
-from hawk_db.email_logs import EmailLogs
-from sqlalchemy.sql.expression import func
+from hawk_db.email_log import EmailLog
 
 from hawk_rmq.queue import NewFlightEmailReceiptMessage
 
@@ -25,10 +24,9 @@ def parse_new_flight_receipt(
         gmail_service = build_service_acc(service_acc_info)
         
         # query most recent based on date_added
-        res = session.query(
-            EmailLogs.email_id,
-            func.max(EmailLogs.date_added).label('maxdate')
-        ).group_by(EmailLogs.email_id).first()
++        res: EmailLog = (
++            session.query(EmailLog).order_by(EmailLog.date_added.desc()).first()
++        )
 
         # get list of emails (most recent first)
         userId = config["GOOGLE_SERVICE_WORKER_USER_ID"]
@@ -50,8 +48,7 @@ def parse_new_flight_receipt(
             return
 
         # store most recent email processed
-        newLog = EmailLogs()
-        newLog.date_added = datetime.now()
+        newLog = EmailLog()
         newLog.email_id = messages[0]['id']
         session.add(newLog)
         session.commit()
