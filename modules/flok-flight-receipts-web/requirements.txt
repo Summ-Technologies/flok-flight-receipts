@@ -1,8 +1,7 @@
 summ-web<=0.1.0
 summ-logging<=0.1.0
-hawk-db<=0.1.0
-hawk-core<=0.1.0
 hawk-rmq<=0.1.0
+flok-flight-receipts<=0.1.0
 Flask # version managed by summ-web
 Flask-RESTful # version managed by summ-web
 Flask-SQLAlchemy # version managed by summ-web
