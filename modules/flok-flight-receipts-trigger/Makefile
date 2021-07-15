@@ -1,6 +1,6 @@
 version=latest
 docker-user=jaredhanson11
-name=${docker-user}/flok-flights-receipts-trigger
+name=${docker-user}/flok-flight-receipts-trigger
 
 build:
 	docker build . --build-arg PIP_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL} -t ${name}:${version}

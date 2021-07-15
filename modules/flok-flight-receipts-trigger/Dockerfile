@@ -7,8 +7,7 @@ ARG PIP_TRUSTED_HOST
 # Install required packages
 COPY requirements.txt ./requirements.txt
 RUN pip install --pre --no-cache -r requirements.txt \
-    && rm requirements.txt \
-    && apk del .build-deps
+    && rm requirements.txt
 
 # Copy server code to the /app/ dir
 COPY ./run.py ./run.py
