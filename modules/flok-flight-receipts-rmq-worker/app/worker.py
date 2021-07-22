@@ -23,6 +23,7 @@ def parse_new_flight_receipt(
         # gmail client setup
         service_acc_info = json.load(open(config["GOOGLE_SERVICE_ACC_FILE"], 'r'))
         gmail_service = build_service_acc(service_acc_info, userId)
+        # gmail_service = build_service()
         
         # query most recent based on date_added
         res: EmailLog = (
@@ -31,6 +32,7 @@ def parse_new_flight_receipt(
 
         # get list of emails (most recent first)
         messages = fetch_email_list(gmail_service, _userId=userId)
+        print("\n\nLoaded", len(messages), "messages\n\n")
         if len(messages) == 0:
             logger.info("No emails found")
             return
@@ -46,22 +48,43 @@ def parse_new_flight_receipt(
         if index == 0:
             logger.info("No new emails")
             return
+        parts = fetch_email_html(gmail_service, messages[:index], _userId=userId)
+        
+        report, non_receipts = "", 0
+        print(f"parsing {len(parts)} emails")
+        infos = parse_emails(parts, logging=True)
+        for i, info in enumerate(infos):
+            if info != None:
+                report += str(i+1) + "\n" + summary(info) + "\n"
+            else:
+                non_receipts += 1
 
+        if non_receipts:
+            report += f"Processed {non_receipts} emails that were not receipts."
+
+        f = open("report.txt", "w")
+        f.write(report)
+        f.close()
+
+        # correct = open("test.txt", "r").readlines()
+        # test = open("report.txt", "r").readlines()
+        # for i in range(len(correct)):
+        #     if correct[i] != test[i]:
+        #         print(f"\nError on line {i+1}:")
+        #         print("Expected: ", correct[i])
+        #         print("But got:  ", test[i])
+        #         exit(0)
+        # print("\n\nOutput correct.\n\n")
+
+        logger.info(
+            f"Successfully parsed emails",
+        )
         # store most recent email processed
         newLog = EmailLog()
         newLog.email_id = messages[0]['id']
         session.add(newLog)
         session.commit()
 
-        parts = fetch_email_html(gmail_service, messages[:index], _userId=userId)
-        print(f"parsing {len(parts)} emails")
-        infos = parse_emails(parts)
-        for info in infos:
-            if info != None:
-                summary(info)
-        logger.info(
-            f"Successfully parsed emails",
-        )
     except Exception as e:
         logger.error(f"Error parsing emails", exc_info=e)
 

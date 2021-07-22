@@ -9,14 +9,14 @@ def getTimezone(location: str) -> str:
     geolocator = Nominatim(user_agent="geoapiExercises")
     
     # getting Latitude and Longitude
-    location = geolocator.geocode(location)
-    if location == None:
+    coordinates = geolocator.geocode(location)
+    if coordinates == None:
         return None
     # pass the Latitude and Longitude
     # into a timezone_at
     # and it return timezone
     obj = TimezoneFinder()
-    result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
+    result = obj.timezone_at(lng=coordinates.longitude, lat=coordinates.latitude)
     return result
 
 def tzDiff(date, zone1, zone2):
