@@ -31,8 +31,8 @@ def parse_new_flight_receipt(
         )
 
         # get list of emails (most recent first)
-        messages = fetch_email_list(gmail_service, _userId=userId)
-        print("\n\nLoaded", len(messages), "messages\n\n")
+        messages = fetch_email_list(gmail_service, _userId=userId, count=500)
+        print("Loaded", len(messages), "messages")
         if len(messages) == 0:
             logger.info("No emails found")
             return
@@ -48,16 +48,20 @@ def parse_new_flight_receipt(
         if index == 0:
             logger.info("No new emails")
             return
-        parts = fetch_email_html(gmail_service, messages[:index], _userId=userId)
         
+        emails = fetch_email_html(gmail_service, messages[:index], _userId=userId)
+
+        print(f"parsing {len(emails)} emails")
         report, non_receipts = "", 0
-        print(f"parsing {len(parts)} emails")
-        infos = parse_emails(parts, logging=True)
-        for i, info in enumerate(infos):
+        results, errs = parse_emails(emails, logging=True)
+        for i, info in enumerate(results):
             if info != None:
                 report += str(i+1) + "\n" + summary(info) + "\n"
             else:
                 non_receipts += 1
+
+        for email in errs:
+            report += email['id'] + ": " + email['err'] + "\n"
 
         if non_receipts:
             report += f"Processed {non_receipts} emails that were not receipts."

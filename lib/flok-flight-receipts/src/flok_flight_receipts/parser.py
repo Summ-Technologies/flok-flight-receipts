@@ -5,6 +5,8 @@ import operator
 import os.path
 import pickle
 import re
+import json
+import math
 import time
 from base64 import urlsafe_b64decode as decode
 from datetime import date, datetime, timedelta
@@ -32,12 +34,7 @@ airport_codes_to_names = pickle.load(open(_data_file("airport_codes_to_names.pic
 airport_names_to_codes = pickle.load(open(_data_file("airport_names_to_codes.pickle"), "rb"))
 airline_codes_to_names = pickle.load(open(_data_file("airline_codes_to_names.pickle"), "rb"))
 airline_names_to_codes = pickle.load(open(_data_file("airline_names_to_codes.pickle"), 'rb'))
-
-heuristics = {
-    'confirmation': ['record locator:','confirmation code is', 'confirmation code is:', 'confirmation code', 'confirmation code:', 'confirmation number:', 'confirmation #:', 'confirmation #', 'booking code:', 'booking reference', 'booking reference:'],
-    'name': ['passenger options & extras detail','dear','hi','name:','traveler details','travelers','passenger information','passenger','passenger:','passenger(s)'],
-    'cost': ['total price for all passengers','total paid:', 'total paid', 'total:', 'total', 'amount paid:', 'ticket amount'],
-}
+airport_codes_to_timezones = pickle.load(open(_data_file("airport_codes_to_timezones.pickle"), 'rb'))
 
 def main():
     # fetching from gmail API
@@ -52,33 +49,38 @@ def main():
         emails_cleaned.append(cleaned)
         emails_full.append(full)
 
-    infos = []
+    results = []
     for i in range(len(emails_cleaned)):
         print(i + 1)
         info = parse(emails_cleaned[i], emails_full[i])
-        infos.append(info)
+        results.append(info)
         print("\n")
 
-    return infos
+    return results
 
-def parse_emails(parts, logging=False):
+def parse_emails(emails, logging=False):
     # processing
-    emails_cleaned, emails_full = [], []
-    for p in parts:
-        cleaned, full = preprocess(p)
-        emails_cleaned.append(cleaned)
-        emails_full.append(full)
-
-    infos = []
+    emails_cleaned, emails_full, errs = [], [], []
+    for email in emails:
+        if 'part' in email:
+            cleaned, full = preprocess(email['part'])
+            emails_cleaned.append(cleaned)
+            emails_full.append(full)
+        else:
+            errs.append(email)
+            
+    results = []
     num_emails = [i for i in range(len(emails_cleaned))]
+    if len(num_emails) == 0:
+        return []
     if logging:
         for i in progressBar(num_emails, prefix = 'Progress:', suffix = 'Complete', length = 50):
-            infos.append(parse(emails_cleaned[i], emails_full[i]))
+            results.append(parse(emails_cleaned[i], emails_full[i]))
     else:
         for i in num_emails:
-            infos.append(parse(emails_cleaned[i], emails_full[i]))
+            results.append(parse(emails_cleaned[i], emails_full[i]))
 
-    return infos
+    return results, errs
     
 def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -> None:
     """
@@ -102,43 +104,52 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
     delay_flag, stop_flag = False, False
     overnight_flag = [False]
 
-    airlines_with_arr_and_dep_dates, airlines_with_airport_names = set(), set()
+    use_arr_and_dep_dates, use_airport_names = set(), set()
+    heuristics = json.load(open(_data_file("heuristics.json"), "r"))
+
 
     include_parenth = False
-    airline_code, airline, err_msg = find_airline(email_full)
+    airline_code, airline, err_msg = find_airline(email_full, use_arr_and_dep_dates, use_airport_names, heuristics)
     if airline != None:
-        delay_flag = delay_start(email, 0, airline, airlines_with_arr_and_dep_dates, airlines_with_airport_names)
+        delay_flag = delay_start(email, 0, airline, use_arr_and_dep_dates, heuristics)
         if airline.lower() == "united airlines":
             include_parenth = True
+        if airline.lower() == "easyjet":
+            print("easyJet not supported yet.")
+            return
 
     output = ""
     for i in range(len(email)):
         current = email[i].lower()
         if current == '':
             continue
-        if stop(email, i, airline):
+        if stop(email, i, airline, heuristics):
             stop_flag = True
         if delay_flag:
-            delay_flag = delay_start(email, i, airline, airlines_with_arr_and_dep_dates, airlines_with_airport_names)
+            delay_flag = delay_start(email, i, airline, use_arr_and_dep_dates, heuristics)
         elif not stop_flag:
             find_flights(email, i, flights, current)
             find_times(email, i, dep_times, arr_times, overnight_flag, da_flag, current)
-            find_dates(email, i, dep_dates, arr_dates, dep_times, arr_times, overnight_flag, airline, airlines_with_arr_and_dep_dates)
-            find_airports(email, i, airports, airlines_with_airport_names, airline, include_parenth=include_parenth)
+            find_dates(email, i, dep_dates, arr_dates, dep_times, arr_times, overnight_flag, airline, use_arr_and_dep_dates)
+            find_airports(email, i, airports, use_airport_names, airline, include_parenth=include_parenth)
             find_durations(email, i, durations)
 
             output += email[i] + " "
 
         if cost == None:
-            cost = find_cost(email, i)
+            cost = find_cost(email, i, heuristics)
 
         if passenger_name == None:
-            passenger_name = find_name(email, i)
+            passenger_name = find_name(email, i, airline, heuristics)
 
         # find confirmation number
         temp = follows(email, i, heuristics['confirmation'])
-        if temp != None and confirmation == None:
+        if temp != None and confirmation == None and temp.isalnum():
             confirmation = temp
+
+    # printf(email)
+    # printf(output)
+    # printf(dep_dates, arr_dates)
 
     # heuristic for calculating # flights
     num_flights = len(arr_times)
@@ -151,9 +162,10 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
     for i in range(num_flights):
         times.append((dep_times[i], arr_times[i]))
 
+    pad([dep_dates, arr_dates], longest_len=num_flights)
     dates = [[dep_dates[i], arr_dates[i]] for i in range(num_flights)]
 
-    airports += [None] * (2 * num_flights - len(airports))
+    pad([airports], longest_len=2 * num_flights)
     airport_pairs = []
     for i in range(0, 2 * num_flights, 2):
         if i+1 < len(airports):
@@ -164,23 +176,29 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
     # calculate durations if not found
     if len(durations) != num_flights and airport_pairs != None:
         timezones = dict()
-        for pair in airport_pairs:
-            if pair[0] and pair[0] not in timezones:
-                name = pair[0]
-                if airline not in airlines_with_airport_names:
-                    name = airport_codes_to_names[pair[0]]
-                timezones[pair[0]] = getTimezone(name)
-            if pair[1] and pair[1] not in timezones:
-                name = pair[1]
-                if airline not in airlines_with_airport_names:
-                    name = airport_codes_to_names[pair[1]]
-                timezones[pair[1]] = getTimezone(name)
+        for a1, a2 in airport_pairs:
+            if a1 and a1 not in timezones:
+                if a1 in airport_codes_to_timezones:
+                    timezones[a1] = airport_codes_to_timezones[a1]
+                elif airline in use_airport_names:
+                    try:
+                        timezones[a1] = getTimezone(a1)
+                    except:
+                        pass
+            if a2 and a2 not in timezones:
+                if a2 in airport_codes_to_timezones:
+                    timezones[a2] = airport_codes_to_timezones[a2]
+                elif airline in use_airport_names:
+                    try:
+                        timezones[a2] = getTimezone(a2)
+                    except:
+                        pass
 
         for i in range(min(len(dates), len(times), len(airport_pairs))):
             dep_date, arr_date = dates[i]
             dep_time, arr_time = times[i]
             a1, a2 = airport_pairs[i]
-            if a1 == None or a2 == None:
+            if not a1 or a1 not in timezones or not a2 or a2 not in timezones or not dep_date or not arr_date:
                 durations.append(None)
                 err_flag = True
                 continue
@@ -259,41 +277,45 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
 ===============================
 """
 
-def delay_start(email, i, airline, airlines_with_arr_and_dep_dates, airlines_with_airport_names):
+def delay_start(email, i, airline, use_arr_and_dep_dates, airline_heuristics):
     if airline == "united airlines":
         if follows(email, i, ['trip summary']):
             return False
         elif follows(email, i, ['flight 1 of']):
-            airlines_with_arr_and_dep_dates.add(airline)
+            use_arr_and_dep_dates.add(airline)
             return False
-    elif airline == "southwest airlines":
-        if follows(email, i, ['your itinerary']):
-            return False
-    elif airline == "british airways":
-        airlines_with_arr_and_dep_dates.add(airline)
-        airlines_with_airport_names.add(airline)
-        if follows(email, i, ['your itinerary']):
-            return False
-    elif airline == "delta airlines":
-        airlines_with_airport_names.add(airline)
-        return False
-    elif airline == "frontier airlines":
-        airlines_with_arr_and_dep_dates.add(airline)
-        return False
-    elif airline == "air france":
-        if follows(email, i, ['your flight details']):
+        return True
+    
+    if airline in airline_heuristics:
+        heuristics = airline_heuristics[airline]
+        if 'start' in heuristics:
+            if 'follows' in heuristics['start']:
+                if follows(email, i, **heuristics['start']['follows']):
+                    return False
+            if 'before' in heuristics['start']:
+                if before(email, i, **heuristics['start']['before']):
+                    return False
+        else:
             return False
     else:
         return False
+
     return True
 
-def stop(email, i, airline):
-    if airline == "british airways":
-        if before(email, i, ['baggage allowances']):
-            return True
-    if airline == "southwest airlines":
-        if before(email, i, ['prepare for takeoff', 'no show policy']):
-            return True
+def stop(email, i, airline, airline_heuristics):
+    if airline in airline_heuristics:
+        heuristics = airline_heuristics[airline]
+        if 'stop' in heuristics:
+            if 'before' in heuristics['stop']:
+                if before(email, i, **heuristics['stop']['before']):
+                    return True
+            if 'follows' in heuristics['stop']:
+                if follows(email, i, **heuristics['stop']['follows']):
+                    return True
+        else:
+            return False
+    else:
+        return False
     return False
 
 def find_flights(email, i, flights, current):
@@ -306,10 +328,18 @@ def find_flights(email, i, flights, current):
                 pass
             elif bool(re.match("^([0-9]{1,4})$", email[i+1])):
                 flights.append(email[i] + " " + email[i+1])
+        elif before(email, i, ['flight number:']):
+            if email[i+1].lower() in airline_codes_to_names and i < len(email) - 2:
+                if bool(re.match("^([0-9]{1,4})$", email[i+2])):
+                    flights.append(email[i+1] + " " + email[i+2])
         else:
-            chars, nums = split_char_dig(email[i])
+            chars, nums = None, None
+            if current[:6].lower() == 'flight':
+                chars, nums = split_char_dig(current[6:])
+            else:
+                chars, nums = split_char_dig(email[i])
             if chars != None and chars.lower() in airline_codes_to_names and bool(re.match("^([0-9]{1,4})$", nums)):
-                flights.append(chars + " " + nums)
+                flights.append(chars.upper() + " " + nums)
     if len(flights) > 1:
         if flights[-1] == flights[-2]:
             flights.pop()
@@ -344,14 +374,14 @@ def find_times(email, i, dep_times, arr_times, overnight_flag, da_flag, current)
 
         da_flag[0] = not da_flag[0]     # alternate b/w dep and arr times
 
-def find_dates(email, i, dep_dates, arr_dates, dep_times, arr_times, overnight_flag, airline, airlines_with_arr_and_dep_dates):    
-    if overnight_flag[0] and len(arr_dates) == len(arr_times) and airline not in airlines_with_arr_and_dep_dates:
+def find_dates(email, i, dep_dates, arr_dates, dep_times, arr_times, overnight_flag, airline, use_arr_and_dep_dates):    
+    if overnight_flag[0] and len(arr_dates) == len(arr_times) and airline not in use_arr_and_dep_dates:
         arr_dates[-1] = (get_datetime(arr_dates[-1]) + timedelta(days=1)).strftime("%-m/%-d/%Y")
         overnight_flag[0] = False
     
     date = is_valid_date(email, i, airline)
     if date != None:
-        if airline in airlines_with_arr_and_dep_dates:
+        if airline in use_arr_and_dep_dates:
             if len(dep_dates) > len(arr_dates):
                 arr_dates.append(date)
             else:
@@ -364,11 +394,12 @@ def find_dates(email, i, dep_dates, arr_dates, dep_times, arr_times, overnight_f
         dep_dates.append(arr_dates[-1])
         arr_dates.append(arr_dates[-1])
 
-def find_airports(email, i, airports, airlines_with_airport_names, airline=None, include_parenth=False):
-    if include_parenth and (email[i][0] != '(' or email[i][-1] != ')'):
+def find_airports(email, i, airports, airport_names, airline=None, include_parenth=False):
+    current = email[i].strip()
+    if include_parenth and (current[0] != '(' or current[-1] != ')'):
         return
-    curr = email[i].strip('()')
-    if airline and airline in airlines_with_airport_names:
+    curr = current.strip('()')
+    if airline and airline in airport_names:
         if i < len(email) - 6:
             for j in range(6):
                 name = replace(" ".join(email[i:i+j+1]),['(',')',','], '')
@@ -376,12 +407,11 @@ def find_airports(email, i, airports, airlines_with_airport_names, airline=None,
                     airports.append(name)
                     break
     elif curr in airport_codes_to_names:
-        if i > 1 and i < len(email) - 1 and not (email[i-1].lower() == "the" and email[i+1] == "website"):
-            airports.append(curr)
+        airports.append(curr)
 
-def find_cost(email, i):
+def find_cost(email, i, heuristics):
     cost = None
-    test = follows(email, i, heuristics['cost'], 4, ['total price of your ticket'])
+    test = follows(email, i, heuristics['cost'], 4, ['total price of your ticket', 'total max.'])
     if test:
         for j, curr in enumerate(test.split()):
             curr = curr.replace(",","")
@@ -394,22 +424,28 @@ def find_cost(email, i):
         cost = '$' + cost
     return cost
 
-def find_name(email, i):
+def find_name(email, i, airline, heuristics):
     name = None
-    if i < len(email) - 2:
-        name_len = 2
-        name = before(email, i, ['join the aadvantage','aadvantage'], 5, ['passenger', 'purchase'])
-        if name == None:
-            name = before(email, i, ["you're all set."], 1)
-        if name == None:
-            name = follows(email, i, heuristics['name'], name_len, ['passenger info', 'passenger information (api)'])
-        # cleanup name
-        if name != None:
-            if '/' in name:
-                name = " ".join(name.split()[0].split('/')[::-1])
-            name = name.strip(',')
-            if not (name.isalpha() or " " in name or "'" in name):
-                name = None
+
+    if airline in heuristics and 'name' in heuristics[airline]:
+        if "follows" in heuristics[airline]['name']:
+            name = follows(email, i, **heuristics[airline]['name']['follows'])
+        if "before" in heuristics[airline]['name']:
+            name = before(email, i, **heuristics[airline]['name']['before'])
+    else:
+        name = follows(email, i, **heuristics['default']['name']['follows'])
+
+    # cleanup name
+    if name != None:
+        if '/' in name:
+            name = " ".join(name.split()[0].split('/')[::-1])
+        comma = name.find(',')
+        if comma != -1:
+            name = name[:name.find(',')]
+        if name.split()[0].lower() in { 'mr', 'ms', 'mrs', 'mr.', 'ms.', 'mrs.','miss','miss.'}:
+            name = " ".join(name.split()[1:])
+        if not (name.isalpha() or " " in name or "'" in name):
+            name = None
     return name
 
 def find_durations(email, i, durations):
@@ -427,18 +463,22 @@ def find_durations(email, i, durations):
         elif bool(re.match("\d{0,2} hr \d{0,2} min", " ".join(email[i+1:i+5]))):
             durations.append(" ".join(email[i+1:i+5]))
 
-def find_airline(email):
+def find_airline(email, use_arr_and_dep_dates, airport_names, heuristics):
     counter = dict()
     airline_code, airline, err_msg = None, None, ""
-    first = None
+    flights = []
+    contains_google = False # edge case for alaksa google flights receipt
 
     for i in range(len(email)):
         current = email[i].lower()
+        if current == "google":
+            contains_google = True
+        # find flights
+        if len(flights) < 1:
+            find_flights(email, i, flights, current)
         # find airline
         if current in airline_names_to_codes or (i < len(email) - 1 and " ".join(email[i:i+2]) in airline_names_to_codes):
             airline_code = airline_names_to_codes[current]
-            if not first:
-                first = airline_codes_to_names[airline_code].lower()
             if airline_code in counter:
                 counter[airline_code] += 1
             else:
@@ -448,10 +488,24 @@ def find_airline(email):
     if counter:
         airline_code = max(counter.items(), key=operator.itemgetter(1))[0]
         airline = airline_codes_to_names[airline_code].lower()
-        if counter[airline_code] < 3:
-            return None, None, "Airline not found.\n"
+        if len(counter.keys()) > 1 and counter[airline_code] < 3:
+            airline_code, airline, err_msg = None, None, "Airline not found.\n"
     else:
         err_msg = "Airline not found.\n"
+    
+    # if no airline found default to first flight carrier
+    if not airline and flights:
+        airline_code = flights[0].split()[0].lower()
+        airline = airline_codes_to_names[airline_code].lower()
+        err_msg = ""
+
+    if airline in heuristics and 'arr_and_dep_dates' in heuristics[airline]:
+        if airline == "alaska airlines" and contains_google:
+            pass
+        else:
+            use_arr_and_dep_dates.add(airline)
+    if airline in heuristics and 'airport_names' in heuristics[airline]:
+        airport_names.add(airline)
 
     return airline_code, airline, err_msg
 
@@ -514,43 +568,61 @@ def preprocess(part) -> str:
             Returns:
                         email (list[str]): list of words in processed email
     """
+    pickle.dump(part, open("test.pickle", 'wb'))
     soup = soupify(part)
-    raw = " ".join(soup.stripped_strings).split()
-    words = remove_header(soup)
-    shortened_words = [ w for w in words if len(w) < 50 or ':' in w or w[:3] in airport_codes_to_names ]
+    stripped = []
+    # get rid of whitespace and extraneous characters
+    for s in soup.stripped_strings:
+        while "  " in s:
+            s = s.replace("  ", " ")
+        s = s.replace("\xa0", " ").replace("\r\n", "").replace("Â","").replace("\u200c", "")
+        stripped.append(s)
+    # remove email forward header
+    words = remove_header(stripped)
+    # remove long strings
+    words = [ w for w in words if len(w) < 55 or ':' in w or w[:3] in airport_codes_to_names ]
+    words = unicode_to_ascii(" ".join(words))
+    # edge case
+    words = words.replace('Face masks required for all travelers','')
+    words = words.replace('\u2019', "'")
+    words = replace(words, ["-", "*", "\u2014", "\u2013"]).split()
 
-    email = unicode_to_ascii(" ".join(shortened_words))
-    email = email.replace('Face masks required for all travelers','')
-    email = email.replace('\u2019', "'")
-    email = replace(email, ["-", "*", "\u2014", "\u2013"]).split()
+    raw = " ".join(stripped).split()
 
     # edge case
     index = None
-    for i in range(len(email)):
-        if email[i][-4:] == "Join":
+    for i in range(len(words)):
+        if words[i][-4:] == "Join":
             index = i
     if index != None:
-        email[index] = email[index][:-4]
-        email.insert(index + 1, "Join")
+        words[index] = words[index][:-4]
+        words.insert(index + 1, "Join")
 
-    return email, raw
+    return words, raw
 
-def remove_header(soup: BeautifulSoup):
+def remove_header(text: List[str]):
     words = []
-    skip = 0
-
-    stripped = list(soup.stripped_strings)
-
-    keywords = ['From:', 'Subject:', 'Date:', 'To:']
-    for i, string in enumerate(stripped):
-        if i < 50:
-            for w in keywords:
-                if string[:len(w)] == w:
-                    if i < len(stripped) + 1 and stripped[i+1][-1] and stripped[i+1][-1] == '<':
-                        skip = 3
-                    else:
+    skip = -1
+    keywords = ['From:', 'Subject:', 'Date:', 'To:', 'Reply-To:']
+    for i, string in enumerate(text):
+        for w in keywords:
+            if i < 100 and string[:len(w)] == w:
+                if i < len(text) + 1 and text[i+1][-1] and text[i+1][-1] == '<':
+                    skip = 3
+                elif i < len(text) + 2 and text[i+2][0] == '<':
+                    skip = 2
+                elif w == 'Date:':
+                    flag = False
+                    for j in range(i+1, min(i+5,len(text))):
+                        if bool(re.match("\d{1,2}:\d{1,2}",text[j])):
+                            skip = j - i
+                            flag = True
+                            break
+                    if not flag:
                         skip = 1
-                    break
+                else:
+                    skip = 1
+                break
         if skip < 0:
             words.append(string)
         else:
@@ -585,17 +657,18 @@ def soupify(part, parser="lxml"):
     return BeautifulSoup(html, parser)
 
 
-def pad(lists, values=None):
+def pad(lists, values=None, longest_len=0):
     """
     Pads lists to match max length list with value
 
             Params:
                         lists (list[list[...]]): lists to pad
                         value (list[...]): values to pad with, default None (same len as lists)
+                        longest_len (int): length to pad to
             Returns:
                         None
     """
-    longest_len = max([len(l) for l in lists])
+    longest_len = max(max([len(l) for l in lists]), longest_len)
     if values == None:
         for l in lists:
             l += [None] * (longest_len - len(l))
@@ -641,8 +714,17 @@ def get_datetime(date_string: str, time_string: str = "00:00 AM") -> datetime:
 
 
 def is_valid_date(email, i, airline):
+    if airline == "royal dutch airlines":
+        if i < len(email) - 4:
+            weekday, day, month, year = email[i].lower(), email[i + 1].lower(), email[i + 2].lower(), email[i + 3].lower()
+            if weekday in days and is_day(day) and month in months and bool(re.match("^\d{2}(\d{2})?$", year)):
+                return str(months[month]) + "/" + day + "/" + year
+        return
     # 6/18/2021
     if bool(re.match("\d{1,2}/\d{1,2}/(\d{2}|\d{4})", email[i])):
+        month, day, year = email[i].split('/')
+        if int(month) > 12 and int(day) <= 12:
+            return day + "/" + month + "/" + year
         return email[i]
     if i < len(email) - 1 and email[i].lower()[:-1] in days:
         # Sun, 09Aug
@@ -657,14 +739,14 @@ def is_valid_date(email, i, airline):
     if airline == "united airlines" and bool(re.match("(depart)|(arrive) [a-z]+:", " ".join(email[i-2:i]).lower())):
         return None
     _0, _1, _2, _3 = email[i].lower(), email[i + 1].lower(), email[i + 2].lower(), email[i + 3].lower()
-    # 11 Jul 2021
+    # 11 Jul 2021 or 21
     day, month, year = _0, _1, _2
-    if is_day(day) and month in months and bool(re.match("\d{4}", year)):
+    if is_day(day) and month in months and bool(re.match("^\d{2}(\d{2})?$", year)):
         return str(months[month]) + "/" + day + "/" + year.strip(",").strip(":").strip()
-    # Mon. 12 July 2021
-    weekday, day, month, year = _0, _1, _2, _3
-    if weekday[-1] == "," and weekday[:-1] in days and is_day(day) and month in months and bool(re.match("\d{4}", year)):
-        return str(months[month]) + "/" + day + "/" + year.strip(",").strip(":").strip()
+    # Mon, 12 July 2021 or 21
+    weekday, day, month, year = _0, _1, _2, _3.strip(",").strip(":").strip()
+    if (weekday[-1] == "," or weekday[-1] == ".") and weekday[:-1] in days and is_day(day) and month in months and bool(re.match("^\d{2}(\d{2})?$", year)):
+        return str(months[month]) + "/" + day + "/" + year
     # Mon, July 20
     weekday, month, day = _0, _1, _2
     if month == ",":
@@ -686,7 +768,7 @@ def is_valid_date(email, i, airline):
 def is_day(day):
     return day.isnumeric() and 1 < int(day) and int(day) < 32
 
-def follows(email, i, words, after=1, unwanted=[]):
+def follows(email, i, words=[], after=1, unwanted=[]):
     """
     Returns item(s) in email that follow anything in 'words'
 
@@ -714,7 +796,7 @@ def follows(email, i, words, after=1, unwanted=[]):
     return None
 
 
-def before(email, i, words, before=1, until=[]):
+def before(email, i, words=[], before=1, until=[]):
     # see follows function above
     for word in words:
         word_list = word.split()
@@ -784,23 +866,51 @@ def build_service(creds=None):
     return build('gmail', 'v1', credentials=creds)
 
 def fetch_email_list(service, _userId, count=100):
-    results = (
-        service.users().messages().list(userId=_userId, labelIds=['INBOX'], maxResults=min(count, 500)).execute()
-    )
-    return results.get('messages', [])
+    messages = []
+    req = service.users().messages().list(userId=_userId, maxResults=min(count, 500), q='to:flights@goflok.com')
+    res = req.execute()
+
+    while True:
+        prev_req = req
+        if 'messages' in res:
+            messages += res['messages']
+        req = service.users().messages().list_next(prev_req, res)
+        if req != None:
+            res = req.execute()
+        else:
+            break
+
+    return messages
 
 def fetch_email_html(service, messages, _userId):
     """Returns message content from gmail API
     """
     ret = []
-    for message in messages:
-        msg = service.users().messages().get(userId=_userId, id=message['id']).execute()
-        if "payload" in msg and "parts" in msg["payload"]:
-            part = list(
-                filter(lambda p: p["mimeType"] == "text/html", msg["payload"]["parts"])
-            )
-            if part:
-                ret.append(part[0])
+    batch_size = 100
+
+    def create_callback(id=""):
+        def callback(request_id, response, exception):
+            if exception is not None:
+                ret.append({'id': id, 'err': exception})
+            else:
+                if "payload" in response and "parts" in response["payload"]:
+                    part = list(
+                        filter(lambda p: p["mimeType"] == "text/html", response["payload"]["parts"])
+                    )
+                    if part:
+                        ret.append({'id': id,'part': part[0]})
+                    else:
+                        ret.append({'id': id, 'err': 'no part'})
+                else:
+                    ret.append({'id': id, 'err': 'no payload'})
+        return callback
+
+    for i in range(math.ceil(len(messages) / batch_size)):
+        batch = service.new_batch_http_request()
+        for message in messages[i*batch_size:(i+1)*batch_size]:
+            request = service.users().messages().get(userId=_userId, id=message['id'])
+            batch.add(request=request, callback=create_callback(message['id']))
+        batch.execute()
     
     return ret
 

@@ -1,847 +1,1552 @@
-1
-Passenger: Bridget Scotti   Confirmation Number: MSTPGN
-Airline: American Airlines
-========================================================
-Flight: AA 9111 from LGA to DEN
-
-Departs on 8/9/2021 at 7:53 AM
-Arrives on 8/9/2021 at 10:11 AM
-Flight duration: 4h, 18m
---------------------------------------------------------
-Flight: AA 9270 from DEN to LGA
-
-Departs on 8/12/2021 at 4:39 PM
-Arrives on 8/12/2021 at 10:29 PM
-Flight duration: 3h, 50m
---------------------------------------------------------
-
-Total Cost: $466.80
-========================================================
-
 2
-Passenger: Yue Ping Lee   Confirmation Number: VHMMBG
-Airline: American Airlines
+Passenger: Anthony Becker   Confirmation Number: UOMLKQ
+Airline: Alaska Airlines
 ========================================================
-Flight: AA 761 from SJC to PHX
+Flight: AS 3359 from OAK to SEA
 
-Departs on 7/19/2021 at 6:20 AM
-Arrives on 7/19/2021 at 8:32 AM
-Flight duration: 2h, 12m
+Departs on 8/09/2021 at 10:45
+Arrives on 8/09/2021 at 12:51
+Flight duration: 2h, 6m
 --------------------------------------------------------
-Flight: AA 1569 from PHX to BOS
+Flight: AS 3481 from SEA to OAK
 
-Departs on 7/19/2021 at 9:45 AM
-Arrives on 7/19/2021 at 5:52 PM
-Flight duration: 5h, 7m
---------------------------------------------------------
-Flight: AA 2260 from BOS to PHX
-
-Departs on 7/23/2021 at 7:10 AM
-Arrives on 7/23/2021 at 9:55 AM
-Flight duration: 5h, 45m
---------------------------------------------------------
-Flight: AA 882 from PHX to SJC
-
-Departs on 7/23/2021 at 10:50 AM
-Arrives on 7/23/2021 at 12:39 PM
-Flight duration: 1h, 49m
+Departs on 8/15/2021 at 15:37
+Arrives on 8/15/2021 at 17:45
+Flight duration: 2h, 8m
 --------------------------------------------------------
 
-Total Cost: $696.41
-========================================================
-
-3
-Passenger: Tiffany Yu   Confirmation Number: NE23ED
-Airline: United Airlines
-========================================================
-Flight: UA 320 from DEN to BOS
-
-Departs on 8/12/2021 at 4:00 PM
-Arrives on 8/12/2021 at 9:53 PM
-Flight duration: 3h 53m
---------------------------------------------------------
-
-Total Cost: $284.40
-========================================================
-
-4
-Passenger: Kristie Zheng   Confirmation Number: NRMTXQ
-Airline: United Airlines
-========================================================
-Flight: UA 1824 from SFO to DEN
-
-Departs on 8/09/2021 at 5:20 AM
-Arrives on 8/09/2021 at 8:49 AM
-Flight duration: 2h 29m
---------------------------------------------------------
-Flight: UA 735 from DEN to SFO
-
-Departs on 8/12/2021 at 4:00 PM
-Arrives on 8/12/2021 at 5:36 PM
-Flight duration: 2h 36m
---------------------------------------------------------
-
-Total Cost: $385.80
+Total Cost: $476.81
 ========================================================
 
 5
-Passenger: Christopher Watrous   Confirmation Number: NRYS1N
-Airline: United Airlines
+Passenger: Cory Watilo   Confirmation Number: GZJ8BS
+Airline: Delta Airlines
 ========================================================
-Flight: UA 647 from BOS to DEN
+Flight: DELTA 684 from AUSTIN to NYC
 
-Departs on 8/09/2021 at 7:55 AM
-Arrives on 8/09/2021 at 10:18 AM
-Flight duration: 4h 23m
+Departs on 8/26/2021 at 12:45
+Arrives on 8/26/2021 at 17:47
+Flight duration: 4h, 2m
 --------------------------------------------------------
-Flight: UA 320 from DEN to BOS
+Flight: DELTA 126 from NYC to MADRID
 
-Departs on 8/12/2021 at 4:00 PM
-Arrives on 8/12/2021 at 9:53 PM
-Flight duration: 3h 53m
+Departs on 8/26/2021 at 19:30
+Arrives on 8/27/2021 at 9:15
+Flight duration: 7h, 45m
 --------------------------------------------------------
+Flight: DELTA 109 from MADRID to ATLANTA
 
-Total Cost: $593.80
-========================================================
-
-6
-Passenger: Ryan Laverty   Confirmation Number: PBTV5R
-Airline: United Airlines
-========================================================
-Flight: UA 2032 from EWR to PDX
-
-Departs on 7/18/2021 at 7:00 PM
-Arrives on 7/18/2021 at 9:52 PM
-Flight duration: 5h 52m
+Departs on 9/04/2021 at 11:15
+Arrives on 9/04/2021 at 14:55
+Flight duration: 9h, 40m
 --------------------------------------------------------
-Flight: UA 1695 from SEA to EWR
+Flight: DELTA 2419 from ATLANTA to AUSTIN
 
-Departs on 7/25/2021 at 10:43 PM
-Arrives on 7/26/2021 at 6:59 AM
-Flight duration: 5h 16m
+Departs on 9/04/2021 at 19:30
+Arrives on 9/04/2021 at 20:48
+Flight duration: 2h, 18m
 --------------------------------------------------------
 
-Total Cost: $533.80
+Total Cost: $1247.15
 ========================================================
 
 7
-Passenger: Peter Downs   Confirmation Number: GZN5WK
-Airline: United Airlines
+Passenger: Edith Herwitz   Confirmation Number: HG7NHZ
+Airline: Delta Airlines
 ========================================================
-Flight: UA 8840 from JFK to FRA
+Flight: DELTA 401 from NYC to SEATTLE
 
-Departs on 7/11/2021 at 3:45 PM
-Arrives on 7/12/2021 at 5:45 AM
-Flight duration: 8h
---------------------------------------------------------
-Flight: OU 413 from FRA to SPU
-
-Departs on 7/12/2021 at 12:05 PM
-Arrives on 7/12/2021 at 1:45 PM
-Flight duration: 1h 40m
---------------------------------------------------------
-Flight: OU 462 from SPU to ZRH
-
-Departs on 7/24/2021 at 7:25 AM
-Arrives on 7/24/2021 at 9:20 AM
-Flight duration: 1h 55m
---------------------------------------------------------
-Flight: UA 53 from ZRH to IAD
-
-Departs on 7/24/2021 at 11:55 AM
-Arrives on 7/24/2021 at 3:00 PM
-Flight duration: 9h 5m
---------------------------------------------------------
-Flight: UA 3504 from IAD to PHL
-
-Departs on 7/24/2021 at 6:00 PM
-Arrives on 7/24/2021 at 7:05 PM
-Flight duration: 1h 5m
+Departs on 8/11/2021 at 9:00
+Arrives on 8/11/2021 at 12:13
+Flight duration: 6h, 13m
 --------------------------------------------------------
 
-Total Cost: $3367.45
+Total Cost: $378.40
 ========================================================
 
 8
-Passenger: Benny Yan   Confirmation Number: G0K4X7
-Airline: United Airlines
+Passenger: Meishan Xu   Confirmation Number: ICLUDI
+Airline: Alaska Airlines
 ========================================================
-Flight: UA 3524 from DFW to ORD
+Flight: AS 11 from EWR to SEA
 
-Departs on 7/11/2021 at 2:30 PM
-Arrives on 7/11/2021 at 4:55 PM
-Flight duration: 2h 25m
+Departs on 8/04/2021 at 17:40
+Arrives on 8/04/2021 at 20:53
+Flight duration: 6h, 13m
 --------------------------------------------------------
-Flight: UA 907 from ORD to FRA
+Flight: AS 714 from SEA to EWR
 
-Departs on 7/11/2021 at 6:00 PM
-Arrives on 7/12/2021 at 9:20 AM
-Flight duration: 8h 20m
---------------------------------------------------------
-Flight: UA 7260 from FRA to SPU
-
-Departs on 7/12/2021 at 12:05 PM
-Arrives on 7/12/2021 at 1:45 PM
-Flight duration: 1h 40m
---------------------------------------------------------
-Flight: OU 462 from SPU to ZRH
-
-Departs on 7/24/2021 at 7:25 AM
-Arrives on 7/24/2021 at 9:20 AM
-Flight duration: 1h 55m
---------------------------------------------------------
-Flight: UA 135 from ZRH to EWR
-
-Departs on 7/24/2021 at 10:10 AM
-Arrives on 7/24/2021 at 12:55 PM
-Flight duration: 8h 45m
---------------------------------------------------------
-Flight: UA 3436 from EWR to DFW
-
-Departs on 7/24/2021 at 2:30 PM
-Arrives on 7/24/2021 at 5:17 PM
-Flight duration: 3h 47m
+Departs on 8/15/2021 at 15:43
+Arrives on 8/15/2021 at 23:58
+Flight duration: 5h, 15m
 --------------------------------------------------------
 
-Total Cost: $3113.85
+Total Cost: $856.80
 ========================================================
 
 9
-Passenger: Graham Douglas   Confirmation Number: 235L6A
-Airline: Southwest Airlines
+Passenger: Matthew Link   Confirmation Number: GGLQU6
+Airline: Delta Airlines
 ========================================================
-Flight: SW 2105 from SFO to DEN
+Flight: DELTA 3820 from SEATTLE to KANSAS CITY
 
-Departs on 08/09/2021 at 06:05 AM
-Arrives on 08/09/2021 at 09:35 AM
-Flight duration: 2h, 30m
---------------------------------------------------------
-Flight: SW 920 from DEN to SFO
-
-Departs on 08/12/2021 at 04:40 PM
-Arrives on 08/12/2021 at 06:20 PM
-Flight duration: 2h, 40m
+Departs on 8/15/2021 at 17:20
+Arrives on 8/15/2021 at 22:55
+Flight duration: 3h, 35m
 --------------------------------------------------------
 
-Total Cost: None
+Total Cost: $186.40
 ========================================================
-**** WARNING ****
-1 values are missing, please check output.
-*****************
 
 10
-Passenger: Jay Santik   Confirmation Number: GYBHHB
-Airline: Jetblue
+Passenger: Matthew Link   Confirmation Number: USTOPX
+Airline: Alaska Airlines
 ========================================================
-Flight: B6 2157 from LGA to DEN
+Flight: AS 683 from MCI to SEA
 
-Departs on 8/09/2021 at 7:53 AM
-Arrives on 8/09/2021 at 10:11 AM
-Flight duration: 4h, 18m
---------------------------------------------------------
-Flight: B6 2256 from DEN to LGA
-
-Departs on 8/12/2021 at 4:39 PM
-Arrives on 8/12/2021 at 10:29 PM
+Departs on 8/09/2021 at 07:00
+Arrives on 8/09/2021 at 08:50
 Flight duration: 3h, 50m
 --------------------------------------------------------
 
-Total Cost: None
+Total Cost: $179.40
 ========================================================
-**** WARNING ****
-1 values are missing, please check output.
-*****************
 
 11
-Passenger: Mr Masood   Confirmation Number: SUNNE5
-Airline: British Airways
+Passenger: Neil Kakkar   Confirmation Number: CFJCRR
+Airline: Ryanair
 ========================================================
-Flight: BA 1511 from New York to London
+Flight: FR 5484 from MAD to OPO
 
-Departs on 7/11/2021 at 18:25
-Arrives on 7/12/2021 at 06:20
-Flight duration: 6h, 55m
---------------------------------------------------------
-Flight: BA 0530 from London to Split
-
-Departs on 7/12/2021 at 07:20
-Arrives on 7/12/2021 at 11:05
-Flight duration: 2h, 45m
---------------------------------------------------------
-Flight: BA 0527 from Split to London
-
-Departs on 7/24/2021 at 11:40
-Arrives on 7/24/2021 at 13:20
-Flight duration: 2h, 40m
---------------------------------------------------------
-Flight: BA 0179 from London to New York
-
-Departs on 7/24/2021 at 16:30
-Arrives on 7/24/2021 at 19:25
-Flight duration: 7h, 55m
+Departs on 8/29/21 at 11:55
+Arrives on 8/29/21 at 12:10
+Flight duration: 1h, 15m
 --------------------------------------------------------
 
-Total Cost: $3592.33
+Total Cost: $29.62
 ========================================================
 
 12
-Passenger: Samuel Johnson   Confirmation Number: VWDXTM
-Airline: Alaska Airlines
-========================================================
-Flight: Alaska 771 from DCA to PDX
-
-Departs on 7/18/2021 at 6:55 PM
-Arrives on 7/18/2021 at 9:43 PM
-Flight duration: 5h 48m
---------------------------------------------------------
-Flight: Alaska 764 from PDX to DCA
-
-Departs on 7/18/2021 at 9:45 AM
-Arrives on 7/18/2021 at 5:50 PM
-Flight duration: 5h 5m
---------------------------------------------------------
-
-Total Cost: $177.26
-========================================================
-
-13
-Passenger: Rachael Ghorbani   Confirmation Number: CELYEU
-Airline: Alaska Airlines
-========================================================
-Flight: Alaska 2250 from RNO to PDX
-
-Departs on 7/18/2021 at 9:30 AM
-Arrives on 7/18/2021 at 11:09 AM
-Flight duration: 1h 39m
---------------------------------------------------------
-Flight: Alaska 2394 from PDX to RNO
-
-Departs on 7/18/2021 at 5:10 PM
-Arrives on 7/18/2021 at 6:48 PM
-Flight duration: 1h 38m
---------------------------------------------------------
-
-Total Cost: $1
-========================================================
-
-14
-Passenger: Malcom Moye   Confirmation Number: NM07WV
-Airline: United Airlines
-========================================================
-Flight: UA 398 from EWR to DEN
-
-Departs on 8/09/2021 at 10:05 AM
-Arrives on 8/09/2021 at 12:10 PM
-Flight duration: 4h 5m
---------------------------------------------------------
-Flight: UA 1117 from DEN to EWR
-
-Departs on 8/12/2021 at 4:05 PM
-Arrives on 8/12/2021 at 9:56 PM
-Flight duration: 3h 51m
---------------------------------------------------------
-
-Total Cost: $511.80
-========================================================
-
-15
-Passenger: Tiffany Chi   Confirmation Number: SVWUNQ
-Airline: Jetblue
-========================================================
-Flight: B6 393 from BOS to DEN
-
-Departs on 8/09/2021 at 9:28 AM
-Arrives on 8/09/2021 at 12:04 PM
-Flight duration: 4h, 36m
---------------------------------------------------------
-
-Total Cost: None
-========================================================
-**** WARNING ****
-1 values are missing, please check output.
-*****************
-
-16
-Passenger: Lindsay Blair   Confirmation Number: 4WVMSZ
+Passenger: Matthew   Confirmation Number: 2DFGV4
 Airline: Southwest Airlines
 ========================================================
-Flight: SW 4465 from PHX to DEN
+Flight: SW 1528 from OAK to DEN
 
-Departs on 08/08/2021 at 11:05 AM
-Arrives on 08/08/2021 at 01:50 PM
-Flight duration: 1h, 45m
+Departs on 08/09/2021 at 08:50
+Arrives on 08/09/2021 at 12:15
+Flight duration: 2h, 25m
 --------------------------------------------------------
-Flight: SW 1289 from DEN to PHX
-
-Departs on 08/12/2021 at 05:05 PM
-Arrives on 08/12/2021 at 05:55 PM
-Flight duration: 1h, 50m
---------------------------------------------------------
-
-Total Cost: $237.96
-========================================================
-
-17
-Passenger: Meredith Claire   Confirmation Number: 4XSDQ4
-Airline: Southwest Airlines
-========================================================
 Flight: SW 5079 from DEN to OAK
 
-Departs on 08/12/2021 at 03:55 PM
-Arrives on 08/12/2021 at 05:30 PM
+Departs on 08/12/2021 at 15:55
+Arrives on 08/12/2021 at 17:30
 Flight duration: 2h, 35m
 --------------------------------------------------------
 
-Total Cost: $148.98
+Total Cost: $346.96
 ========================================================
 
-18
-Passenger: Meredith   Confirmation Number: BQKACB
-Airline: Alaska Airlines
+13
+Passenger: Nathan Lord   Confirmation Number: F6AMB9
+Airline: Delta Airlines
 ========================================================
-Flight: AS 682 from SEA to DEN
+Flight: DELTA 2054 from AUSTIN to SALT LAKE CITY
 
-Departs on 8/09/2021 at 07:58 AM
-Arrives on 8/09/2021 at 11:42 AM
-Flight duration: 2h, 44m
+Departs on 8/23/2021 at 13:50
+Arrives on 8/23/2021 at 13:59
+Flight duration: 1h, 9m
 --------------------------------------------------------
 
-Total Cost: $128.40
+Total Cost: $372.80
 ========================================================
 
-19
-Passenger: Rahul Desai   Confirmation Number: CBJVKT
+14
+Passenger: Winston Tri   Confirmation Number: JYL5WZ
 Airline: Frontier Airlines
 ========================================================
-Flight: F9 535 from DCA to DEN
+Flight: F9 324 from BUR to DEN
 
-Departs on 8/9/2021 at 7:00 AM
-Arrives on 8/9/2021 at 9:01 AM
-Flight duration: 4 hr 1 min
---------------------------------------------------------
-Flight: F9 538 from DEN to DCA
-
-Departs on 8/13/2021 at 4:26 PM
-Arrives on 8/13/2021 at 9:59 PM
-Flight duration: 3 hr 33 min
+Departs on 8/5/2021 at 9:54
+Arrives on 8/5/2021 at 13:19
+Flight duration: 2 hr 25 min
 --------------------------------------------------------
 
-Total Cost: $322.98
+Total Cost: $87.00
 ========================================================
 
-20
-Passenger: Andrew Collin   Confirmation Number: HKHM9S
-Airline: Delta Airlines
-========================================================
-Flight: DELTA 2580 from PHOENIX to SALT LAKE CITY
-
-Departs on 8/17/2021 at 6:15 AM
-Arrives on 8/17/2021 at 8:50 AM
-Flight duration: 1h, 35m
---------------------------------------------------------
-Flight: DELTA 3578 from SALT LAKE CITY to KALISPELL
-
-Departs on 8/17/2021 at 9:50 AM
-Arrives on 8/17/2021 at 11:42 AM
-Flight duration: 1h, 52m
---------------------------------------------------------
-Flight: DELTA 2459 from KALISPELL to SALT LAKE CITY
-
-Departs on 8/22/2021 at 12:25 PM
-Arrives on 8/22/2021 at 2:13 PM
-Flight duration: 1h, 48m
---------------------------------------------------------
-Flight: DELTA 2580 from SALT LAKE CITY to PHOENIX
-
-Departs on 8/22/2021 at 3:24 PM
-Arrives on 8/22/2021 at 4:03 PM
-Flight duration: 1h, 39m
---------------------------------------------------------
-
-Total Cost: $563.40
-========================================================
-
-21
-Passenger: Andrew Lewis   Confirmation Number: GC7G45
-Airline: Delta Airlines
-========================================================
-Flight: DELTA 1311 from LOS ANGELES to BOSTON
-
-Departs on 7/19/2021 at 7:59 AM
-Arrives on 7/19/2021 at 4:44 PM
-Flight duration: 5h, 45m
---------------------------------------------------------
-Flight: DELTA 675 from BOSTON to LOS ANGELES
-
-Departs on 7/23/2021 at 11:00 AM
-Arrives on 7/23/2021 at 2:07 PM
-Flight duration: 6h, 7m
---------------------------------------------------------
-
-Total Cost: $616.80
-========================================================
-
-22
-Passenger: Carl Brenden   Confirmation Number: GBTXJZ
-Airline: Delta Airlines
-========================================================
-Flight: DELTA 382 from SAN FRANCISCO to LOS ANGELES
-
-Departs on 8/09/2021 at 6:00 AM
-Arrives on 8/09/2021 at 7:25 AM
-Flight duration: 1h, 25m
---------------------------------------------------------
-Flight: DELTA 3681 from LOS ANGELES to DENVER
-
-Departs on 8/09/2021 at 8:45 AM
-Arrives on 8/09/2021 at 12:10 PM
-Flight duration: 2h, 25m
---------------------------------------------------------
-Flight: DELTA 2261 from DENVER to LOS ANGELES
-
-Departs on 8/12/2021 at 4:05 PM
-Arrives on 8/12/2021 at 5:32 PM
-Flight duration: 2h, 27m
---------------------------------------------------------
-Flight: DELTA 418 from LOS ANGELES to SAN FRANCISCO
-
-Departs on 8/12/2021 at 8:05 PM
-Arrives on 8/12/2021 at 9:35 PM
-Flight duration: 1h, 30m
---------------------------------------------------------
-
-Total Cost: $262.40
-========================================================
-
-23
-Passenger: Constance Betsy   Confirmation Number: F7BMZJ
-Airline: Delta Airlines
-========================================================
-Flight: DELTA 3681 from LOS ANGELES to DENVER
-
-Departs on 8/09/2021 at 8:45 AM
-Arrives on 8/09/2021 at 12:10 PM
-Flight duration: 2h, 25m
---------------------------------------------------------
-Flight: DELTA 2261 from DENVER to LOS ANGELES
-
-Departs on 8/12/2021 at 4:05 PM
-Arrives on 8/12/2021 at 5:32 PM
-Flight duration: 2h, 27m
---------------------------------------------------------
-
-Total Cost: $162.80
-========================================================
-
-24
-Passenger: Jacob Siegler   Confirmation Number: SPHXIK
-Airline: American Airlines
-========================================================
-Flight: AA 3059 from LAX to PDX
-
-Departs on 7/18/2021 at 2:32 PM
-Arrives on 7/18/2021 at 5:00 PM
-Flight duration: 2h, 28m
---------------------------------------------------------
-Flight: AA 3003 from PDX to LAX
-
-Departs on 7/23/2021 at 10:54 AM
-Arrives on 7/23/2021 at 1:13 PM
-Flight duration: 2h, 19m
---------------------------------------------------------
-
-Total Cost: $382.80
-========================================================
-
-25
-Passenger: Stefanjay Schuch   Confirmation Number: HJC0ZM
+15
+Passenger: Alexandrehervemarie Masmejean   Confirmation Number: LPGHM3
 Airline: United Airlines
 ========================================================
-Flight: UA 58 from SFO to FRA
+Flight: UA 1678 from SFO to CUN
 
-Departs on 7/11/2021 at 02:05 PM
-Arrives on 7/12/2021 at 09:55 AM
-Flight duration: 10h, 50m
---------------------------------------------------------
-Flight: UA 7260 from FRA to SPU
-
-Departs on 7/12/2021 at 12:05 PM
-Arrives on 7/12/2021 at 01:45 PM
-Flight duration: 1h, 40m
---------------------------------------------------------
-Flight: OU 474 from SPU to CDG
-
-Departs on 7/24/2021 at 03:15 PM
-Arrives on 7/24/2021 at 05:30 PM
-Flight duration: 2h, 15m
---------------------------------------------------------
-Flight: UA 914 from CDG to IAD
-
-Departs on 7/25/2021 at 12:25 PM
-Arrives on 7/25/2021 at 03:00 PM
-Flight duration: 8h, 35m
---------------------------------------------------------
-Flight: UA 2435 from IAD to SFO
-
-Departs on 7/25/2021 at 06:35 PM
-Arrives on 7/25/2021 at 08:59 PM
+Departs on 7/28/2021 at 10:40
+Arrives on 7/28/2021 at 18:04
 Flight duration: 5h, 24m
 --------------------------------------------------------
 
-Total Cost: $5684.85
+Total Cost: $522.84
+========================================================
+
+16
+Passenger: Alexandrehervemarie Masmejean   Confirmation Number: LPJN29
+Airline: United Airlines
+========================================================
+Flight: UA 1118 from CUN to SFO
+
+Departs on 8/03/2021 at 17:20
+Arrives on 8/03/2021 at 21:10
+Flight duration: 5h, 50m
+--------------------------------------------------------
+
+Total Cost: $774.96
+========================================================
+
+17
+Passenger: Alexandercarlson Kilkka   Confirmation Number: BXPMT2
+Airline: United Airlines
+========================================================
+Flight: UA 1678 from SFO to CUN
+
+Departs on 7/28/2021 at 10:40
+Arrives on 7/28/2021 at 18:04
+Flight duration: 5h, 24m
+--------------------------------------------------------
+Flight: UA 1118 from CUN to SFO
+
+Departs on 8/03/2021 at 17:20
+Arrives on 8/03/2021 at 21:10
+Flight duration: 5h, 50m
+--------------------------------------------------------
+
+Total Cost: $1128.70
+========================================================
+
+20
+Passenger: Alejandro Pedraza   Confirmation Number: MSY7WK
+Airline: United Airlines
+========================================================
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/13/2021 at 8:45
+Arrives on 10/13/2021 at 11:08
+Flight duration: 5h 23m
+--------------------------------------------------------
+Flight: UA 435 from KOA to SFO
+
+Departs on 10/22/2021 at 9:00
+Arrives on 10/22/2021 at 17:16
+Flight duration: 5h 16m
+--------------------------------------------------------
+
+Total Cost: $1104.00
+========================================================
+
+21
+Passenger: Watson Fu   Confirmation Number: HADI4A
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 1311 from SAN FRANCISCO to SALT LAKE CITY
+
+Departs on 8/23/2021 at 10:05
+Arrives on 8/23/2021 at 12:53
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DELTA 2696 from SALT LAKE CITY to LAS VEGAS
+
+Departs on 8/26/2021 at 15:50
+Arrives on 8/26/2021 at 16:11
+Flight duration: 1h, 21m
+--------------------------------------------------------
+
+Total Cost: $231.79
+========================================================
+
+23
+Passenger: Blaze Christophe   Confirmation Number: HIICOE
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 2005 from KANSAS CITY to ATLANTA
+
+Departs on 7/28/2021 at 12:26
+Arrives on 7/28/2021 at 15:25
+Flight duration: 1h, 59m
+--------------------------------------------------------
+Flight: DELTA 610 from ATLANTA to CANCUN
+
+Departs on 7/28/2021 at 16:55
+Arrives on 7/28/2021 at 18:25
+Flight duration: 2h, 30m
+--------------------------------------------------------
+Flight: DELTA 609 from CANCUN to ATLANTA
+
+Departs on 7/31/2021 at 8:00
+Arrives on 7/31/2021 at 11:33
+Flight duration: 2h, 33m
+--------------------------------------------------------
+Flight: DELTA 2519 from ATLANTA to KANSAS CITY
+
+Departs on 7/31/2021 at 13:48
+Arrives on 7/31/2021 at 14:55
+Flight duration: 2h, 7m
+--------------------------------------------------------
+
+Total Cost: $1038.30
+========================================================
+
+24
+Passenger: Clement Emmanuel   Confirmation Number: HCTBIE
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 1311 from SAN FRANCISCO to SALT LAKE CITY
+
+Departs on 8/23/2021 at 10:05
+Arrives on 8/23/2021 at 12:53
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DELTA 1352 from SALT LAKE CITY to SAN FRANCISCO
+
+Departs on 8/27/2021 at 15:05
+Arrives on 8/27/2021 at 16:01
+Flight duration: 1h, 56m
+--------------------------------------------------------
+
+Total Cost: $226.80
+========================================================
+
+25
+Passenger: Bianca Nieves   Confirmation Number: KRBSMI
+Airline: Alaska Airlines
+========================================================
+Flight: AS 1087 from AUS to PDX
+
+Departs on 7/18/2021 at 17:40
+Arrives on 7/18/2021 at 19:48
+Flight duration: 4h, 8m
+--------------------------------------------------------
+
+Total Cost: $353.18
 ========================================================
 
 26
-Passenger: Derling Chen   Confirmation Number: N8QWFJ
+Passenger: Winston Tri   Confirmation Number: Q8MDJC
+Airline: Frontier Airlines
+========================================================
+Flight: F9 322 from BUR to DEN
+
+Departs on 7/26/2021 at 17:47
+Arrives on 7/26/2021 at 21:12
+Flight duration: 2 hr 25 min
+--------------------------------------------------------
+Flight: F9 323 from DEN to BUR
+
+Departs on 7/30/2021 at 15:30
+Arrives on 7/30/2021 at 17:02
+Flight duration: 2 hr 32 min
+--------------------------------------------------------
+
+Total Cost: $173.98
+========================================================
+
+28
+Passenger: Liam Peng   Confirmation Number: JOOWKS
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 2592 from ST LOUIS to ST PAUL
+
+Departs on 7/19/2021 at 6:40
+Arrives on 7/19/2021 at 8:12
+Flight duration: 1h, 32m
+--------------------------------------------------------
+Flight: DELTA 1737 from ST PAUL to BOSTON
+
+Departs on 7/19/2021 at 10:08
+Arrives on 7/19/2021 at 13:57
+Flight duration: 2h, 49m
+--------------------------------------------------------
+Flight: DELTA 2309 from BOSTON to ATLANTA
+
+Departs on 7/23/2021 at 16:45
+Arrives on 7/23/2021 at 19:43
+Flight duration: 2h, 58m
+--------------------------------------------------------
+Flight: DELTA 1638 from ATLANTA to ST LOUIS
+
+Departs on 7/23/2021 at 20:50
+Arrives on 7/23/2021 at 21:32
+Flight duration: 1h, 42m
+--------------------------------------------------------
+
+Total Cost: $583.40
+========================================================
+
+29
+Passenger: Rei Chiang   Confirmation Number: GSEMAI
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 989 from SEATTLE to SALT LAKE CITY
+
+Departs on 8/23/2021 at 11:20
+Arrives on 8/23/2021 at 14:25
+Flight duration: 2h, 5m
+--------------------------------------------------------
+Flight: DELTA 787 from SALT LAKE CITY to SEATTLE
+
+Departs on 8/23/2021 at 11:18
+Arrives on 8/23/2021 at 12:35
+Flight duration: 2h, 17m
+--------------------------------------------------------
+
+Total Cost: $236.80
+========================================================
+
+30
+Passenger: Hsientang Kao   Confirmation Number: GRYRND
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 1311 from SAN FRANCISCO to SALT LAKE CITY
+
+Departs on 8/23/2021 at 10:05
+Arrives on 8/23/2021 at 12:53
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DELTA 2104 from SALT LAKE CITY to SAN FRANCISCO
+
+Departs on 8/26/2021 at 22:59
+Arrives on 8/26/2021 at 23:57
+Flight duration: 1h, 58m
+--------------------------------------------------------
+
+Total Cost: $226.80
+========================================================
+
+31
+Passenger: Victor Xu   Confirmation Number: JKQ0Z6
 Airline: United Airlines
 ========================================================
-Flight: UA 2285 from SMF to DEN
+Flight: UA 457 from EWR to SLC
 
-Departs on 8/09/2021 at 09:05 AM
-Arrives on 8/09/2021 at 12:26 PM
-Flight duration: 2h, 21m
+Departs on 8/23/2021 at 11:00
+Arrives on 8/23/2021 at 14:00
+Flight duration: 5h, 0m
 --------------------------------------------------------
-Flight: UA 339 from DEN to SMF
+Flight: UA 1968 from SLC to EWR
 
-Departs on 8/12/2021 at 04:00 PM
-Arrives on 8/12/2021 at 05:27 PM
-Flight duration: 2h, 27m
+Departs on 8/27/2021 at 14:45
+Arrives on 8/27/2021 at 21:06
+Flight duration: 4h, 21m
+--------------------------------------------------------
+
+Total Cost: $596.80
+========================================================
+
+32
+Passenger: Jonathan Reem   Confirmation Number: GQTNFV
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 1311 from SAN FRANCISCO to SALT LAKE CITY
+
+Departs on 8/23/2021 at 10:05
+Arrives on 8/23/2021 at 12:53
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DELTA 1352 from SALT LAKE CITY to SAN FRANCISCO
+
+Departs on 8/27/2021 at 15:05
+Arrives on 8/27/2021 at 16:01
+Flight duration: 1h, 56m
+--------------------------------------------------------
+
+Total Cost: $296.80
+========================================================
+
+33
+Passenger: Anthonychristopher Lanzisera   Confirmation Number: H9Q2WQ
+Airline: United Airlines
+========================================================
+Flight: UA 389 from EWR to BOS
+
+Departs on 7/19/2021 at 11:25
+Arrives on 7/19/2021 at 12:27
+Flight duration: 1h, 2m
+--------------------------------------------------------
+Flight: UA 238 from BOS to EWR
+
+Departs on 7/23/2021 at 09:00
+Arrives on 7/23/2021 at 10:24
+Flight duration: 1h, 24m
 --------------------------------------------------------
 
 Total Cost: $316.80
 ========================================================
 
-27
-Passenger: James Mckernan   Confirmation Number: NG4X4E
+34
+Passenger: Anthonychristopher Lanzisera   Confirmation Number: H9Q2WQ
 Airline: United Airlines
 ========================================================
-Flight: UA 1824 from SFO to DEN
+Flight: UA 389 from EWR to BOS
 
-Departs on 8/09/2021 at 05:20 AM
-Arrives on 8/09/2021 at 08:49 AM
-Flight duration: 2h, 29m
+Departs on 7/19/2021 at 11:25
+Arrives on 7/19/2021 at 12:27
+Flight duration: 1h, 2m
 --------------------------------------------------------
-Flight: UA 735 from DEN to SFO
+Flight: UA 238 from BOS to EWR
 
-Departs on 8/12/2021 at 04:00 PM
-Arrives on 8/12/2021 at 05:36 PM
+Departs on 7/23/2021 at 09:00
+Arrives on 7/23/2021 at 10:24
+Flight duration: 1h, 24m
+--------------------------------------------------------
+
+Total Cost: $316.80
+========================================================
+
+35
+Passenger: Ankur Chopra   Confirmation Number: HQ1QYV
+Airline: United Airlines
+========================================================
+Flight: UA 1145 from SFO to DEN
+
+Departs on 7/27/2021 at 10:50
+Arrives on 7/27/2021 at 14:22
+Flight duration: 2h, 32m
+--------------------------------------------------------
+Flight: UA 1478 from DEN to SFO
+
+Departs on 7/30/2021 at 13:31
+Arrives on 7/30/2021 at 15:07
 Flight duration: 2h, 36m
 --------------------------------------------------------
 
-Total Cost: $265.80
+Total Cost: $572.80
 ========================================================
 
-28
-Passenger: Kevinmatthew Carlson   Confirmation Number: NMW0QK
+36
+Passenger: Zachary   Confirmation Number: 2OXMY4
+Airline: Southwest Airlines
+========================================================
+Flight: SW 5764 from DEN to OAK
+
+Departs on 08/15/2021 at 07:05
+Arrives on 08/15/2021 at 08:40
+Flight duration: 2h, 35m
+--------------------------------------------------------
+
+Total Cost: $118.98
+========================================================
+
+37
+Passenger: Victoria Lauren   Confirmation Number: GWK3HU
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 818 from ATLANTA to DENVER
+
+Departs on 8/09/2021 at 8:10
+Arrives on 8/09/2021 at 9:15
+Flight duration: 3h, 5m
+--------------------------------------------------------
+Flight: DELTA 811 from DENVER to ATLANTA
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 21:06
+Flight duration: 3h, 6m
+--------------------------------------------------------
+
+Total Cost: $299.80
+========================================================
+
+38
+Passenger: Warren   Confirmation Number: 39FPQD
+Airline: Southwest Airlines
+========================================================
+Flight: SW 5136 from SJC to DEN
+
+Departs on 07/27/2021 at 12:40
+Arrives on 07/27/2021 at 16:05
+Flight duration: 2h, 25m
+--------------------------------------------------------
+Flight: SW 0561 from DEN to SJC
+
+Departs on 07/30/2021 at 11:30
+Arrives on 07/30/2021 at 13:00
+Flight duration: 2h, 30m
+--------------------------------------------------------
+
+Total Cost: $564.96
+========================================================
+
+39
+Passenger: Liz Dresher   Confirmation Number: PFGSRF
 Airline: United Airlines
 ========================================================
 Flight: UA 1824 from SFO to DEN
 
-Departs on 8/09/2021 at 05:20 AM
-Arrives on 8/09/2021 at 08:49 AM
+Departs on 8/09/2021 at 05:20
+Arrives on 8/09/2021 at 08:49
 Flight duration: 2h, 29m
 --------------------------------------------------------
 Flight: UA 735 from DEN to SFO
 
-Departs on 8/12/2021 at 04:00 PM
-Arrives on 8/12/2021 at 05:36 PM
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:36
 Flight duration: 2h, 36m
 --------------------------------------------------------
 
 Total Cost: $385.80
 ========================================================
 
-29
-Passenger: Emilym Egan   Confirmation Number: O4SMJX
+40
+Passenger: Christopheredward Haddad   Confirmation Number: BPR9ZB
 Airline: United Airlines
 ========================================================
-Flight: UA 6235 from CVG to IAH
+Flight: UA 644 from AUS to DEN
 
-Departs on 7/17/2021 at 01:58 PM
-Arrives on 7/17/2021 at 03:34 PM
-Flight duration: 2h, 36m
+Departs on 7/26/2021 at 17:27
+Arrives on 7/26/2021 at 18:39
+Flight duration: 2h, 12m
 --------------------------------------------------------
-Flight: UA 587 from IAH to PDX
+Flight: UA 1026 from DEN to AUS
 
-Departs on 7/17/2021 at 05:00 PM
-Arrives on 7/17/2021 at 07:17 PM
-Flight duration: 4h, 17m
+Departs on 7/30/2021 at 09:55
+Arrives on 7/30/2021 at 12:58
+Flight duration: 2h, 3m
 --------------------------------------------------------
-Flight: UA 2240 from PDX to DEN
 
-Departs on 7/25/2021 at 01:15 PM
-Arrives on 7/25/2021 at 04:45 PM
+Total Cost: $255.80
+========================================================
+
+41
+Passenger: Yakko Majuri   Confirmation Number: MX3NPQ
+Airline: Royal Dutch Airlines
+========================================================
+Flight: KL 2746 from KEF to AMS
+
+Departs on 8/28/2021 at 19:50
+Arrives on 8/29/2021 at 01:00
+Flight duration: 3h, 10m
+--------------------------------------------------------
+Flight: KL 1711 from AMS to OPO
+
+Departs on 8/29/2021 at 09:05
+Arrives on 8/29/2021 at 10:40
+Flight duration: 2h, 35m
+--------------------------------------------------------
+
+Total Cost: $1581.29
+========================================================
+
+42
+Passenger: Johnkeith Nelsoniii   Confirmation Number: BPDCYT
+Airline: United Airlines
+========================================================
+Flight: UA 4715 from AUS to DEN
+
+Departs on 7/27/2021 at 13:36
+Arrives on 7/27/2021 at 14:53
+Flight duration: 2h, 17m
+--------------------------------------------------------
+Flight: UA 1026 from DEN to AUS
+
+Departs on 7/30/2021 at 09:55
+Arrives on 7/30/2021 at 12:58
+Flight duration: 2h, 3m
+--------------------------------------------------------
+
+Total Cost: $255.80
+========================================================
+
+43
+Passenger: Jamesfalcon Greenhill   Confirmation Number: ANCBR3
+Airline: United Airlines
+========================================================
+Flight: UA 8828 from SFO to FRA
+
+Departs on 8/27/2021 at 14:55
+Arrives on 8/28/2021 at 10:45
+Flight duration: 10h, 50m
+--------------------------------------------------------
+Flight: UA 8896 from FRA to LIS
+
+Departs on 8/28/2021 at 13:10
+Arrives on 8/28/2021 at 15:10
+Flight duration: 3h, 0m
+--------------------------------------------------------
+Flight: LH 2517 from DUB to MUC
+
+Departs on 9/12/2021 at 10:30
+Arrives on 9/12/2021 at 13:50
+Flight duration: 2h, 20m
+--------------------------------------------------------
+Flight: UA 8883 from MUC to SFO
+
+Departs on 9/12/2021 at 16:35
+Arrives on 9/12/2021 at 19:10
+Flight duration: 11h, 35m
+--------------------------------------------------------
+
+Total Cost: $556.95
+========================================================
+
+44
+Passenger: Craig   Confirmation Number: 2I8QQ3
+Airline: Southwest Airlines
+========================================================
+Flight: SW 1911 from MDW to DEN
+
+Departs on 08/09/2021 at 07:50
+Arrives on 08/09/2021 at 09:20
 Flight duration: 2h, 30m
 --------------------------------------------------------
-Flight: UA 5901 from DEN to CVG
+Flight: SW 0704 from DEN to MDW
 
-Departs on 7/25/2021 at 06:45 PM
-Arrives on 7/25/2021 at 11:37 PM
-Flight duration: 2h, 52m
+Departs on 08/12/2021 at 16:30
+Arrives on 08/12/2021 at 19:55
+Flight duration: 2h, 25m
 --------------------------------------------------------
 
-Total Cost: $1469.40
+Total Cost: $346.97
 ========================================================
 
-30
-Passenger: Michaelt Dong   Confirmation Number: K4VRNX
+45
+Passenger: Robertallan Klock   Confirmation Number: O82ZWX
 Airline: United Airlines
 ========================================================
-Flight: UA 960 from EWR to FRA
+Flight: UA 2177 from PDX to ORD
 
-Departs on 7/11/2021 at 07:40 PM
-Arrives on 7/12/2021 at 09:10 AM
-Flight duration: 7h, 30m
---------------------------------------------------------
-Flight: UA 7260 from FRA to SPU
-
-Departs on 7/12/2021 at 12:05 PM
-Arrives on 7/12/2021 at 01:45 PM
-Flight duration: 1h, 40m
---------------------------------------------------------
-Flight: LX 8449 from SPU to ZRH
-
-Departs on 7/24/2021 at 01:55 PM
-Arrives on 7/24/2021 at 03:30 PM
-Flight duration: 1h, 35m
---------------------------------------------------------
-Flight: UA 9748 from ZRH to EWR
-
-Departs on 7/24/2021 at 05:20 PM
-Arrives on 7/24/2021 at 08:10 PM
-Flight duration: 8h, 50m
+Departs on 7/23/2021 at 14:15
+Arrives on 7/23/2021 at 20:08
+Flight duration: 3h, 53m
 --------------------------------------------------------
 
-Total Cost: $3440.25
+Total Cost: $240.40
 ========================================================
 
-31
-Passenger: Bianca Raquel   Confirmation Number: SJRMDA
-Airline: Jetblue
+46
+Passenger: Eric Ma   Confirmation Number: ORSXWE
+Airline: United Airlines
 ========================================================
-Flight: B6 413 from FLL to PDX
+Flight: UA 2426 from IAH to BOS
 
-Departs on 7/18/2021 at 7:41 PM
-Arrives on 7/18/2021 at 11:02 PM
-Flight duration: 6h, 21m
+Departs on 7/19/2021 at 10:15
+Arrives on 7/19/2021 at 15:04
+Flight duration: 3h, 49m
 --------------------------------------------------------
-Flight: B6 2206 from PDX to JFK
+Flight: UA 2113 from BOS to IAH
 
-Departs on 7/23/2021 at 10:40 PM
-Arrives on 7/24/2021 at 7:00 AM
-Flight duration: 5h, 20m
---------------------------------------------------------
-Flight: B6 201 from JFK to FLL
-
-Departs on 7/24/2021 at 8:40 AM
-Arrives on 7/24/2021 at 11:49 AM
-Flight duration: 3h, 9m
+Departs on 7/23/2021 at 07:15
+Arrives on 7/23/2021 at 10:14
+Flight duration: 3h, 59m
 --------------------------------------------------------
 
-Total Cost: $794.80
+Total Cost: $533.80
 ========================================================
 
-32
-Passenger: Farjad Fazli   Confirmation Number: WYINRE
+47
+Passenger: Robert Klock   Confirmation Number: DMDCE4
+Airline: United Airlines
+========================================================
+Flight: UA 464 from DEN to PDX
+
+Departs on 7/19/2021 at 11:30
+Arrives on 7/19/2021 at 13:07
+Flight duration: 2h, 37m
+--------------------------------------------------------
+
+Total Cost: $318.40
+========================================================
+
+48
+Passenger: Robertallan Klock   Confirmation Number: OPB44H
+Airline: United Airlines
+========================================================
+Flight: UA 2177 from PDX to ORD
+
+Departs on 7/23/2021 at 14:15
+Arrives on 7/23/2021 at 20:08
+Flight duration: 3h, 53m
+--------------------------------------------------------
+
+Total Cost: $298.40
+========================================================
+
+49
+Passenger: Robert Klock   Confirmation Number: OPB44H
+Airline: United Airlines
+========================================================
+Flight: UA 2177 from PDX to ORD
+
+Departs on 7/23/2021 at 14:15
+Arrives on 7/23/2021 at 20:08
+Flight duration: 3h 53m
+--------------------------------------------------------
+
+Total Cost: $383.40
+========================================================
+
+50
+Passenger: Travis Beckham   Confirmation Number: OLMWYQ
+Airline: United Airlines
+========================================================
+Flight: UA 5694 from MCI to SFO
+
+Departs on 10/17/2021 at 6:00
+Arrives on 10/17/2021 at 7:55
+Flight duration: 3h 55m
+--------------------------------------------------------
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/17/2021 at 8:40
+Arrives on 10/17/2021 at 11:03
+Flight duration: 5h 23m
+--------------------------------------------------------
+Flight: UA 1731 from KOA to DEN
+
+Departs on 10/20/2021 at 20:00
+Arrives on 10/21/2021 at 6:36
+Flight duration: 6h 36m
+--------------------------------------------------------
+Flight: UA 4636 from DEN to MCI
+
+Departs on 10/21/2021 at 7:50
+Arrives on 10/21/2021 at 10:27
+Flight duration: 1h 37m
+--------------------------------------------------------
+
+Total Cost: $741.88
+========================================================
+
+51
+Passenger: Kevin Lingerfelt   Confirmation Number: NQBP3W
+Airline: United Airlines
+========================================================
+Flight: UA 694 from SFO to KOA
+
+Departs on 10/17/2021 at 11:00
+Arrives on 10/17/2021 at 13:25
+Flight duration: 5h, 25m
+--------------------------------------------------------
+Flight: UA 643 from KOA to SFO
+
+Departs on 10/25/2021 at 12:50
+Arrives on 10/25/2021 at 21:06
+Flight duration: 5h, 16m
+--------------------------------------------------------
+
+Total Cost: $498.00
+========================================================
+
+52
+Passenger: Michael Aaron   Confirmation Number: DJZMLI
+Airline: Alaska Airlines
+========================================================
+Flight: Alaska 565 from LAX to PDX
+
+Departs on 7/18/2021 at 6:00
+Arrives on 7/18/2021 at 8:18
+Flight duration: 2h, 18m
+--------------------------------------------------------
+Flight: Alaska 554 from PDX to LAX
+
+Departs on 7/25/2021 at 7:45
+Arrives on 7/25/2021 at 10:15
+Flight duration: 2h, 30m
+--------------------------------------------------------
+
+Total Cost: $506.81
+========================================================
+
+53
+Passenger: Alexgyujin Kim   Confirmation Number: H9E34M
+Airline: United Airlines
+========================================================
+Flight: UA 8828 from SFO to FRA
+
+Departs on 8/28/2021 at 14:55
+Arrives on 8/29/2021 at 10:45
+Flight duration: 10h, 50m
+--------------------------------------------------------
+Flight: UA 8972 from FRA to OPO
+
+Departs on 8/29/2021 at 12:55
+Arrives on 8/29/2021 at 14:40
+Flight duration: 2h, 45m
+--------------------------------------------------------
+Flight: AC 811 from LIS to YYZ
+
+Departs on 9/12/2021 at 08:55
+Arrives on 9/12/2021 at 12:05
+Flight duration: 8h, 10m
+--------------------------------------------------------
+Flight: AC 745 from YYZ to SFO
+
+Departs on 9/12/2021 at 18:20
+Arrives on 9/12/2021 at 21:01
+Flight duration: 5h, 41m
+--------------------------------------------------------
+
+Total Cost: $960.19
+========================================================
+
+54
+Passenger: Gregoryr Parker   Confirmation Number: H285P1
+Airline: United Airlines
+========================================================
+Flight: UA 1824 from SFO to DEN
+
+Departs on 8/09/2021 at 05:20
+Arrives on 8/09/2021 at 08:49
+Flight duration: 2h, 29m
+--------------------------------------------------------
+Flight: UA 735 from DEN to SFO
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:36
+Flight duration: 2h, 36m
+--------------------------------------------------------
+
+Total Cost: $365.80
+========================================================
+
+55
+Passenger: Dennis Adjei   Confirmation Number: RANUIP
+Airline: Alaska Airlines
+========================================================
+Flight: AS 880 from KOA to SEA
+
+Departs on 10/20/2021 at 22:15
+Arrives on 10/21/2021 at 07:05
+Flight duration: 5h, 50m
+--------------------------------------------------------
+Flight: AS 712 from SEA to STL
+
+Departs on 10/21/2021 at 07:55
+Arrives on 10/21/2021 at 13:45
+Flight duration: 3h, 50m
+--------------------------------------------------------
+
+Total Cost: $367.80
+========================================================
+
+56
+Passenger: Dennis Adjei Baah   Confirmation Number: KPAVJH
+Airline: American Airlines
+========================================================
+Flight: AA 2003 from TPA to PHX
+
+Departs on 10/17/2021 at 6:00
+Arrives on 10/17/2021 at 7:24
+Flight duration: 4h, 24m
+--------------------------------------------------------
+Flight: AA 663 from PHX to KOA
+
+Departs on 10/17/2021 at 10:55
+Arrives on 10/17/2021 at 14:37
+Flight duration: 6h, 42m
+--------------------------------------------------------
+
+Total Cost: $348.80
+========================================================
+
+57
+Passenger: Service Charge   Confirmation Number: None
+Airline: Royal Dutch Airlines
+========================================================
+Flight: G3 1471 from CPF to None
+
+Departs on None at 15:20
+Arrives on None at 16:45
+Flight duration: None
+--------------------------------------------------------
+Flight: KL 0792 from None to None
+
+Departs on None at 2:25
+Arrives on None at 19:10
+Flight duration: None
+--------------------------------------------------------
+Flight: KL 2530 from None to None
+
+Departs on None at 11:45
+Arrives on None at 5:05
+Flight duration: None
+--------------------------------------------------------
+Flight: None from None to None
+
+Departs on None at 16:50
+Arrives on None at 18:00
+Flight duration: None
+--------------------------------------------------------
+
+Total Cost: $3844.84
+========================================================
+**** WARNING ****
+There are potential parsign errors.
+21 values are missing, please check output.
+*****************
+
+58
+Passenger: Andrew James   Confirmation Number: VLISST
 Airline: Jetblue
 ========================================================
 Flight: B6 2205 from JFK to PDX
 
-Departs on 7/20/2021 at 5:59 PM
-Arrives on 7/20/2021 at 9:23 PM
+Departs on 7/18/2021 at 17:59
+Arrives on 7/18/2021 at 21:23
 Flight duration: 6h, 24m
 --------------------------------------------------------
 Flight: B6 2206 from PDX to JFK
 
-Departs on 7/25/2021 at 10:40 PM
-Arrives on 7/26/2021 at 7:00 AM
+Departs on 7/23/2021 at 22:40
+Arrives on 7/24/2021 at 7:00
 Flight duration: 5h, 20m
 --------------------------------------------------------
 
-Total Cost: $644.81
+Total Cost: None
 ========================================================
+**** WARNING ****
+1 values are missing, please check output.
+*****************
 
-33
-Passenger: Hamza Amjad   Confirmation Number: MQEDEL
-Airline: Jetblue
+59
+Passenger: Michal   Confirmation Number: E84NFY
+Airline: Wizz Air
 ========================================================
-Flight: B6 2157 from LGA to DEN
+Flight: W6 1595 from WAW to OPO
 
-Departs on 8/09/2021 at 7:53 AM
-Arrives on 8/09/2021 at 10:11 AM
-Flight duration: 4h, 18m
---------------------------------------------------------
-Flight: B6 2256 from DEN to LGA
-
-Departs on 8/12/2021 at 4:39 PM
-Arrives on 8/12/2021 at 10:29 PM
+Departs on 08/27/2021 at 07:00
+Arrives on 08/27/2021 at 09:50
 Flight duration: 3h, 50m
 --------------------------------------------------------
 
-Total Cost: None
+Total Cost: $192
 ========================================================
-**** WARNING ****
-1 values are missing, please check output.
-*****************
 
-34
-Passenger: Tiffany Chi   Confirmation Number: RVQFFX
-Airline: Jetblue
-========================================================
-Flight: B6 393 from BOS to DEN
-
-Departs on 8/09/2021 at 9:28 AM
-Arrives on 8/09/2021 at 12:04 PM
-Flight duration: 4h, 36m
---------------------------------------------------------
-
-Total Cost: None
-========================================================
-**** WARNING ****
-1 values are missing, please check output.
-*****************
-
-35
-Passenger: Rosie De La Cruz   Confirmation Number: XROCUR
+60
+Passenger: Zachary Janicki   Confirmation Number: TUGHAQ
 Airline: American Airlines
 ========================================================
-Flight: AA 2433 from DFW to PDX
+Flight: AA 4637 from ILM to CLT
 
-Departs on 7/18/2021 at 5:25 PM
-Arrives on 7/18/2021 at 7:18 PM
-Flight duration: 3h, 53m
+Departs on 8/9/2021 at 5:30
+Arrives on 8/9/2021 at 6:37
+Flight duration: 1h, 7m
 --------------------------------------------------------
-Flight: AA 2655 from PDX to DFW
+Flight: AA 1328 from CLT to DEN
 
-Departs on 7/23/2021 at 12:06 PM
-Arrives on 7/23/2021 at 5:57 PM
-Flight duration: 3h, 51m
+Departs on 8/9/2021 at 7:29
+Arrives on 8/9/2021 at 8:59
+Flight duration: 3h, 30m
 --------------------------------------------------------
 
-Total Cost: $480.79
+Total Cost: $295.70
 ========================================================
 
-36
-Passenger: Allen Tien   Confirmation Number: 4Z59IS
-Airline: Southwest Airlines
+62
+Passenger: Steven Christoph   Confirmation Number: GFTHT5
+Airline: Delta Airlines
 ========================================================
-Flight: SW 1528 from OAK to DEN
+Flight: DELTA 818 from ATLANTA to DENVER
 
-Departs on 08/09/2021 at 08:50 AM
-Arrives on 08/09/2021 at 12:15 PM
+Departs on 8/09/2021 at 8:10
+Arrives on 8/09/2021 at 9:15
+Flight duration: 3h, 5m
+--------------------------------------------------------
+Flight: DELTA 811 from DENVER to ATLANTA
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 21:06
+Flight duration: 3h, 6m
+--------------------------------------------------------
+
+Total Cost: $229.80
+========================================================
+
+64
+Passenger: Harmanjeet Bains   Confirmation Number: VQRMHQ
+Airline: Alaska Airlines
+========================================================
+Flight: AS 682 from SEA to DEN
+
+Departs on 8/09/2021 at 07:58
+Arrives on 8/09/2021 at 11:42
+Flight duration: 2h, 44m
+--------------------------------------------------------
+Flight: AS 643 from DEN to SEA
+
+Departs on 8/12/2021 at 16:20
+Arrives on 8/12/2021 at 18:15
+Flight duration: 2h, 55m
+--------------------------------------------------------
+
+Total Cost: $256.81
+========================================================
+
+67
+Passenger: Christy Warwick   Confirmation Number: NSPFPT
+Airline: United Airlines
+========================================================
+Flight: UA 604 from PHX to DEN
+
+Departs on 8/09/2021 at 9:40
+Arrives on 8/09/2021 at 12:33
+Flight duration: 1h 53m
+--------------------------------------------------------
+Flight: UA 2249 from DEN to PHX
+
+Departs on 8/12/2021 at 15:40
+Arrives on 8/12/2021 at 16:25
+Flight duration: 1h 45m
+--------------------------------------------------------
+
+Total Cost: $156.80
+========================================================
+
+69
+Passenger: Risha Mars   Confirmation Number: AL9EKX
+Airline: United Airlines
+========================================================
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/17/2021 at 8:40
+Arrives on 10/17/2021 at 11:03
+Flight duration: 5h 23m
+--------------------------------------------------------
+Flight: UA 1724 from KOA to SFO
+
+Departs on 10/28/2021 at 22:30
+Arrives on 10/29/2021 at 6:35
+Flight duration: 5h 5m
+--------------------------------------------------------
+
+Total Cost: $474.00
+========================================================
+
+70
+Passenger: Matthew Schamble   Confirmation Number: AJ4RSD
+Airline: United Airlines
+========================================================
+Flight: UA 398 from EWR to DEN
+
+Departs on 8/09/2021 at 10:05
+Arrives on 8/09/2021 at 12:10
+Flight duration: 4h 5m
+--------------------------------------------------------
+Flight: UA 1117 from DEN to EWR
+
+Departs on 8/12/2021 at 16:05
+Arrives on 8/12/2021 at 21:56
+Flight duration: 3h 51m
+--------------------------------------------------------
+
+Total Cost: $551.80
+========================================================
+
+71
+Passenger: Liyi Yu   Confirmation Number: ADJ7LM
+Airline: United Airlines
+========================================================
+Flight: UA 134 from EWR to ZRH
+
+Departs on 8/28/2021 at 18:20
+Arrives on 8/29/2021 at 08:05
+Flight duration: 7h, 45m
+--------------------------------------------------------
+Flight: LX 2060 from ZRH to OPO
+
+Departs on 8/29/2021 at 10:10
+Arrives on 8/29/2021 at 11:50
+Flight duration: 2h, 40m
+--------------------------------------------------------
+Flight: LX 2061 from OPO to ZRH
+
+Departs on 9/03/2021 at 12:35
+Arrives on 9/03/2021 at 16:00
 Flight duration: 2h, 25m
 --------------------------------------------------------
-Flight: SW 5079 from DEN to OAK
+Flight: UA 9748 from ZRH to EWR
 
-Departs on 08/12/2021 at 03:55 PM
-Arrives on 08/12/2021 at 05:30 PM
-Flight duration: 2h, 35m
+Departs on 9/03/2021 at 17:20
+Arrives on 9/03/2021 at 20:10
+Flight duration: 8h, 50m
 --------------------------------------------------------
 
-Total Cost: $337.96
+Total Cost: $789.75
 ========================================================
 
-37
+72
+Passenger: Erez Bosch   Confirmation Number: O2TBYV
+Airline: United Airlines
+========================================================
+Flight: UA 1824 from SFO to DEN
+
+Departs on 8/09/2021 at 05:20
+Arrives on 8/09/2021 at 08:49
+Flight duration: 2h, 29m
+--------------------------------------------------------
+Flight: UA 735 from DEN to SFO
+
+Departs on 8/17/2021 at 16:00
+Arrives on 8/17/2021 at 17:36
+Flight duration: 2h, 36m
+--------------------------------------------------------
+
+Total Cost: $305.80
+========================================================
+
+73
+Passenger: None   Confirmation Number: None
+Airline: United Airlines
+========================================================
+Flight: UA 1193 from PDX to ORD
+
+Departs on 7/11/2021 at 12:45
+Arrives on 7/11/2021 at 18:38
+Flight duration: 3h, 53m
+--------------------------------------------------------
+Flight: LH 435 from ORD to MUC
+
+Departs on 7/11/2021 at 21:10
+Arrives on 7/12/2021 at 12:45
+Flight duration: 8h, 35m
+--------------------------------------------------------
+Flight: LH 1716 from MUC to SPU
+
+Departs on 7/12/2021 at 14:55
+Arrives on 7/12/2021 at 16:15
+Flight duration: 1h, 20m
+--------------------------------------------------------
+Flight: OU 4438 from SPU to MUC
+
+Departs on 7/24/2021 at 07:55
+Arrives on 7/24/2021 at 09:35
+Flight duration: 1h, 40m
+--------------------------------------------------------
+Flight: UA 953 from MUC to ORD
+
+Departs on 7/24/2021 at 11:55
+Arrives on 7/24/2021 at 14:15
+Flight duration: 9h, 20m
+--------------------------------------------------------
+Flight: UA 1186 from ORD to PDX
+
+Departs on 7/24/2021 at 15:45
+Arrives on 7/24/2021 at 18:05
+Flight duration: 4h, 20m
+--------------------------------------------------------
+Flight: UA 2334 from PDX to ORD
+
+Departs on 6/24/2021 at 12:37
+Arrives on 7/11/2021 at 11:10
+Flight duration: 404h, 33m
+--------------------------------------------------------
+Flight: UA 907 from ORD to FRA
+
+Departs on 7/11/2021 at 17:03
+Arrives on 7/11/2021 at 18:00
+Flight duration: None
+--------------------------------------------------------
+Flight: OU 413 from FRA to SPU
+
+Departs on 7/12/2021 at 09:20
+Arrives on 7/12/2021 at 12:05
+Flight duration: 2h, 45m
+--------------------------------------------------------
+Flight: OU 4438 from SPU to MUC
+
+Departs on 7/12/2021 at 13:45
+Arrives on 7/24/2021 at 07:55
+Flight duration: 282h, 10m
+--------------------------------------------------------
+Flight: UA 953 from MUC to ORD
+
+Departs on 7/24/2021 at 09:35
+Arrives on 7/24/2021 at 11:55
+Flight duration: 9h, 20m
+--------------------------------------------------------
+Flight: UA 1186 from ORD to PDX
+
+Departs on 7/24/2021 at 14:15
+Arrives on 7/24/2021 at 15:45
+Flight duration: 3h, 30m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+There are potential parsign errors.
+4 values are missing, please check output.
+*****************
+
+74
+Passenger: Shannon Kinney   Confirmation Number: YPFKCP
+Airline: Jetblue
+========================================================
+Flight: B6 2205 from JFK to PDX
+
+Departs on 7/18/2021 at 17:59
+Arrives on 7/18/2021 at 21:23
+Flight duration: 6h, 24m
+--------------------------------------------------------
+Flight: B6 2206 from PDX to JFK
+
+Departs on 7/23/2021 at 22:40
+Arrives on 7/24/2021 at 7:00
+Flight duration: 5h, 20m
+--------------------------------------------------------
+
+Total Cost: $675.80
+========================================================
+
+75
+Passenger: Oliver Gould   Confirmation Number: O3NNBL
+Airline: United Airlines
+========================================================
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/17/2021 at 08:40
+Arrives on 10/17/2021 at 11:03
+Flight duration: 5h, 23m
+--------------------------------------------------------
+Flight: UA 643 from KOA to SFO
+
+Departs on 10/20/2021 at 12:50
+Arrives on 10/20/2021 at 21:06
+Flight duration: 5h, 16m
+--------------------------------------------------------
+
+Total Cost: $403.00
+========================================================
+
+76
+Passenger: Andrew Seigner   Confirmation Number: OYT9CQ
+Airline: United Airlines
+========================================================
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/18/2021 at 08:40
+Arrives on 10/18/2021 at 11:03
+Flight duration: 5h, 23m
+--------------------------------------------------------
+Flight: UA 643 from KOA to SFO
+
+Departs on 10/27/2021 at 12:50
+Arrives on 10/27/2021 at 21:06
+Flight duration: 5h, 16m
+--------------------------------------------------------
+
+Total Cost: $358.00
+========================================================
+
+77
+Passenger: Marina Sergeyeva   Confirmation Number: OY68SV
+Airline: United Airlines
+========================================================
+Flight: UA 1721 from SFO to KOA
+
+Departs on 10/17/2021 at 8:40
+Arrives on 10/17/2021 at 11:03
+Flight duration: 5h 23m
+--------------------------------------------------------
+Flight: UA 435 from KOA to SFO
+
+Departs on 10/24/2021 at 15:19
+Arrives on 10/24/2021 at 23:35
+Flight duration: 5h 16m
+--------------------------------------------------------
+
+Total Cost: $509.07
+========================================================
+
+78
+Passenger: None   Confirmation Number: None
+Airline: United Airlines
+========================================================
+Flight: UA 2334 from PDX to ORD
+
+Departs on 7/11/2021 at 11:10
+Arrives on 7/11/2021 at 17:03
+Flight duration: 3h, 53m
+--------------------------------------------------------
+Flight: UA 907 from ORD to FRA
+
+Departs on 7/11/2021 at 18:00
+Arrives on 7/12/2021 at 09:20
+Flight duration: 8h, 20m
+--------------------------------------------------------
+Flight: OU 413 from FRA to SPU
+
+Departs on 7/12/2021 at 12:05
+Arrives on 7/12/2021 at 13:45
+Flight duration: 1h, 40m
+--------------------------------------------------------
+Flight: OU 4438 from SPU to MUC
+
+Departs on 7/24/2021 at 07:55
+Arrives on 7/24/2021 at 09:35
+Flight duration: 1h, 40m
+--------------------------------------------------------
+Flight: UA 953 from MUC to ORD
+
+Departs on 7/24/2021 at 11:55
+Arrives on 7/24/2021 at 14:15
+Flight duration: 9h, 20m
+--------------------------------------------------------
+Flight: UA 1186 from ORD to PDX
+
+Departs on 7/24/2021 at 15:45
+Arrives on 7/24/2021 at 18:05
+Flight duration: 4h, 20m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+3 values are missing, please check output.
+*****************
+
+79
+Passenger: Laura   Confirmation Number: 2NU7AK
+Airline: Southwest Airlines
+========================================================
+Flight: SW 0239 from SJC to DEN
+
+Departs on 08/09/2021 at 06:30
+Arrives on 08/09/2021 at 10:05
+Flight duration: 2h, 35m
+--------------------------------------------------------
+Flight: SW 5729 from DEN to SJC
+
+Departs on 08/12/2021 at 17:00
+Arrives on 08/12/2021 at 20:10
+Flight duration: 4h, 10m
+--------------------------------------------------------
+
+Total Cost: $320.46
+========================================================
+
+80
+Passenger: Eltje Helene   Confirmation Number: J3JM7V
+Airline: Ryanair
+========================================================
+Flight: FR 3672 from OPO to BRE
+
+Departs on 9/03/21 at 09:35
+Arrives on 9/03/21 at 13:20
+Flight duration: 2h, 45m
+--------------------------------------------------------
+
+Total Cost: $133.00
+========================================================
+
+81
+Passenger: Eltje Helene   Confirmation Number: PC55SA
+Airline: Ryanair
+========================================================
+Flight: FR 8343 from STN to OPO
+
+Departs on 8/29/21 at 09:20
+Arrives on 8/29/21 at 11:40
+Flight duration: 2h, 20m
+--------------------------------------------------------
+
+Total Cost: $56.85
+========================================================
+
+82
+Passenger: Buddy L   Confirmation Number: GW9PT6
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 8672 from ATLANTA to PARIS
+
+Departs on 8/28/2021 at 20:05
+Arrives on 8/29/2021 at 10:35
+Flight duration: 8h, 30m
+--------------------------------------------------------
+Flight: DELTA 9197 from PARIS to PORTO
+
+Departs on 8/29/2021 at 14:15
+Arrives on 8/29/2021 at 15:30
+Flight duration: 2h, 15m
+--------------------------------------------------------
+Flight: DELTA 9598 from PORTO to AMSTERDAM
+
+Departs on 9/11/2021 at 11:25
+Arrives on 9/11/2021 at 15:05
+Flight duration: 2h, 40m
+--------------------------------------------------------
+Flight: DELTA 9374 from AMSTERDAM to ATLANTA
+
+Departs on 9/11/2021 at 17:00
+Arrives on 9/11/2021 at 20:20
+Flight duration: 9h, 20m
+--------------------------------------------------------
+
+Total Cost: $1146.15
+========================================================
+
+83
+Passenger: Philip Leggetter   Confirmation Number: L88ZN5
+Airline: Royal Dutch Airlines
+========================================================
+Flight: KL 1476 from GLA to AMS
+
+Departs on 8/29/2021 at 10:45
+Arrives on 8/29/2021 at 13:20
+Flight duration: 1h, 35m
+--------------------------------------------------------
+Flight: KL 1713 from AMS to OPO
+
+Departs on 8/29/2021 at 14:00
+Arrives on 8/29/2021 at 15:35
+Flight duration: 2h, 35m
+--------------------------------------------------------
+Flight: KL 2606 from OPO to AMS
+
+Departs on 9/3/2021 at 14:55
+Arrives on 9/3/2021 at 18:30
+Flight duration: 2h, 35m
+--------------------------------------------------------
+Flight: KL 1481 from AMS to GLA
+
+Departs on 9/3/2021 at 21:15
+Arrives on 9/3/2021 at 21:45
+Flight duration: 1h, 30m
+--------------------------------------------------------
+
+Total Cost: $250.11
+========================================================
+
+84
+Passenger: Daniel   Confirmation Number: 2JHRPT
+Airline: Southwest Airlines
+========================================================
+Flight: SW 1934 from RIC to ATL
+
+Departs on 08/09/2021 at 06:05
+Arrives on 08/09/2021 at 07:50
+Flight duration: 1h, 45m
+--------------------------------------------------------
+Flight: SW 1554 from ATL to DEN
+
+Departs on 08/09/2021 at 09:55
+Arrives on 08/09/2021 at 11:00
+Flight duration: 3h, 5m
+--------------------------------------------------------
+Flight: SW 5639 from DEN to ATL
+
+Departs on 08/15/2021 at 16:00
+Arrives on 08/15/2021 at 21:00
+Flight duration: 3h, 0m
+--------------------------------------------------------
+Flight: SW 2962 from ATL to RIC
+
+Departs on 08/15/2021 at 21:40
+Arrives on 08/15/2021 at 23:20
+Flight duration: 1h, 40m
+--------------------------------------------------------
+
+Total Cost: $451.97
+========================================================
+
+85
 Passenger: Tiina Turban   Confirmation Number: KCNWWV
 Airline: Air France
 ========================================================
@@ -861,7 +1566,358 @@ Flight duration: 2h, 15m
 Total Cost: $140.00
 ========================================================
 
-38
+86
+Passenger: Tiffany Chi   Confirmation Number: RVQFFX
+Airline: Jetblue
+========================================================
+Flight: B6 393 from BOS to DEN
+
+Departs on 8/09/2021 at 9:28
+Arrives on 8/09/2021 at 12:04
+Flight duration: 4h, 36m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+1 values are missing, please check output.
+*****************
+
+87
+Passenger: Christopher Watrous   Confirmation Number: NRYS1N
+Airline: United Airlines
+========================================================
+Flight: UA 647 from BOS to DEN
+
+Departs on 8/09/2021 at 7:55
+Arrives on 8/09/2021 at 10:18
+Flight duration: 4h 23m
+--------------------------------------------------------
+Flight: UA 320 from DEN to BOS
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 21:53
+Flight duration: 3h 53m
+--------------------------------------------------------
+
+Total Cost: $593.80
+========================================================
+
+88
+Passenger: Kristie Zheng   Confirmation Number: NRMTXQ
+Airline: United Airlines
+========================================================
+Flight: UA 1824 from SFO to DEN
+
+Departs on 8/09/2021 at 5:20
+Arrives on 8/09/2021 at 8:49
+Flight duration: 2h 29m
+--------------------------------------------------------
+Flight: UA 735 from DEN to SFO
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:36
+Flight duration: 2h 36m
+--------------------------------------------------------
+
+Total Cost: $385.80
+========================================================
+
+89
+Passenger: Derling Chen   Confirmation Number: N8QWFJ
+Airline: United Airlines
+========================================================
+Flight: UA 2285 from SMF to DEN
+
+Departs on 8/09/2021 at 09:05
+Arrives on 8/09/2021 at 12:26
+Flight duration: 2h, 21m
+--------------------------------------------------------
+Flight: UA 339 from DEN to SMF
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:27
+Flight duration: 2h, 27m
+--------------------------------------------------------
+
+Total Cost: $316.80
+========================================================
+
+90
+Passenger: Kevinmatthew Carlson   Confirmation Number: NMW0QK
+Airline: United Airlines
+========================================================
+Flight: UA 1824 from SFO to DEN
+
+Departs on 8/09/2021 at 05:20
+Arrives on 8/09/2021 at 08:49
+Flight duration: 2h, 29m
+--------------------------------------------------------
+Flight: UA 735 from DEN to SFO
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:36
+Flight duration: 2h, 36m
+--------------------------------------------------------
+
+Total Cost: $385.80
+========================================================
+
+91
+Passenger: Carl Brenden   Confirmation Number: GBTXJZ
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 382 from SAN FRANCISCO to LOS ANGELES
+
+Departs on 8/09/2021 at 6:00
+Arrives on 8/09/2021 at 7:25
+Flight duration: 1h, 25m
+--------------------------------------------------------
+Flight: DELTA 3681 from LOS ANGELES to DENVER
+
+Departs on 8/09/2021 at 8:45
+Arrives on 8/09/2021 at 12:10
+Flight duration: 2h, 25m
+--------------------------------------------------------
+Flight: DELTA 2261 from DENVER to LOS ANGELES
+
+Departs on 8/12/2021 at 16:05
+Arrives on 8/12/2021 at 17:32
+Flight duration: 2h, 27m
+--------------------------------------------------------
+Flight: DELTA 418 from LOS ANGELES to SAN FRANCISCO
+
+Departs on 8/12/2021 at 20:05
+Arrives on 8/12/2021 at 21:35
+Flight duration: 1h, 30m
+--------------------------------------------------------
+
+Total Cost: $262.40
+========================================================
+
+92
+Passenger: Bridget Scotti   Confirmation Number: MSTPGN
+Airline: American Airlines
+========================================================
+Flight: AA 9111 from LGA to DEN
+
+Departs on 8/9/2021 at 7:53
+Arrives on 8/9/2021 at 10:11
+Flight duration: 4h, 18m
+--------------------------------------------------------
+Flight: AA 9270 from DEN to LGA
+
+Departs on 8/12/2021 at 16:39
+Arrives on 8/12/2021 at 22:29
+Flight duration: 3h, 50m
+--------------------------------------------------------
+
+Total Cost: $466.80
+========================================================
+
+93
+Passenger: Allen   Confirmation Number: 4Z59IS
+Airline: Southwest Airlines
+========================================================
+Flight: SW 1528 from OAK to DEN
+
+Departs on 08/09/2021 at 08:50
+Arrives on 08/09/2021 at 12:15
+Flight duration: 2h, 25m
+--------------------------------------------------------
+Flight: SW 5079 from DEN to OAK
+
+Departs on 08/12/2021 at 15:55
+Arrives on 08/12/2021 at 17:30
+Flight duration: 2h, 35m
+--------------------------------------------------------
+
+Total Cost: $337.96
+========================================================
+
+94
+Passenger: James Mckernan   Confirmation Number: NG4X4E
+Airline: United Airlines
+========================================================
+Flight: UA 1824 from SFO to DEN
+
+Departs on 8/09/2021 at 05:20
+Arrives on 8/09/2021 at 08:49
+Flight duration: 2h, 29m
+--------------------------------------------------------
+Flight: UA 735 from DEN to SFO
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 17:36
+Flight duration: 2h, 36m
+--------------------------------------------------------
+
+Total Cost: $265.80
+========================================================
+
+95
+Passenger: Bridget Scotti   Confirmation Number: MSTPGN
+Airline: American Airlines
+========================================================
+Flight: AA 9111 from LGA to DEN
+
+Departs on 8/9/2021 at 7:53
+Arrives on 8/9/2021 at 10:11
+Flight duration: 4h, 18m
+--------------------------------------------------------
+Flight: AA 9270 from DEN to LGA
+
+Departs on 8/12/2021 at 16:39
+Arrives on 8/12/2021 at 22:29
+Flight duration: 3h, 50m
+--------------------------------------------------------
+
+Total Cost: $466.80
+========================================================
+
+96
+Passenger: Lindsay   Confirmation Number: 4WVMSZ
+Airline: Southwest Airlines
+========================================================
+Flight: SW 4465 from PHX to DEN
+
+Departs on 08/08/2021 at 11:05
+Arrives on 08/08/2021 at 13:50
+Flight duration: 1h, 45m
+--------------------------------------------------------
+Flight: SW 1289 from DEN to PHX
+
+Departs on 08/12/2021 at 17:05
+Arrives on 08/12/2021 at 17:55
+Flight duration: 1h, 50m
+--------------------------------------------------------
+
+Total Cost: $237.96
+========================================================
+
+97
+Passenger: Meredith Grubb   Confirmation Number: BQKACB
+Airline: Alaska Airlines
+========================================================
+Flight: AS 682 from SEA to DEN
+
+Departs on 8/09/2021 at 07:58
+Arrives on 8/09/2021 at 11:42
+Flight duration: 2h, 44m
+--------------------------------------------------------
+
+Total Cost: $128.40
+========================================================
+
+98
+Passenger: Meredith   Confirmation Number: 4XSDQ4
+Airline: Southwest Airlines
+========================================================
+Flight: SW 5079 from DEN to OAK
+
+Departs on 08/12/2021 at 15:55
+Arrives on 08/12/2021 at 17:30
+Flight duration: 2h, 35m
+--------------------------------------------------------
+
+Total Cost: $148.98
+========================================================
+
+99
+Passenger: Constance Betsy   Confirmation Number: F7BMZJ
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 3681 from LOS ANGELES to DENVER
+
+Departs on 8/09/2021 at 8:45
+Arrives on 8/09/2021 at 12:10
+Flight duration: 2h, 25m
+--------------------------------------------------------
+Flight: DELTA 2261 from DENVER to LOS ANGELES
+
+Departs on 8/12/2021 at 16:05
+Arrives on 8/12/2021 at 17:32
+Flight duration: 2h, 27m
+--------------------------------------------------------
+
+Total Cost: $162.80
+========================================================
+
+100
+Passenger: Tiffany Yu   Confirmation Number: NE23ED
+Airline: United Airlines
+========================================================
+Flight: UA 320 from DEN to BOS
+
+Departs on 8/12/2021 at 16:00
+Arrives on 8/12/2021 at 21:53
+Flight duration: 3h 53m
+--------------------------------------------------------
+
+Total Cost: $284.40
+========================================================
+
+101
+Passenger: Tiffany Chi   Confirmation Number: SVWUNQ
+Airline: Jetblue
+========================================================
+Flight: B6 393 from BOS to DEN
+
+Departs on 8/09/2021 at 9:28
+Arrives on 8/09/2021 at 12:04
+Flight duration: 4h, 36m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+1 values are missing, please check output.
+*****************
+
+102
+Passenger: Rahul Desai   Confirmation Number: CBJVKT
+Airline: Frontier Airlines
+========================================================
+Flight: F9 535 from DCA to DEN
+
+Departs on 8/9/2021 at 7:00
+Arrives on 8/9/2021 at 9:01
+Flight duration: 4 hr 1 min
+--------------------------------------------------------
+Flight: F9 538 from DEN to DCA
+
+Departs on 8/13/2021 at 16:26
+Arrives on 8/13/2021 at 21:59
+Flight duration: 3 hr 33 min
+--------------------------------------------------------
+
+Total Cost: $322.98
+========================================================
+
+103
+Passenger: Hamza Amjad   Confirmation Number: MQEDEL
+Airline: Jetblue
+========================================================
+Flight: B6 2157 from LGA to DEN
+
+Departs on 8/09/2021 at 7:53
+Arrives on 8/09/2021 at 10:11
+Flight duration: 4h, 18m
+--------------------------------------------------------
+Flight: B6 2256 from DEN to LGA
+
+Departs on 8/12/2021 at 16:39
+Arrives on 8/12/2021 at 22:29
+Flight duration: 3h, 50m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+1 values are missing, please check output.
+*****************
+
+104
 Passenger: Johan Jern   Confirmation Number: UV43KU
 Airline: Lufthansa
 ========================================================
@@ -893,73 +1949,161 @@ Flight duration: 2h, 20m
 Total Cost: $370.86
 ========================================================
 
-39
-Passenger: Sumer Sareen   Confirmation Number: EMWBSH
-Airline: Alaska Airlines
+105
+Passenger: Andrew Lewis   Confirmation Number: GC7G45
+Airline: Delta Airlines
 ========================================================
-Flight: Alaska 479 from JFK to PDX
+Flight: DELTA 1311 from LOS ANGELES to BOSTON
 
-Departs on 7/18/2021 at 19:25
-Arrives on 7/18/2021 at 22:25
-Flight duration: 6h, 0m
+Departs on 7/19/2021 at 7:59
+Arrives on 7/19/2021 at 16:44
+Flight duration: 5h, 45m
 --------------------------------------------------------
-Flight: Alaska 545 from PDX to JFK
+Flight: DELTA 675 from BOSTON to LOS ANGELES
 
-Departs on 7/23/2021 at 10:05
-Arrives on 7/23/2021 at 18:20
-Flight duration: 5h, 15m
---------------------------------------------------------
-
-Total Cost: $496.79
-========================================================
-
-40
-Passenger: Robert Gaskins   Confirmation Number: ICYLTY
-Airline: Alaska Airlines
-========================================================
-Flight: Alaska 3405 from ABQ to PDX
-
-Departs on 7/18/2021 at 18:30
-Arrives on 7/18/2021 at 20:28
-Flight duration: 2h, 58m
---------------------------------------------------------
-Flight: Alaska 350 from PDX to LAX
-
-Departs on 7/23/2021 at 11:50
-Arrives on 7/23/2021 at 14:20
-Flight duration: 2h, 30m
---------------------------------------------------------
-Flight: Alaska 4597 from LAX to ABQ
-
-Departs on 7/23/2021 at 15:55
-Arrives on 7/23/2021 at 18:54
-Flight duration: 1h, 59m
+Departs on 7/23/2021 at 11:00
+Arrives on 7/23/2021 at 14:07
+Flight duration: 6h, 7m
 --------------------------------------------------------
 
-Total Cost: $586.20
+Total Cost: $616.80
 ========================================================
 
-41
-Passenger: Jasper Ng   Confirmation Number: CDZ08D
+106
+Passenger: Stefanjay Schuch   Confirmation Number: HJC0ZM
 Airline: United Airlines
 ========================================================
-Flight: UA 284 from SFO to PDX
+Flight: UA 58 from SFO to FRA
 
-Departs on 7/18/2021 at 16:15
-Arrives on 7/18/2021 at 17:55
+Departs on 7/11/2021 at 14:05
+Arrives on 7/12/2021 at 09:55
+Flight duration: 10h, 50m
+--------------------------------------------------------
+Flight: UA 7260 from FRA to SPU
+
+Departs on 7/12/2021 at 12:05
+Arrives on 7/12/2021 at 13:45
 Flight duration: 1h, 40m
 --------------------------------------------------------
-Flight: UA 1453 from PDX to SFO
+Flight: OU 474 from SPU to CDG
 
-Departs on 7/23/2021 at 15:41
-Arrives on 7/23/2021 at 17:26
-Flight duration: 1h, 45m
+Departs on 7/24/2021 at 15:15
+Arrives on 7/24/2021 at 17:30
+Flight duration: 2h, 15m
+--------------------------------------------------------
+Flight: UA 914 from CDG to IAD
+
+Departs on 7/25/2021 at 12:25
+Arrives on 7/25/2021 at 15:00
+Flight duration: 8h, 35m
+--------------------------------------------------------
+Flight: UA 2435 from IAD to SFO
+
+Departs on 7/25/2021 at 18:35
+Arrives on 7/25/2021 at 20:59
+Flight duration: 5h, 24m
 --------------------------------------------------------
 
-Total Cost: $186.80
+Total Cost: $5684.85
 ========================================================
 
-42
+107
+Passenger: David Skrenta   Confirmation Number: HB9SKE
+Airline: United Airlines
+========================================================
+Flight: AS 1352 from SFO to BOS
+
+Departs on 7/18/2021 at 07:00
+Arrives on 7/18/2021 at 15:55
+Flight duration: 5h, 55m
+--------------------------------------------------------
+Flight: UA 477 from BOS to SFO
+
+Departs on 7/23/2021 at 08:45
+Arrives on 7/23/2021 at 12:05
+Flight duration: 6h, 20m
+--------------------------------------------------------
+
+Total Cost: $782.80
+========================================================
+
+108
+Passenger: Benny Yan   Confirmation Number: G0K4X7
+Airline: United Airlines
+========================================================
+Flight: UA 3524 from DFW to ORD
+
+Departs on 7/11/2021 at 14:30
+Arrives on 7/11/2021 at 16:55
+Flight duration: 2h 25m
+--------------------------------------------------------
+Flight: UA 907 from ORD to FRA
+
+Departs on 7/11/2021 at 18:00
+Arrives on 7/12/2021 at 9:20
+Flight duration: 8h 20m
+--------------------------------------------------------
+Flight: UA 7260 from FRA to SPU
+
+Departs on 7/12/2021 at 12:05
+Arrives on 7/12/2021 at 13:45
+Flight duration: 1h 40m
+--------------------------------------------------------
+Flight: OU 462 from SPU to ZRH
+
+Departs on 7/24/2021 at 7:25
+Arrives on 7/24/2021 at 9:20
+Flight duration: 1h 55m
+--------------------------------------------------------
+Flight: UA 135 from ZRH to EWR
+
+Departs on 7/24/2021 at 10:10
+Arrives on 7/24/2021 at 12:55
+Flight duration: 8h 45m
+--------------------------------------------------------
+Flight: UA 3436 from EWR to DFW
+
+Departs on 7/24/2021 at 14:30
+Arrives on 7/24/2021 at 17:17
+Flight duration: 3h 47m
+--------------------------------------------------------
+
+Total Cost: $3113.85
+========================================================
+
+109
+Passenger: Usman   Confirmation Number: SUNNE5
+Airline: British Airways
+========================================================
+Flight: BA 1511 from New York to London
+
+Departs on 7/11/2021 at 18:25
+Arrives on 7/12/2021 at 06:20
+Flight duration: 6h, 55m
+--------------------------------------------------------
+Flight: BA 0530 from London to Split
+
+Departs on 7/12/2021 at 07:20
+Arrives on 7/12/2021 at 11:05
+Flight duration: 2h, 45m
+--------------------------------------------------------
+Flight: BA 0527 from Split to London
+
+Departs on 7/24/2021 at 11:40
+Arrives on 7/24/2021 at 13:20
+Flight duration: 2h, 40m
+--------------------------------------------------------
+Flight: BA 0179 from London to New York
+
+Departs on 7/24/2021 at 16:30
+Arrives on 7/24/2021 at 19:25
+Flight duration: 7h, 55m
+--------------------------------------------------------
+
+Total Cost: $3592.33
+========================================================
+
+110
 Passenger: Peter Downs   Confirmation Number: GZN5WK
 Airline: United Airlines
 ========================================================
@@ -997,23 +2141,335 @@ Flight duration: 1h, 5m
 Total Cost: $3367.45
 ========================================================
 
-43
-Passenger: David Skrenta   Confirmation Number: HB9SKE
+111
+Passenger: Peter Downs   Confirmation Number: GZN5WK
 Airline: United Airlines
 ========================================================
-Flight: AS 1352 from SFO to BOS
+Flight: UA 8840 from JFK to FRA
 
-Departs on 7/18/2021 at 07:00
-Arrives on 7/18/2021 at 15:55
-Flight duration: 5h, 55m
+Departs on 7/11/2021 at 15:45
+Arrives on 7/12/2021 at 5:45
+Flight duration: 8h
 --------------------------------------------------------
-Flight: UA 477 from BOS to SFO
+Flight: OU 413 from FRA to SPU
 
-Departs on 7/23/2021 at 08:45
-Arrives on 7/23/2021 at 12:05
-Flight duration: 6h, 20m
+Departs on 7/12/2021 at 12:05
+Arrives on 7/12/2021 at 13:45
+Flight duration: 1h 40m
+--------------------------------------------------------
+Flight: OU 462 from SPU to ZRH
+
+Departs on 7/24/2021 at 7:25
+Arrives on 7/24/2021 at 9:20
+Flight duration: 1h 55m
+--------------------------------------------------------
+Flight: UA 53 from ZRH to IAD
+
+Departs on 7/24/2021 at 11:55
+Arrives on 7/24/2021 at 15:00
+Flight duration: 9h 5m
+--------------------------------------------------------
+Flight: UA 3504 from IAD to PHL
+
+Departs on 7/24/2021 at 18:00
+Arrives on 7/24/2021 at 19:05
+Flight duration: 1h 5m
 --------------------------------------------------------
 
-Total Cost: $782.80
+Total Cost: $3367.45
 ========================================================
 
+112
+Passenger: Yue Ping Lee   Confirmation Number: VHMMBG
+Airline: American Airlines
+========================================================
+Flight: AA 761 from SJC to PHX
+
+Departs on 7/19/2021 at 6:20
+Arrives on 7/19/2021 at 8:32
+Flight duration: 2h, 12m
+--------------------------------------------------------
+Flight: AA 1569 from PHX to BOS
+
+Departs on 7/19/2021 at 9:45
+Arrives on 7/19/2021 at 17:52
+Flight duration: 5h, 7m
+--------------------------------------------------------
+Flight: AA 2260 from BOS to PHX
+
+Departs on 7/23/2021 at 7:10
+Arrives on 7/23/2021 at 9:55
+Flight duration: 5h, 45m
+--------------------------------------------------------
+Flight: AA 882 from PHX to SJC
+
+Departs on 7/23/2021 at 10:50
+Arrives on 7/23/2021 at 12:39
+Flight duration: 1h, 49m
+--------------------------------------------------------
+
+Total Cost: $696.41
+========================================================
+
+113
+Passenger: Emilym Egan   Confirmation Number: O4SMJX
+Airline: United Airlines
+========================================================
+Flight: UA 6235 from CVG to IAH
+
+Departs on 7/17/2021 at 13:58
+Arrives on 7/17/2021 at 15:34
+Flight duration: 2h, 36m
+--------------------------------------------------------
+Flight: UA 587 from IAH to PDX
+
+Departs on 7/17/2021 at 17:00
+Arrives on 7/17/2021 at 19:17
+Flight duration: 4h, 17m
+--------------------------------------------------------
+Flight: UA 2240 from PDX to DEN
+
+Departs on 7/25/2021 at 13:15
+Arrives on 7/25/2021 at 16:45
+Flight duration: 2h, 30m
+--------------------------------------------------------
+Flight: UA 5901 from DEN to CVG
+
+Departs on 7/25/2021 at 18:45
+Arrives on 7/25/2021 at 23:37
+Flight duration: 2h, 52m
+--------------------------------------------------------
+
+Total Cost: $1469.40
+========================================================
+
+114
+Passenger: Jasper Ng   Confirmation Number: CDZ08D
+Airline: United Airlines
+========================================================
+Flight: UA 284 from SFO to PDX
+
+Departs on 7/18/2021 at 16:15
+Arrives on 7/18/2021 at 17:55
+Flight duration: 1h, 40m
+--------------------------------------------------------
+Flight: UA 1453 from PDX to SFO
+
+Departs on 7/23/2021 at 15:41
+Arrives on 7/23/2021 at 17:26
+Flight duration: 1h, 45m
+--------------------------------------------------------
+
+Total Cost: $186.80
+========================================================
+
+115
+Passenger: Robert Gaskins   Confirmation Number: ICYLTY
+Airline: Alaska Airlines
+========================================================
+Flight: Alaska 3405 from ABQ to PDX
+
+Departs on 7/18/2021 at 18:30
+Arrives on 7/18/2021 at 20:28
+Flight duration: 2h, 58m
+--------------------------------------------------------
+Flight: Alaska 350 from PDX to LAX
+
+Departs on 7/23/2021 at 11:50
+Arrives on 7/23/2021 at 14:20
+Flight duration: 2h, 30m
+--------------------------------------------------------
+Flight: Alaska 4597 from LAX to ABQ
+
+Departs on 7/23/2021 at 15:55
+Arrives on 7/23/2021 at 18:54
+Flight duration: 1h, 59m
+--------------------------------------------------------
+
+Total Cost: $586.20
+========================================================
+
+116
+Passenger: Sumer Sareen   Confirmation Number: EMWBSH
+Airline: Alaska Airlines
+========================================================
+Flight: Alaska 479 from JFK to PDX
+
+Departs on 7/18/2021 at 19:25
+Arrives on 7/18/2021 at 22:25
+Flight duration: 6h, 0m
+--------------------------------------------------------
+Flight: Alaska 545 from PDX to JFK
+
+Departs on 7/23/2021 at 10:05
+Arrives on 7/23/2021 at 18:20
+Flight duration: 5h, 15m
+--------------------------------------------------------
+
+Total Cost: $496.79
+========================================================
+
+117
+Passenger: Ryan Laverty   Confirmation Number: PBTV5R
+Airline: United Airlines
+========================================================
+Flight: UA 2032 from EWR to PDX
+
+Departs on 7/18/2021 at 19:00
+Arrives on 7/18/2021 at 21:52
+Flight duration: 5h 52m
+--------------------------------------------------------
+Flight: UA 1695 from SEA to EWR
+
+Departs on 7/25/2021 at 22:43
+Arrives on 7/26/2021 at 6:59
+Flight duration: 5h 16m
+--------------------------------------------------------
+
+Total Cost: $533.80
+========================================================
+
+118
+Passenger: Rosie De La Cruz   Confirmation Number: XROCUR
+Airline: American Airlines
+========================================================
+Flight: AA 2433 from DFW to PDX
+
+Departs on 7/18/2021 at 17:25
+Arrives on 7/18/2021 at 19:18
+Flight duration: 3h, 53m
+--------------------------------------------------------
+Flight: AA 2655 from PDX to DFW
+
+Departs on 7/23/2021 at 12:06
+Arrives on 7/23/2021 at 17:57
+Flight duration: 3h, 51m
+--------------------------------------------------------
+
+Total Cost: $480.79
+========================================================
+
+119
+Passenger: Jacob Siegler   Confirmation Number: SPHXIK
+Airline: American Airlines
+========================================================
+Flight: AA 3059 from LAX to PDX
+
+Departs on 7/18/2021 at 14:32
+Arrives on 7/18/2021 at 17:00
+Flight duration: 2h, 28m
+--------------------------------------------------------
+Flight: AA 3003 from PDX to LAX
+
+Departs on 7/23/2021 at 10:54
+Arrives on 7/23/2021 at 13:13
+Flight duration: 2h, 19m
+--------------------------------------------------------
+
+Total Cost: $382.80
+========================================================
+
+120
+Passenger: Farjad Fazli   Confirmation Number: WYINRE
+Airline: Jetblue
+========================================================
+Flight: B6 2205 from JFK to PDX
+
+Departs on 7/20/2021 at 17:59
+Arrives on 7/20/2021 at 21:23
+Flight duration: 6h, 24m
+--------------------------------------------------------
+Flight: B6 2206 from PDX to JFK
+
+Departs on 7/25/2021 at 22:40
+Arrives on 7/26/2021 at 7:00
+Flight duration: 5h, 20m
+--------------------------------------------------------
+
+Total Cost: $644.81
+========================================================
+
+121
+Passenger: Bianca Raquel   Confirmation Number: SJRMDA
+Airline: Jetblue
+========================================================
+Flight: B6 413 from FLL to PDX
+
+Departs on 7/18/2021 at 19:41
+Arrives on 7/18/2021 at 23:02
+Flight duration: 6h, 21m
+--------------------------------------------------------
+Flight: B6 2206 from PDX to JFK
+
+Departs on 7/23/2021 at 22:40
+Arrives on 7/24/2021 at 7:00
+Flight duration: 5h, 20m
+--------------------------------------------------------
+Flight: B6 201 from JFK to FLL
+
+Departs on 7/24/2021 at 8:40
+Arrives on 7/24/2021 at 11:49
+Flight duration: 3h, 9m
+--------------------------------------------------------
+
+Total Cost: $794.80
+========================================================
+
+122
+Passenger: Andrew Collin   Confirmation Number: HKHM9S
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 2580 from PHOENIX to SALT LAKE CITY
+
+Departs on 8/17/2021 at 6:15
+Arrives on 8/17/2021 at 8:50
+Flight duration: 1h, 35m
+--------------------------------------------------------
+Flight: DELTA 3578 from SALT LAKE CITY to KALISPELL
+
+Departs on 8/17/2021 at 9:50
+Arrives on 8/17/2021 at 11:42
+Flight duration: 1h, 52m
+--------------------------------------------------------
+Flight: DELTA 2459 from KALISPELL to SALT LAKE CITY
+
+Departs on 8/22/2021 at 12:25
+Arrives on 8/22/2021 at 14:13
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DL 3578 from SALT LAKE CITY to PHOENIX
+
+Departs on 8/22/2021 at 15:24
+Arrives on 8/22/2021 at 16:03
+Flight duration: 1h, 39m
+--------------------------------------------------------
+
+Total Cost: $563.40
+========================================================
+
+17ae69824e5f215b: no part
+17ae298ec8cc7f46: no part
+17acb86110922514: no payload
+17abfd7ddf6c55c7: no payload
+17aad1a7089a162e: no part
+17aac1e3181deb47: no part
+17aaadee85156b5b: no part
+17aa6520c7312b9e: no part
+17a8c4ed023b7571: no part
+17a865fad339c9ca: no part
+17a5c1348382adba: no part
+17a59940c9b432e2: no part
+17a5712d873e9be7: no payload
+17a53c47fc73d9c7: no payload
+17a53692c2af5e86: no part
+17a4d136a523c6e4: no part
+17a3ddf67856df49: no part
+17a3a7f0eeedf8ef: no payload
+17a3a7aad7480618: no payload
+17a3a6c0b690a643: no payload
+17a39ca712ee5700: no part
+17a338ad3c391961: no part
+17a2042c461accd9: no part
+17a006b55fb7531d: no payload
+179cd9723e9ccb61: no payload
+Processed 14 emails that were not receipts.

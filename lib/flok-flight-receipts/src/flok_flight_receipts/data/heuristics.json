@@ -1,0 +1,107 @@
+{
+    "confirmation": ["record locator:","confirmation code is", "confirmation code is:", "confirmation code", "confirmation code:", "confirmation number:", "confirmation #:", "confirmation #", "booking code:", "booking reference", "booking reference:", "reservation:"],
+    "default": {
+        "name": {
+            "follows": {
+                "words": ["passenger options & extras detail","name:","traveler details","travelers","passenger information", "passenger name:","passenger","passenger:","passenger(s)", "passenger(s):"],
+                "after": 2,
+                "unwanted": ["passenger info", "passenger information (api)", "traveler details all"]
+            }
+        }
+    },
+    "cost": ["total price for all passengers","total paid:", "total paid", "total:", "total", "amount paid:", "ticket amount"],
+    "southwest airlines": {
+        "start": {
+            "follows": {
+                "words": ["your itinerary"],
+                "unwanted": ["your itinerary and"]
+            }
+        },
+        "stop": {
+            "before": {
+                "words": ["prepare for takeoff", "no show policy"]
+            }
+        },
+        "name": {
+            "follows": {
+                "words": ["hi"],
+                "after": 1
+            }
+        }
+    },
+    "british airways": {
+        "arr_and_dep_dates": true,
+        "airport_names": true,
+        "start": {
+            "follows": {
+                "words": ["your itinerary"]
+            }
+        },
+        "stop": {
+            "before": {
+                "words": ["baggage allowances"]
+            }
+        }
+    },
+    "alaska airlines": {
+        "name": {
+            "follows": {
+                "words": ["traveler(s)", "passenger"],
+                "after": 2
+            }
+        },
+        "arr_and_dep_dates": true
+    },
+    "delta airlines": {
+        "airport_names": true,
+        "start": {
+            "follows": {
+                "words": ["thank you for choosing delta."]
+            }
+        }
+    },
+    "frontier airlines": {
+        "arr_and_dep_dates": true
+    },
+    "air france": {
+        "start": {
+            "follows": {
+                "words": ["your flight details"]
+            }
+        }
+    },
+    "american airlines": {
+        "name": {
+            "before": {
+                "words": ["join the aadvantage","aadvantage"],
+                "before": 5,
+                "until": ["passenger", "purchase"]
+            }
+        }
+    },
+    "royal dutch airlines": {
+        "arr_and_dep_dates": true
+    },
+    "jetblue": {
+        "start": {
+            "follows": {
+                "words": ["you're all set.","your confirmation code is"]
+            }
+        },
+        "name": {
+            "follows": {
+                "words": ["traveler details"],
+                "after": 2,
+                "unwanted": ["traveler details all"]
+            }       
+        }
+    },
+    "ryanair": {
+        "name": {
+            "follows": {
+                "words": ["passenger(s):"],
+                "after": 3
+            }
+        }
+    }
+}
