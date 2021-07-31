@@ -35,6 +35,7 @@ airport_names_to_codes = pickle.load(open(_data_file("airport_names_to_codes.pic
 airline_codes_to_names = pickle.load(open(_data_file("airline_codes_to_names.pickle"), "rb"))
 airline_names_to_codes = pickle.load(open(_data_file("airline_names_to_codes.pickle"), 'rb'))
 airport_codes_to_timezones = pickle.load(open(_data_file("airport_codes_to_timezones.pickle"), 'rb'))
+heuristics = json.load(open(_data_file("heuristics.json"), "r"))
 
 def main():
     # fetching from gmail API
@@ -59,6 +60,13 @@ def main():
     return results
 
 def parse_emails(emails, logging=False):
+    """
+        Params
+            emails (List[{ 'id': string, 'part': email, 'err': 'string' }]): list of email objects, 'err' optional
+            logging (bool): display progress bar if true
+        Returns
+            tuple of list of parsed results and list of errors
+    """
     # processing
     emails_cleaned, emails_full, errs = [], [], []
     for email in emails:
@@ -72,13 +80,13 @@ def parse_emails(emails, logging=False):
     results = []
     num_emails = [i for i in range(len(emails_cleaned))]
     if len(num_emails) == 0:
-        return []
-    if logging:
-        for i in progressBar(num_emails, prefix = 'Progress:', suffix = 'Complete', length = 50):
-            results.append(parse(emails_cleaned[i], emails_full[i]))
-    else:
-        for i in num_emails:
-            results.append(parse(emails_cleaned[i], emails_full[i]))
+        return [], errs
+    for i in progressBar(num_emails, prefix = 'Progress:', suffix = 'Complete', length = 50, logging=logging):
+        info = parse(emails_cleaned[i], emails_full[i])
+        if info:
+            results.append(info)
+        else:
+            errs.append({'id': emails[i]['id'], 'err': 'not a receipt'})
 
     return results, errs
     
@@ -105,28 +113,24 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
     overnight_flag = [False]
 
     use_arr_and_dep_dates, use_airport_names = set(), set()
-    heuristics = json.load(open(_data_file("heuristics.json"), "r"))
-
 
     include_parenth = False
     airline_code, airline, err_msg = find_airline(email_full, use_arr_and_dep_dates, use_airport_names, heuristics)
     if airline != None:
-        delay_flag = delay_start(email, 0, airline, use_arr_and_dep_dates, heuristics)
+        delay_flag = delay_start(email, 0, airline, use_arr_and_dep_dates, use_airport_names)
         if airline.lower() == "united airlines":
             include_parenth = True
         if airline.lower() == "easyjet":
             print("easyJet not supported yet.")
             return
 
-    output = ""
     for i in range(len(email)):
         current = email[i].lower()
         if current == '':
             continue
-        if stop(email, i, airline, heuristics):
-            stop_flag = True
+        stop_flag = stop(email, i, airline)
         if delay_flag:
-            delay_flag = delay_start(email, i, airline, use_arr_and_dep_dates, heuristics)
+            delay_flag = delay_start(email, i, airline, use_arr_and_dep_dates, use_airport_names)
         elif not stop_flag:
             find_flights(email, i, flights, current)
             find_times(email, i, dep_times, arr_times, overnight_flag, da_flag, current)
@@ -134,28 +138,31 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
             find_airports(email, i, airports, use_airport_names, airline, include_parenth=include_parenth)
             find_durations(email, i, durations)
 
-            output += email[i] + " "
-
         if cost == None:
-            cost = find_cost(email, i, heuristics)
+            cost = find_cost(email, i, airline)
 
         if passenger_name == None:
-            passenger_name = find_name(email, i, airline, heuristics)
+            passenger_name = find_name(email, i, airline)
 
         # find confirmation number
         temp = follows(email, i, heuristics['confirmation'])
         if temp != None and confirmation == None and temp.isalnum():
             confirmation = temp
 
-    # printf(email)
-    # printf(output)
-    # printf(dep_dates, arr_dates)
-
     # heuristic for calculating # flights
     num_flights = len(arr_times)
 
     if num_flights == 0 or (not airline and len(flights) == 0):
         return
+
+    # fix flight number if needed
+    if airline_code:
+        for i, flight in enumerate(flights):
+            f = flight.split()
+            if f[0].lower() in {"flight"}:
+                flights[i] = airline_code.upper() + " " + f[1]
+            elif len(f) == 1:
+                flights[i] = airline_code.upper() + " " + f[0]
 
     # packaging individual flight data
     times = []
@@ -215,16 +222,6 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
                 durations.append(None)
                 err_flag = True
 
-
-    # fix flight number if needed
-    if airline_code:
-        for i, flight in enumerate(flights):
-            f = flight.split()
-            if f[0].lower() in {"flight"}:
-                flights[i] = airline_code.upper() + " " + f[1]
-            elif len(f) == 1:
-                flights[i] = airline_code.upper() + " " + f[0]
-
     # pad missing values with None
     pad(
         [times, dates, airport_pairs, flights, durations],
@@ -277,7 +274,32 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
 ===============================
 """
 
-def delay_start(email, i, airline, use_arr_and_dep_dates, airline_heuristics):
+def check_heuristic(email, i, airline, field):
+    """
+        Checks for heuristic match following or before current item.
+        Returns match if found, else returns False
+    """
+    if airline in heuristics and field in heuristics[airline]:
+        field_heuristics = heuristics[airline][field]
+        if 'follows' in field_heuristics:
+            return follows(email, i, **field_heuristics['follows'])
+        if 'before' in field_heuristics:
+            return before(email, i, **field_heuristics['before'])
+    else:
+        if 'default' in heuristics and field in heuristics['default']:
+            default_heuristics = heuristics['default'][field]
+            if 'follows' in default_heuristics:
+                return follows(email, i, **default_heuristics['follows'])
+            if 'before' in default_heuristics:
+                return before(email, i, **default_heuristics['before'])
+        else:
+            return False
+    
+    return False
+
+
+def delay_start(email, i, airline, use_arr_and_dep_dates, use_airport_names):
+    # edge case
     if airline == "united airlines":
         if follows(email, i, ['trip summary']):
             return False
@@ -285,38 +307,21 @@ def delay_start(email, i, airline, use_arr_and_dep_dates, airline_heuristics):
             use_arr_and_dep_dates.add(airline)
             return False
         return True
-    
-    if airline in airline_heuristics:
-        heuristics = airline_heuristics[airline]
-        if 'start' in heuristics:
-            if 'follows' in heuristics['start']:
-                if follows(email, i, **heuristics['start']['follows']):
-                    return False
-            if 'before' in heuristics['start']:
-                if before(email, i, **heuristics['start']['before']):
-                    return False
-        else:
-            return False
-    else:
-        return False
 
-    return True
+    start = check_heuristic(email, i, airline, 'start')
 
-def stop(email, i, airline, airline_heuristics):
-    if airline in airline_heuristics:
-        heuristics = airline_heuristics[airline]
-        if 'stop' in heuristics:
-            if 'before' in heuristics['stop']:
-                if before(email, i, **heuristics['stop']['before']):
-                    return True
-            if 'follows' in heuristics['stop']:
-                if follows(email, i, **heuristics['stop']['follows']):
-                    return True
-        else:
-            return False
-    else:
+    # edge case for delta forwarded itinerary
+    if start and airline == "delta airlines":
+        if airline in use_airport_names and follows(email, i, ['your forwarded itinerary']):
+            use_airport_names.remove(airline)
+
+    if start or start == False:
         return False
-    return False
+    else:
+        return True
+
+def stop(email, i, airline):
+    return bool(check_heuristic(email, i, airline, 'stop'))
 
 def find_flights(email, i, flights, current):
     if i + 2 < len(email):
@@ -409,34 +414,32 @@ def find_airports(email, i, airports, airport_names, airline=None, include_paren
     elif curr in airport_codes_to_names:
         airports.append(curr)
 
-def find_cost(email, i, heuristics):
-    cost = None
-    test = follows(email, i, heuristics['cost'], 4, ['total price of your ticket', 'total max.'])
-    if test:
-        for j, curr in enumerate(test.split()):
+def find_cost(email, i, airline):
+    cost = check_heuristic(email, i, airline, 'cost')
+            
+    if cost:
+        valid = False
+        for curr in cost.split():
             curr = curr.replace(",","")
             m = re.match("^\$?\d+(\.\d{2})?$", curr)
             if bool(m):
+                valid = True
                 cost = m.group(0)
                 break
+        if not valid:
+            cost = None
+    else:
+        cost = None
         
     if cost != None and cost[0] != '$':
         cost = '$' + cost
     return cost
 
-def find_name(email, i, airline, heuristics):
-    name = None
-
-    if airline in heuristics and 'name' in heuristics[airline]:
-        if "follows" in heuristics[airline]['name']:
-            name = follows(email, i, **heuristics[airline]['name']['follows'])
-        if "before" in heuristics[airline]['name']:
-            name = before(email, i, **heuristics[airline]['name']['before'])
-    else:
-        name = follows(email, i, **heuristics['default']['name']['follows'])
+def find_name(email, i, airline):
+    name = check_heuristic(email, i, airline, 'name')
 
     # cleanup name
-    if name != None:
+    if name:
         if '/' in name:
             name = " ".join(name.split()[0].split('/')[::-1])
         comma = name.find(',')
@@ -446,7 +449,9 @@ def find_name(email, i, airline, heuristics):
             name = " ".join(name.split()[1:])
         if not (name.isalpha() or " " in name or "'" in name):
             name = None
-    return name
+        return name
+    else:
+        return None
 
 def find_durations(email, i, durations):
     if before(email, i, ['duration','duration:','est. travel time']) and i < len(email) - 4:
@@ -463,7 +468,7 @@ def find_durations(email, i, durations):
         elif bool(re.match("\d{0,2} hr \d{0,2} min", " ".join(email[i+1:i+5]))):
             durations.append(" ".join(email[i+1:i+5]))
 
-def find_airline(email, use_arr_and_dep_dates, airport_names, heuristics):
+def find_airline(email, use_arr_and_dep_dates, use_airport_names, heuristics):
     counter = dict()
     airline_code, airline, err_msg = None, None, ""
     flights = []
@@ -505,11 +510,11 @@ def find_airline(email, use_arr_and_dep_dates, airport_names, heuristics):
         else:
             use_arr_and_dep_dates.add(airline)
     if airline in heuristics and 'airport_names' in heuristics[airline]:
-        airport_names.add(airline)
+        use_airport_names.add(airline)
 
     return airline_code, airline, err_msg
 
-def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r", logging=False):
     """
     Call in a loop to create terminal progress bar
     @params:
@@ -529,13 +534,17 @@ def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, 
         bar = fill * filledLength + '-' * (length - filledLength)
         print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
     # Initial Call
-    printProgressBar(0)
-    # Update Progress Bar
-    for i, item in enumerate(iterable):
-        yield item
-        printProgressBar(i + 1)
-    # Print New Line on Complete
-    print()
+    if logging:
+        printProgressBar(0)
+        # Update Progress Bar
+        for i, item in enumerate(iterable):
+            yield item
+            printProgressBar(i + 1)
+        # Print New Line on Complete
+        print()
+    else:
+        for item in iterable:
+            yield item
 
 def summary(info):
     summary = ""
@@ -867,10 +876,10 @@ def build_service(creds=None):
 
 def fetch_email_list(service, _userId, count=100):
     messages = []
-    req = service.users().messages().list(userId=_userId, maxResults=min(count, 500), q='to:flights@goflok.com')
+    req = service.users().messages().list(userId=_userId, maxResults=500, q='to:flights@goflok.com')
     res = req.execute()
 
-    while True:
+    while len(messages) < count:
         prev_req = req
         if 'messages' in res:
             messages += res['messages']
@@ -929,36 +938,34 @@ def seconds_to_hours(seconds):
 def unicode_to_ascii(text: str) -> str:
 
     TEXT = (
-        text.
-        # replace('\\xe2\\x80\\x99', "'").
-        # replace('\\xc3\\xa9', 'e').
-        replace("\\xe2\\x80\\x90", "-")
+        text
+        .replace('\\xe2\\x80\\x99', "'")
+        .replace('\\xc3\\xa9', 'e')
+        .replace("\\xe2\\x80\\x90", "-")
         .replace("\\xe2\\x80\\x91", "-")
         .replace("\\xe2\\x80\\x92", "-")
         .replace("\\xe2\\x80\\x93", "-")
         .replace("\\xe2\\x80\\x94", "-")
         .replace("\\xe2\\x80\\x94", "-")
-        .
-        # replace('\\xe2\\x80\\x98', "'").
-        # replace('\\xe2\\x80\\x9b', "'").
-        # replace('\\xe2\\x80\\x9c', '"').
-        # replace('\\xe2\\x80\\x9c', '"').
-        # replace('\\xe2\\x80\\x9d', '"').
-        # replace('\\xe2\\x80\\x9e', '"').
-        # replace('\\xe2\\x80\\x9f', '"').
-        replace("\\xe2\\x80\\xa6", "...")
-        .
-        # replace('\\xe2\\x80\\xb2', "'").
-        # replace('\\xe2\\x80\\xb3', "'").
-        # replace('\\xe2\\x80\\xb4', "'").
-        # replace('\\xe2\\x80\\xb5', "'").
-        # replace('\\xe2\\x80\\xb6', "'").
-        # replace('\\xe2\\x80\\xb7', "'").
-        # replace('\\xe2\\x81\\xba', "+").
-        replace("\\xe2\\x81\\xbb", "-")
-        # replace('\\xe2\\x81\\xbc', "=").
-        # replace('\\xe2\\x81\\xbd', "(").
-        # replace('\\xe2\\x81\\xbe', ")")
+        .replace('\\xe2\\x80\\x98', "'")
+        .replace('\\xe2\\x80\\x9b', "'")
+        .replace('\\xe2\\x80\\x9c', '"')
+        .replace('\\xe2\\x80\\x9c', '"')
+        .replace('\\xe2\\x80\\x9d', '"')
+        .replace('\\xe2\\x80\\x9e', '"')
+        .replace('\\xe2\\x80\\x9f', '"')
+        .replace("\\xe2\\x80\\xa6", "...")
+        .replace('\\xe2\\x80\\xb2', "'")
+        .replace('\\xe2\\x80\\xb3', "'")
+        .replace('\\xe2\\x80\\xb4', "'")
+        .replace('\\xe2\\x80\\xb5', "'")
+        .replace('\\xe2\\x80\\xb6', "'")
+        .replace('\\xe2\\x80\\xb7', "'")
+        .replace('\\xe2\\x81\\xba', "+")
+        .replace("\\xe2\\x81\\xbb", "-")
+        .replace('\\xe2\\x81\\xbc', "=")
+        .replace('\\xe2\\x81\\xbd', "(")
+        .replace('\\xe2\\x81\\xbe', ")")
     )
     return TEXT
 

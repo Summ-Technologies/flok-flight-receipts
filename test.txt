@@ -1,4 +1,94 @@
+1
+Passenger: Sara Alfageeh   Confirmation Number: HQEKWU
+Airline: Delta Airlines
+========================================================
+Flight: DELTA 346 from BOSTON to LOS ANGELES
+
+Departs on 8/08/2021 at 11:00
+Arrives on 8/08/2021 at 14:06
+Flight duration: 6h, 6m
+--------------------------------------------------------
+
+Total Cost: $588.40
+========================================================
+
 2
+Passenger: Andrew Tran   Confirmation Number: B6MSKB
+Airline: United Airlines
+========================================================
+Flight: AC 787 from YYZ to LAX
+
+Departs on 8/08/2021 at 8:00
+Arrives on 8/08/2021 at 10:12
+Flight duration: 5h 12m
+--------------------------------------------------------
+Flight: UA 1897 from LAX to ORD
+
+Departs on 8/13/2021 at 14:25
+Arrives on 8/13/2021 at 20:25
+Flight duration: 4h
+--------------------------------------------------------
+
+Total Cost: $743.22
+========================================================
+
+3
+Passenger: Sara Alfageeh   Confirmation Number: VPLLZA
+Airline: Alaska Airlines
+========================================================
+Flight: AS 3491 from LAX to SFO
+
+Departs on 8/14/2021 at 14:25
+Arrives on 8/14/2021 at 15:53
+Flight duration: 1h, 28m
+--------------------------------------------------------
+
+Total Cost: $58.40
+========================================================
+
+4
+Passenger: Eduardofelipe Guerra   Confirmation Number: IQPX55
+Airline: United Airlines
+========================================================
+Flight: UA 1484 from SFO to SEA
+
+Departs on 8/11/2021 at 09:00
+Arrives on 8/11/2021 at 11:09
+Flight duration: 2h, 9m
+--------------------------------------------------------
+
+Total Cost: $118.40
+========================================================
+
+5
+Passenger: Eduardo Guerra   Confirmation Number: VMDYOW
+Airline: Alaska Airlines
+========================================================
+Flight: AS 304 from SEA to LAX
+
+Departs on 8/14/2021 at 08:45
+Arrives on 8/14/2021 at 11:39
+Flight duration: 2h, 54m
+--------------------------------------------------------
+
+Total Cost: $168.40
+========================================================
+
+6
+Passenger: Jennifer Maggio   Confirmation Number: QDEDFO
+Airline: American Airlines
+========================================================
+Flight: AA 1379 from LAX to DEN
+
+Departs on 8/14/2021 at 13:20
+Arrives on 8/14/2021 at 16:46
+Flight duration: 2h, 26m
+--------------------------------------------------------
+
+Total Cost: $98.40
+========================================================
+
+7
 Passenger: Anthony Becker   Confirmation Number: UOMLKQ
 Airline: Alaska Airlines
 ========================================================
@@ -18,7 +108,7 @@ Flight duration: 2h, 8m
 Total Cost: $476.81
 ========================================================
 
-5
+8
 Passenger: Cory Watilo   Confirmation Number: GZJ8BS
 Airline: Delta Airlines
 ========================================================
@@ -50,7 +140,21 @@ Flight duration: 2h, 18m
 Total Cost: $1247.15
 ========================================================
 
-7
+9
+Passenger: Edith Herwitz   Confirmation Number: SKHPBZ
+Airline: Jetblue
+========================================================
+Flight: B6 64 from SEA to JFK
+
+Departs on 8/15/2021 at 13:32
+Arrives on 8/15/2021 at 22:03
+Flight duration: 5h, 31m
+--------------------------------------------------------
+
+Total Cost: $466.92
+========================================================
+
+10
 Passenger: Edith Herwitz   Confirmation Number: HG7NHZ
 Airline: Delta Airlines
 ========================================================
@@ -64,7 +168,7 @@ Flight duration: 6h, 13m
 Total Cost: $378.40
 ========================================================
 
-8
+11
 Passenger: Meishan Xu   Confirmation Number: ICLUDI
 Airline: Alaska Airlines
 ========================================================
@@ -84,7 +188,7 @@ Flight duration: 5h, 15m
 Total Cost: $856.80
 ========================================================
 
-9
+12
 Passenger: Matthew Link   Confirmation Number: GGLQU6
 Airline: Delta Airlines
 ========================================================
@@ -98,7 +202,7 @@ Flight duration: 3h, 35m
 Total Cost: $186.40
 ========================================================
 
-10
+13
 Passenger: Matthew Link   Confirmation Number: USTOPX
 Airline: Alaska Airlines
 ========================================================
@@ -112,7 +216,7 @@ Flight duration: 3h, 50m
 Total Cost: $179.40
 ========================================================
 
-11
+14
 Passenger: Neil Kakkar   Confirmation Number: CFJCRR
 Airline: Ryanair
 ========================================================
@@ -126,7 +230,7 @@ Flight duration: 1h, 15m
 Total Cost: $29.62
 ========================================================
 
-12
+15
 Passenger: Matthew   Confirmation Number: 2DFGV4
 Airline: Southwest Airlines
 ========================================================
@@ -146,7 +250,7 @@ Flight duration: 2h, 35m
 Total Cost: $346.96
 ========================================================
 
-13
+16
 Passenger: Nathan Lord   Confirmation Number: F6AMB9
 Airline: Delta Airlines
 ========================================================
@@ -160,7 +264,7 @@ Flight duration: 1h, 9m
 Total Cost: $372.80
 ========================================================
 
-14
+17
 Passenger: Winston Tri   Confirmation Number: JYL5WZ
 Airline: Frontier Airlines
 ========================================================
@@ -174,7 +278,7 @@ Flight duration: 2 hr 25 min
 Total Cost: $87.00
 ========================================================
 
-15
+18
 Passenger: Alexandrehervemarie Masmejean   Confirmation Number: LPGHM3
 Airline: United Airlines
 ========================================================
@@ -188,7 +292,7 @@ Flight duration: 5h, 24m
 Total Cost: $522.84
 ========================================================
 
-16
+19
 Passenger: Alexandrehervemarie Masmejean   Confirmation Number: LPJN29
 Airline: United Airlines
 ========================================================
@@ -202,7 +306,7 @@ Flight duration: 5h, 50m
 Total Cost: $774.96
 ========================================================
 
-17
+20
 Passenger: Alexandercarlson Kilkka   Confirmation Number: BXPMT2
 Airline: United Airlines
 ========================================================
@@ -222,7 +326,30 @@ Flight duration: 5h, 50m
 Total Cost: $1128.70
 ========================================================
 
-20
+21
+Passenger: Shaan Hiten   Confirmation Number: G3N8N2
+Airline: Delta Airlines
+========================================================
+Flight: DL 1311 from SFO to SLC
+
+Departs on 08/23/2021 at 10:05
+Arrives on 08/23/2021 at 12:53
+Flight duration: 1h, 48m
+--------------------------------------------------------
+Flight: DL 1352 from SLC to SFO
+
+Departs on 08/23/2021 at 15:05
+Arrives on 08/23/2021 at 16:01
+Flight duration: 1h, 56m
+--------------------------------------------------------
+
+Total Cost: None
+========================================================
+**** WARNING ****
+1 values are missing, please check output.
+*****************
+
+22
 Passenger: Alejandro Pedraza   Confirmation Number: MSY7WK
 Airline: United Airlines
 ========================================================
@@ -242,7 +369,7 @@ Flight duration: 5h 16m
 Total Cost: $1104.00
 ========================================================
 
-21
+23
 Passenger: Watson Fu   Confirmation Number: HADI4A
 Airline: Delta Airlines
 ========================================================
@@ -262,7 +389,7 @@ Flight duration: 1h, 21m
 Total Cost: $231.79
 ========================================================
 
-23
+24
 Passenger: Blaze Christophe   Confirmation Number: HIICOE
 Airline: Delta Airlines
 ========================================================
@@ -294,7 +421,7 @@ Flight duration: 2h, 7m
 Total Cost: $1038.30
 ========================================================
 
-24
+25
 Passenger: Clement Emmanuel   Confirmation Number: HCTBIE
 Airline: Delta Airlines
 ========================================================
@@ -314,7 +441,7 @@ Flight duration: 1h, 56m
 Total Cost: $226.80
 ========================================================
 
-25
+26
 Passenger: Bianca Nieves   Confirmation Number: KRBSMI
 Airline: Alaska Airlines
 ========================================================
@@ -328,7 +455,7 @@ Flight duration: 4h, 8m
 Total Cost: $353.18
 ========================================================
 
-26
+27
 Passenger: Winston Tri   Confirmation Number: Q8MDJC
 Airline: Frontier Airlines
 ========================================================
@@ -1039,7 +1166,7 @@ Flight duration: 3h, 30m
 Total Cost: $295.70
 ========================================================
 
-62
+61
 Passenger: Steven Christoph   Confirmation Number: GFTHT5
 Airline: Delta Airlines
 ========================================================
@@ -1059,7 +1186,7 @@ Flight duration: 3h, 6m
 Total Cost: $229.80
 ========================================================
 
-64
+62
 Passenger: Harmanjeet Bains   Confirmation Number: VQRMHQ
 Airline: Alaska Airlines
 ========================================================
@@ -1079,7 +1206,7 @@ Flight duration: 2h, 55m
 Total Cost: $256.81
 ========================================================
 
-67
+63
 Passenger: Christy Warwick   Confirmation Number: NSPFPT
 Airline: United Airlines
 ========================================================
@@ -1099,7 +1226,7 @@ Flight duration: 1h 45m
 Total Cost: $156.80
 ========================================================
 
-69
+64
 Passenger: Risha Mars   Confirmation Number: AL9EKX
 Airline: United Airlines
 ========================================================
@@ -1119,7 +1246,7 @@ Flight duration: 5h 5m
 Total Cost: $474.00
 ========================================================
 
-70
+65
 Passenger: Matthew Schamble   Confirmation Number: AJ4RSD
 Airline: United Airlines
 ========================================================
@@ -1139,7 +1266,7 @@ Flight duration: 3h 51m
 Total Cost: $551.80
 ========================================================
 
-71
+66
 Passenger: Liyi Yu   Confirmation Number: ADJ7LM
 Airline: United Airlines
 ========================================================
@@ -1171,7 +1298,7 @@ Flight duration: 8h, 50m
 Total Cost: $789.75
 ========================================================
 
-72
+67
 Passenger: Erez Bosch   Confirmation Number: O2TBYV
 Airline: United Airlines
 ========================================================
@@ -1191,7 +1318,7 @@ Flight duration: 2h, 36m
 Total Cost: $305.80
 ========================================================
 
-73
+68
 Passenger: None   Confirmation Number: None
 Airline: United Airlines
 ========================================================
@@ -1275,7 +1402,7 @@ There are potential parsign errors.
 4 values are missing, please check output.
 *****************
 
-74
+69
 Passenger: Shannon Kinney   Confirmation Number: YPFKCP
 Airline: Jetblue
 ========================================================
@@ -1295,7 +1422,7 @@ Flight duration: 5h, 20m
 Total Cost: $675.80
 ========================================================
 
-75
+70
 Passenger: Oliver Gould   Confirmation Number: O3NNBL
 Airline: United Airlines
 ========================================================
@@ -1315,7 +1442,7 @@ Flight duration: 5h, 16m
 Total Cost: $403.00
 ========================================================
 
-76
+71
 Passenger: Andrew Seigner   Confirmation Number: OYT9CQ
 Airline: United Airlines
 ========================================================
@@ -1335,7 +1462,7 @@ Flight duration: 5h, 16m
 Total Cost: $358.00
 ========================================================
 
-77
+72
 Passenger: Marina Sergeyeva   Confirmation Number: OY68SV
 Airline: United Airlines
 ========================================================
@@ -1355,7 +1482,7 @@ Flight duration: 5h 16m
 Total Cost: $509.07
 ========================================================
 
-78
+73
 Passenger: None   Confirmation Number: None
 Airline: United Airlines
 ========================================================
@@ -1402,7 +1529,7 @@ Total Cost: None
 3 values are missing, please check output.
 *****************
 
-79
+74
 Passenger: Laura   Confirmation Number: 2NU7AK
 Airline: Southwest Airlines
 ========================================================
@@ -1422,7 +1549,7 @@ Flight duration: 4h, 10m
 Total Cost: $320.46
 ========================================================
 
-80
+75
 Passenger: Eltje Helene   Confirmation Number: J3JM7V
 Airline: Ryanair
 ========================================================
@@ -1436,7 +1563,7 @@ Flight duration: 2h, 45m
 Total Cost: $133.00
 ========================================================
 
-81
+76
 Passenger: Eltje Helene   Confirmation Number: PC55SA
 Airline: Ryanair
 ========================================================
@@ -1450,7 +1577,7 @@ Flight duration: 2h, 20m
 Total Cost: $56.85
 ========================================================
 
-82
+77
 Passenger: Buddy L   Confirmation Number: GW9PT6
 Airline: Delta Airlines
 ========================================================
@@ -1482,7 +1609,7 @@ Flight duration: 9h, 20m
 Total Cost: $1146.15
 ========================================================
 
-83
+78
 Passenger: Philip Leggetter   Confirmation Number: L88ZN5
 Airline: Royal Dutch Airlines
 ========================================================
@@ -1514,7 +1641,7 @@ Flight duration: 1h, 30m
 Total Cost: $250.11
 ========================================================
 
-84
+79
 Passenger: Daniel   Confirmation Number: 2JHRPT
 Airline: Southwest Airlines
 ========================================================
@@ -1546,7 +1673,7 @@ Flight duration: 1h, 40m
 Total Cost: $451.97
 ========================================================
 
-85
+80
 Passenger: Tiina Turban   Confirmation Number: KCNWWV
 Airline: Air France
 ========================================================
@@ -1566,7 +1693,7 @@ Flight duration: 2h, 15m
 Total Cost: $140.00
 ========================================================
 
-86
+81
 Passenger: Tiffany Chi   Confirmation Number: RVQFFX
 Airline: Jetblue
 ========================================================
@@ -1583,7 +1710,7 @@ Total Cost: None
 1 values are missing, please check output.
 *****************
 
-87
+82
 Passenger: Christopher Watrous   Confirmation Number: NRYS1N
 Airline: United Airlines
 ========================================================
@@ -1603,7 +1730,7 @@ Flight duration: 3h 53m
 Total Cost: $593.80
 ========================================================
 
-88
+83
 Passenger: Kristie Zheng   Confirmation Number: NRMTXQ
 Airline: United Airlines
 ========================================================
@@ -1623,7 +1750,7 @@ Flight duration: 2h 36m
 Total Cost: $385.80
 ========================================================
 
-89
+84
 Passenger: Derling Chen   Confirmation Number: N8QWFJ
 Airline: United Airlines
 ========================================================
@@ -1643,7 +1770,7 @@ Flight duration: 2h, 27m
 Total Cost: $316.80
 ========================================================
 
-90
+85
 Passenger: Kevinmatthew Carlson   Confirmation Number: NMW0QK
 Airline: United Airlines
 ========================================================
@@ -1663,7 +1790,7 @@ Flight duration: 2h, 36m
 Total Cost: $385.80
 ========================================================
 
-91
+86
 Passenger: Carl Brenden   Confirmation Number: GBTXJZ
 Airline: Delta Airlines
 ========================================================
@@ -1695,7 +1822,7 @@ Flight duration: 1h, 30m
 Total Cost: $262.40
 ========================================================
 
-92
+87
 Passenger: Bridget Scotti   Confirmation Number: MSTPGN
 Airline: American Airlines
 ========================================================
@@ -1715,7 +1842,7 @@ Flight duration: 3h, 50m
 Total Cost: $466.80
 ========================================================
 
-93
+88
 Passenger: Allen   Confirmation Number: 4Z59IS
 Airline: Southwest Airlines
 ========================================================
@@ -1735,7 +1862,7 @@ Flight duration: 2h, 35m
 Total Cost: $337.96
 ========================================================
 
-94
+89
 Passenger: James Mckernan   Confirmation Number: NG4X4E
 Airline: United Airlines
 ========================================================
@@ -1755,7 +1882,7 @@ Flight duration: 2h, 36m
 Total Cost: $265.80
 ========================================================
 
-95
+90
 Passenger: Bridget Scotti   Confirmation Number: MSTPGN
 Airline: American Airlines
 ========================================================
@@ -1775,7 +1902,7 @@ Flight duration: 3h, 50m
 Total Cost: $466.80
 ========================================================
 
-96
+91
 Passenger: Lindsay   Confirmation Number: 4WVMSZ
 Airline: Southwest Airlines
 ========================================================
@@ -1795,7 +1922,7 @@ Flight duration: 1h, 50m
 Total Cost: $237.96
 ========================================================
 
-97
+92
 Passenger: Meredith Grubb   Confirmation Number: BQKACB
 Airline: Alaska Airlines
 ========================================================
@@ -1809,7 +1936,7 @@ Flight duration: 2h, 44m
 Total Cost: $128.40
 ========================================================
 
-98
+93
 Passenger: Meredith   Confirmation Number: 4XSDQ4
 Airline: Southwest Airlines
 ========================================================
@@ -1823,7 +1950,7 @@ Flight duration: 2h, 35m
 Total Cost: $148.98
 ========================================================
 
-99
+94
 Passenger: Constance Betsy   Confirmation Number: F7BMZJ
 Airline: Delta Airlines
 ========================================================
@@ -1843,7 +1970,7 @@ Flight duration: 2h, 27m
 Total Cost: $162.80
 ========================================================
 
-100
+95
 Passenger: Tiffany Yu   Confirmation Number: NE23ED
 Airline: United Airlines
 ========================================================
@@ -1857,7 +1984,7 @@ Flight duration: 3h 53m
 Total Cost: $284.40
 ========================================================
 
-101
+96
 Passenger: Tiffany Chi   Confirmation Number: SVWUNQ
 Airline: Jetblue
 ========================================================
@@ -1874,7 +2001,7 @@ Total Cost: None
 1 values are missing, please check output.
 *****************
 
-102
+97
 Passenger: Rahul Desai   Confirmation Number: CBJVKT
 Airline: Frontier Airlines
 ========================================================
@@ -1894,7 +2021,7 @@ Flight duration: 3 hr 33 min
 Total Cost: $322.98
 ========================================================
 
-103
+98
 Passenger: Hamza Amjad   Confirmation Number: MQEDEL
 Airline: Jetblue
 ========================================================
@@ -1917,7 +2044,7 @@ Total Cost: None
 1 values are missing, please check output.
 *****************
 
-104
+99
 Passenger: Johan Jern   Confirmation Number: UV43KU
 Airline: Lufthansa
 ========================================================
@@ -1949,7 +2076,7 @@ Flight duration: 2h, 20m
 Total Cost: $370.86
 ========================================================
 
-105
+100
 Passenger: Andrew Lewis   Confirmation Number: GC7G45
 Airline: Delta Airlines
 ========================================================
@@ -1969,7 +2096,7 @@ Flight duration: 6h, 7m
 Total Cost: $616.80
 ========================================================
 
-106
+101
 Passenger: Stefanjay Schuch   Confirmation Number: HJC0ZM
 Airline: United Airlines
 ========================================================
@@ -2007,7 +2134,7 @@ Flight duration: 5h, 24m
 Total Cost: $5684.85
 ========================================================
 
-107
+102
 Passenger: David Skrenta   Confirmation Number: HB9SKE
 Airline: United Airlines
 ========================================================
@@ -2027,7 +2154,7 @@ Flight duration: 6h, 20m
 Total Cost: $782.80
 ========================================================
 
-108
+103
 Passenger: Benny Yan   Confirmation Number: G0K4X7
 Airline: United Airlines
 ========================================================
@@ -2071,7 +2198,7 @@ Flight duration: 3h 47m
 Total Cost: $3113.85
 ========================================================
 
-109
+104
 Passenger: Usman   Confirmation Number: SUNNE5
 Airline: British Airways
 ========================================================
@@ -2099,11 +2226,23 @@ Departs on 7/24/2021 at 16:30
 Arrives on 7/24/2021 at 19:25
 Flight duration: 7h, 55m
 --------------------------------------------------------
+Flight: BA 1511 from New York to London
+
+Departs on 7/11/2021 at 18:25
+Arrives on 7/12/2021 at 07:20
+Flight duration: 7h, 55m
+--------------------------------------------------------
+Flight: BA 0530 from London to Split
+
+Departs on 7/24/2021 at 11:40
+Arrives on 7/24/2021 at 16:30
+Flight duration: 3h, 50m
+--------------------------------------------------------
 
 Total Cost: $3592.33
 ========================================================
 
-110
+105
 Passenger: Peter Downs   Confirmation Number: GZN5WK
 Airline: United Airlines
 ========================================================
@@ -2141,7 +2280,7 @@ Flight duration: 1h, 5m
 Total Cost: $3367.45
 ========================================================
 
-111
+106
 Passenger: Peter Downs   Confirmation Number: GZN5WK
 Airline: United Airlines
 ========================================================
@@ -2179,7 +2318,7 @@ Flight duration: 1h 5m
 Total Cost: $3367.45
 ========================================================
 
-112
+107
 Passenger: Yue Ping Lee   Confirmation Number: VHMMBG
 Airline: American Airlines
 ========================================================
@@ -2211,7 +2350,7 @@ Flight duration: 1h, 49m
 Total Cost: $696.41
 ========================================================
 
-113
+108
 Passenger: Emilym Egan   Confirmation Number: O4SMJX
 Airline: United Airlines
 ========================================================
@@ -2243,7 +2382,7 @@ Flight duration: 2h, 52m
 Total Cost: $1469.40
 ========================================================
 
-114
+109
 Passenger: Jasper Ng   Confirmation Number: CDZ08D
 Airline: United Airlines
 ========================================================
@@ -2263,7 +2402,7 @@ Flight duration: 1h, 45m
 Total Cost: $186.80
 ========================================================
 
-115
+110
 Passenger: Robert Gaskins   Confirmation Number: ICYLTY
 Airline: Alaska Airlines
 ========================================================
@@ -2289,7 +2428,7 @@ Flight duration: 1h, 59m
 Total Cost: $586.20
 ========================================================
 
-116
+111
 Passenger: Sumer Sareen   Confirmation Number: EMWBSH
 Airline: Alaska Airlines
 ========================================================
@@ -2309,7 +2448,7 @@ Flight duration: 5h, 15m
 Total Cost: $496.79
 ========================================================
 
-117
+112
 Passenger: Ryan Laverty   Confirmation Number: PBTV5R
 Airline: United Airlines
 ========================================================
@@ -2329,7 +2468,7 @@ Flight duration: 5h 16m
 Total Cost: $533.80
 ========================================================
 
-118
+113
 Passenger: Rosie De La Cruz   Confirmation Number: XROCUR
 Airline: American Airlines
 ========================================================
@@ -2349,7 +2488,7 @@ Flight duration: 3h, 51m
 Total Cost: $480.79
 ========================================================
 
-119
+114
 Passenger: Jacob Siegler   Confirmation Number: SPHXIK
 Airline: American Airlines
 ========================================================
@@ -2369,7 +2508,7 @@ Flight duration: 2h, 19m
 Total Cost: $382.80
 ========================================================
 
-120
+115
 Passenger: Farjad Fazli   Confirmation Number: WYINRE
 Airline: Jetblue
 ========================================================
@@ -2389,7 +2528,7 @@ Flight duration: 5h, 20m
 Total Cost: $644.81
 ========================================================
 
-121
+116
 Passenger: Bianca Raquel   Confirmation Number: SJRMDA
 Airline: Jetblue
 ========================================================
@@ -2415,7 +2554,7 @@ Flight duration: 3h, 9m
 Total Cost: $794.80
 ========================================================
 
-122
+117
 Passenger: Andrew Collin   Confirmation Number: HKHM9S
 Airline: Delta Airlines
 ========================================================
@@ -2447,6 +2586,7 @@ Flight duration: 1h, 39m
 Total Cost: $563.40
 ========================================================
 
+17af6b7a609f051b: no payload
 17ae69824e5f215b: no part
 17ae298ec8cc7f46: no part
 17acb86110922514: no payload
@@ -2472,4 +2612,15 @@ Total Cost: $563.40
 17a2042c461accd9: no part
 17a006b55fb7531d: no payload
 179cd9723e9ccb61: no payload
-Processed 14 emails that were not receipts.
+17af39335221ce1f: not a receipt
+17ae93c59e00288e: not a receipt
+17ae92fce3301286: not a receipt
+17ac10e87986ad98: not a receipt
+17abcc03c163384f: not a receipt
+17aab99b61e990f5: not a receipt
+17a7c3777e1533fb: not a receipt
+17a73d1c909f5806: not a receipt
+17a64061b2f1665d: not a receipt
+17a5c1348382adba: not a receipt
+17a594f0ea26a783: not a receipt
+17a39a2216e11203: not a receipt

@@ -1,5 +1,5 @@
 {
-    "confirmation": ["record locator:","confirmation code is", "confirmation code is:", "confirmation code", "confirmation code:", "confirmation number:", "confirmation #:", "confirmation #", "booking code:", "booking reference", "booking reference:", "reservation:"],
+    "confirmation": ["record locator:","confirmation code is", "confirmation code is:", "confirmation code", "confirmation code:", "confirmation number:", "confirmation number :", "confirmation #:", "confirmation #", "booking code:", "booking reference", "booking reference:", "reservation:"],
     "default": {
         "name": {
             "follows": {
@@ -7,9 +7,15 @@
                 "after": 2,
                 "unwanted": ["passenger info", "passenger information (api)", "traveler details all"]
             }
+        },
+        "cost": {
+            "follows": {
+                "words": ["total price for all passengers","total paid:", "total paid", "total:", "total", "amount paid:", "ticket amount"],
+                "after": 4,
+                "unwanted": ["total price of your ticket", "total max."]
+            }
         }
     },
-    "cost": ["total price for all passengers","total paid:", "total paid", "total:", "total", "amount paid:", "ticket amount"],
     "southwest airlines": {
         "start": {
             "follows": {
@@ -26,6 +32,13 @@
             "follows": {
                 "words": ["hi"],
                 "after": 1
+            }
+        },
+        "cost": {
+            "follows": {
+                "words": ["total"],
+                "after": 4,
+                "unwanted": ["total cost"]
             }
         }
     },
@@ -56,7 +69,13 @@
         "airport_names": true,
         "start": {
             "follows": {
-                "words": ["thank you for choosing delta."]
+                "words": ["thank you for choosing delta.", "our flights", "your forwarded itinerary"]
+            }
+        },
+        "name": {
+            "follows": {
+                "words": ["name:","who's coming along"],
+                "after": 2
             }
         }
     },
@@ -85,7 +104,7 @@
     "jetblue": {
         "start": {
             "follows": {
-                "words": ["you're all set.","your confirmation code is"]
+                "words": ["you're all set.", "you're all set","confirmation code is"]
             }
         },
         "name": {
