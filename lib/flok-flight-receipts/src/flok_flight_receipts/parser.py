@@ -227,7 +227,7 @@ def parse(email: List[str], email_full: List[str], threshold=0, logging=False) -
         [times, dates, airport_pairs, flights, durations],
         [(None, None), (None, None), (None, None), None, None],
     )
-
+    
     info = {
         "name": passenger_name,
         "confirmation_num": confirmation,
@@ -849,7 +849,7 @@ def find_longest_chain(chain):
         prev = v
     return grouped[end - max_len : end]
 
-def build_service_acc(service_acc_info, userId):
+def build_gmail_service(service_acc_info, userId):
     creds = service_account.Credentials.from_service_account_info(service_acc_info, scopes=SCOPES).with_subject(userId)
     return build('gmail','v1',credentials=creds)
 
@@ -874,9 +874,9 @@ def build_service(creds=None):
 
     return build('gmail', 'v1', credentials=creds)
 
-def fetch_email_list(service, _userId, count=100):
+def fetch_email_list(service, _userId, count=100, to='flights@goflok.com'):
     messages = []
-    req = service.users().messages().list(userId=_userId, maxResults=500, q='to:flights@goflok.com')
+    req = service.users().messages().list(userId=_userId, maxResults=500, q=f'to:{to}')
     res = req.execute()
 
     while len(messages) < count:
