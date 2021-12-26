@@ -1,14 +1,16 @@
-from google.auth.transport.requests import Request
 from google.oauth2 import service_account
-from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
-SCOPES = ["https://www.googleapis.com/auth/sheets"]
+SCOPES = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
-FLIGHT_OVERVIEW_INFO = ["email_id", "err",
+FLIGHT_OVERVIEW_INFO = ["id", "err",
                         "name", "confirmation_num", "airline", "cost"]
 FLIGHT_SINGLE_INFO = ["flight", "airport1", "airport2",
                       "dep_date", "arr_date", "dep_time", "arr_time", "duration"]
+
+SHEET_TAB_NAME = 'email_intake'  # cannot have spaces
+SHEET_TAB_ID = 112233
 
 
 def parse_for_sheet(parsed_result: dict):
@@ -20,21 +22,61 @@ def parse_for_sheet(parsed_result: dict):
 
 
 def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
-    metadata_res = service.spreadsheets().get(spreadsheetId=sheet_id,
-                                              fields='sheets(data/rowData/values/userEnteredValue,properties(index,sheetId,title))').execute()
-    last_row = len(metadata_res['sheets'][sheet_idx]['data'][0]['rowData'])
+    rows = []
+    last_col_name = chr(ord("a") + len(FLIGHT_OVERVIEW_INFO) +
+                        len(FLIGHT_SINGLE_INFO)).upper()
 
-    data = []
-    if not last_row:
-        data.append(FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
+    requests = []
+
+    metadata_res = service.spreadsheets().get(spreadsheetId=sheet_id).execute()
+    if SHEET_TAB_NAME not in [sheet.get('properties', {}).get('title', '') for sheet in metadata_res.get('sheets', [])]:
+        # slight bug, if the tab is created wihout the title cols it will not add them ever. not vital though
+        # rows.append({'values': [{'userEnteredValue': {'stringValue': c}} for c in FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO]})
+        rows.append(FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
+        requests.append(
+            {
+                'addSheet': {
+                    'properties': {
+                        'title': SHEET_TAB_NAME,
+                        'sheetId': SHEET_TAB_ID
+                    }
+                }
+            }
+        )
+        # service.spreadsheets().batchUpdate(spreadsheetId=sheet_id, body={
+        #     'requests': [
+        #         {
+        #             'addSheet': {
+        #                 'properties': {
+        #                     'title': SHEET_TAB_NAME,
+        #                 }
+        #             }
+        #         }
+        #     ]
+        # }).execute()
 
     for dct in results + errs:
-        data.extend(parse_for_sheet(dct))
+        rows.extend(parse_for_sheet(dct))
 
-    range = f'A{last_row + 1}:{chr(len(FLIGHT_OVERVIEW_INFO) + len(FLIGHT_SINGLE_INFO)).upper()}{len(data) + 1}'
-    res = service.spreadsheets().values().update(spreadsheetId=sheet_id, range=range,
-                                                 valueInputOption='RAW', body={'values': data})
-    print(res.get('updatedCells'), 'cells updated')
+    for i in range(len(rows)):
+        for j in range(len(rows[i])):
+            rows[i][j] = {'userEnteredValue': {'stringValue': rows[i][j]}}
+        rows[i] = {'values': rows[i]}
+
+    requests.append({
+        'appendCells': {
+            'rows': rows,
+            'sheetId': SHEET_TAB_ID,
+            'fields': 'userEnteredValue'
+        }
+    })
+
+    service.spreadsheets().batchUpdate(spreadsheetId=sheet_id,
+                                       body={'requests': requests}).execute()
+
+    # range = f'{SHEET_TAB_NAME}!A1:{last_col_name}'
+    # res = service.spreadsheets().values().append(spreadsheetId=sheet_id, range=range, valueInputOption='RAW',
+    #  insertDataOption='INSERT_ROWS', body={'range': range, 'majorDimension': 'ROWS', 'values': rows}).execute()
 
 
 def build_sheets_service(service_acc_info):

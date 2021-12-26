@@ -28,7 +28,7 @@ def parse_new_flight_receipt(
         sheets_service = build_sheets_service(service_acc_info)
         # gmail_service = build_service()
         
-        groups = session.query(EmailLog).filter(EmailLog.active == True).all()
+        groups = session.query(EmailLog).filter(EmailLog.active.is_(True)).all()
         for res in groups:
             # get list of emails (most recent first)
             messages = fetch_email_list(gmail_service, _userId=userId, count=500, to=res.address)
