@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import sys
 import enum
 import operator
 import os.path
@@ -20,6 +21,7 @@ from google.oauth2 import service_account
 from pytz import utc
 
 from .timezone import getTimezone, tzDiff
+from .sheets import SHEET_TAB_ID
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
@@ -84,9 +86,9 @@ def parse_emails(emails, logging=False):
     for i in progressBar(num_emails, prefix = 'Progress:', suffix = 'Complete', length = 50, logging=logging):
         info = parse(emails_cleaned[i], emails_full[i])
         if info:
-            results.append(info)
+            results.append({**info, 'address': emails[i]['address'], 'subject': emails[i]['subject']})
         else:
-            errs.append({'id': emails[i]['id'], 'err': 'not a receipt'})
+            errs.append({'id': emails[i]['id'], 'err': 'not a receipt', 'address': emails[i]['address'], 'subject': emails[i]['subject']})
 
     return results, errs
     
@@ -546,24 +548,6 @@ def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, 
         for item in iterable:
             yield item
 
-def summary(info):
-    summary = ""
-    summary += f"Passenger: {capitalize(info['name'])}   Confirmation Number: {info['confirmation_num']}\n" \
-               + f"Airline: {capitalize(info['airline'])}\n" \
-               + f"========================================================\n"
-
-    for f in info["flights"]:
-        summary += f"Flight: {f['flight']} from {f['airport1']} to {f['airport2']}\n\n" \
-                   + f"Departs on {f['dep_date']} at {f['dep_time']}\nArrives on {f['arr_date']} at {f['arr_time']}\n" \
-                   + f"Flight duration: {f['duration']}\n" \
-                   + f"--------------------------------------------------------\n"
-    summary += f"\nTotal Cost: {info['cost']}\n" \
-               + f"========================================================\n"
-
-    if info["error"] != None:
-        summary += "**** WARNING ****\n" + info["error"] + "*****************\n"
-
-    return summary
 
 def capitalize(string):
     if string:
@@ -906,12 +890,24 @@ def fetch_email_html(service, messages, _userId):
                     part = list(
                         filter(lambda p: p["mimeType"] == "text/html", response["payload"]["parts"])
                     )
+
+                    from_address = ''
+                    subject_line = ''
+                    for header in response["payload"]["headers"]:
+                        if header["name"] == "From":
+                            from_address = header["value"].split('\u003c')[-1][:-1]
+                        elif header["name"] == "Subject":
+                            subject_line = header["value"]
+                        
+                        if from_address and subject_line:
+                            break
+
                     if part:
-                        ret.append({'id': id,'part': part[0]})
+                        ret.append({'id': id,'part': part[0], 'address': from_address, 'subject': subject_line})
                     else:
-                        ret.append({'id': id, 'err': 'no part'})
+                        ret.append({'id': id, 'err': 'no part', 'address': from_address, 'subject': subject_line})
                 else:
-                    ret.append({'id': id, 'err': 'no payload'})
+                    ret.append({'id': id, 'err': 'no payload', 'address': '', 'subject': ''})
         return callback
 
     for i in range(math.ceil(len(messages) / batch_size)):

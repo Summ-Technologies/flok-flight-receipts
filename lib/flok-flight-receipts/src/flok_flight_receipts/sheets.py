@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 SCOPES = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
           "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
-FLIGHT_OVERVIEW_INFO = ["id", "err",
+FLIGHT_OVERVIEW_INFO = ["id", "address", "subject", "err",
                         "name", "confirmation_num", "airline", "cost"]
 FLIGHT_SINGLE_INFO = ["flight", "airport1", "airport2",
                       "dep_date", "arr_date", "dep_time", "arr_time", "duration"]
@@ -23,15 +23,11 @@ def parse_for_sheet(parsed_result: dict):
 
 def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
     rows = []
-    last_col_name = chr(ord("a") + len(FLIGHT_OVERVIEW_INFO) +
-                        len(FLIGHT_SINGLE_INFO)).upper()
-
     requests = []
 
     metadata_res = service.spreadsheets().get(spreadsheetId=sheet_id).execute()
     if SHEET_TAB_NAME not in [sheet.get('properties', {}).get('title', '') for sheet in metadata_res.get('sheets', [])]:
         # slight bug, if the tab is created wihout the title cols it will not add them ever. not vital though
-        # rows.append({'values': [{'userEnteredValue': {'stringValue': c}} for c in FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO]})
         rows.append(FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
         requests.append(
             {
@@ -43,17 +39,6 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
                 }
             }
         )
-        # service.spreadsheets().batchUpdate(spreadsheetId=sheet_id, body={
-        #     'requests': [
-        #         {
-        #             'addSheet': {
-        #                 'properties': {
-        #                     'title': SHEET_TAB_NAME,
-        #                 }
-        #             }
-        #         }
-        #     ]
-        # }).execute()
 
     for dct in results + errs:
         rows.extend(parse_for_sheet(dct))
@@ -73,10 +58,6 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
 
     service.spreadsheets().batchUpdate(spreadsheetId=sheet_id,
                                        body={'requests': requests}).execute()
-
-    # range = f'{SHEET_TAB_NAME}!A1:{last_col_name}'
-    # res = service.spreadsheets().values().append(spreadsheetId=sheet_id, range=range, valueInputOption='RAW',
-    #  insertDataOption='INSERT_ROWS', body={'range': range, 'majorDimension': 'ROWS', 'values': rows}).execute()
 
 
 def build_sheets_service(service_acc_info):
