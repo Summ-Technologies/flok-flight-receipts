@@ -56,6 +56,7 @@ setup(
     package_dir={"": "src"},
     data_files=[("", [VERSION_FN])],
     include_package_data=True,
+    package_data={"": ["data/*"]},
     install_requires=INSTALL_REQUIRES,
     setup_requires=["wheel"],
 )
