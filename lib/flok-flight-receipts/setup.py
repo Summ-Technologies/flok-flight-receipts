@@ -54,7 +54,8 @@ setup(
     author_email="jared@goflok.com",
     packages=find_packages("src"),
     package_dir={"": "src"},
-    data_files=[("", [VERSION_FN, "src/flok_flight_receipts/data/*"])],
+    data_files=[("", [VERSION_FN])],
+    include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     setup_requires=["wheel"],
 )
