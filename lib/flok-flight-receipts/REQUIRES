@@ -7,3 +7,4 @@ geopy
 timezonefinder
 pandas
 lxml
+slack-sdk
