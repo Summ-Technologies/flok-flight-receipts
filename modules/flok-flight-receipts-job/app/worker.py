@@ -1,38 +1,31 @@
 import json
 import logging
 from datetime import datetime
-from typing import Any, Dict
 
 from flok_flight_receipts.parser import (build_gmail_service, fetch_email_html,
                                          fetch_email_list, parse_emails)
 from flok_flight_receipts.sheets import build_sheets_service, write_to_sheet
 from flok_flight_receipts.slack import *
 from hawk_db.email_log import EmailLog
-from hawk_rmq.queue import NewFlightEmailReceiptMessage
+from sqlalchemy.orm.session import Session
 
 from . import db
-from ._config import config
 
 logger = logging.getLogger(__name__)
 
 
-def parse_new_flight_receipt(
-    channel: Any, method_frame: Any, header_frame: Any, message: NewFlightEmailReceiptMessage
-) -> None:
-
-    logger.info(f"Received new user email message, {message.serialize()}")
+def parse_new_flight_receipt(config: dict) -> None:
     start_time = datetime.now()
     try:
         userId = config["GOOGLE_SERVICE_WORKER_USER_ID"]
         # database setup
-        session = db.setup_db_session(config["SQLALCHEMY_DATABASE_URI"])
+        session: Session = db.setup_db_session(config["SQLALCHEMY_DATABASE_URI"])
         # gmail client setup
         service_acc_info = json.load(
             open(config["GOOGLE_SERVICE_ACC_FILE"], 'r'))
         gmail_service = build_gmail_service(service_acc_info, userId)
         sheets_service = build_sheets_service(service_acc_info)
 
-        slack_client = create_slack_client(config["SLACK_BOT_TOKEN"])
         tot_emails = 0
         n_errs = 0
         slack_summary = ''
@@ -79,9 +72,12 @@ def parse_new_flight_receipt(
             res.email_id = messages[0]['id']
             session.commit()
         
-        post_to_slack(slack_client, start_time, len(groups), tot_emails, n_errs, slack_summary)
+        try:
+            slack_client = create_slack_client(config["SLACK_BOT_TOKEN"])
+            post_to_slack(slack_client, start_time, len(groups), tot_emails, n_errs, slack_summary)
+        except Exception as exc:
+            logger.error("Slack message failed to post with summary of run", exc_info=exc)
+        session.close()
 
     except Exception as e:
         logger.error(f"Error parsing emails", exc_info=e)
-
-    channel.basic_ack(delivery_tag=method_frame.delivery_tag)
