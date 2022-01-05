@@ -1,0 +1,1 @@
+APP_CONFIG=$PWD/modules/flok-flight-receipts-job/config.py env $(cat .env) python modules/flok-flight-receipts-job/run.py  --log=DEBUG
