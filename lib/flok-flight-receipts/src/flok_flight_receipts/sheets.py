@@ -4,6 +4,7 @@ from googleapiclient.discovery import build
 SCOPES = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
           "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
+MISC_COLS = ["processed"]
 FLIGHT_OVERVIEW_INFO = ["id", "address", "subject", "err",
                         "name", "confirmation_num", "airline", "cost"]
 FLIGHT_SINGLE_INFO = ["flight", "airport1", "airport2",
@@ -11,6 +12,24 @@ FLIGHT_SINGLE_INFO = ["flight", "airport1", "airport2",
 
 SHEET_TAB_NAME = 'email_intake'  # cannot have spaces
 SHEET_TAB_ID = 112233
+
+UNCHECKED_BOOLEAN_CELL = {
+    "dataValidation": {"condition": {"type": "BOOLEAN"}, "showCustomUi": True},
+}
+
+def get_gmail_link_cell(emailId: str):
+    """Sets cell value for id column that has link to email"""
+    return {
+        "userEnteredValue": {"stringValue": emailId},
+        "textFormatRuns": [
+            {
+                "startIndex": 0,
+                "format": {
+                    "link": {"uri": f"https://mail.google.com/#all/{emailId}"}
+                }
+            }
+        ]
+    }
 
 
 def parse_for_sheet(parsed_result: dict):
@@ -22,13 +41,16 @@ def parse_for_sheet(parsed_result: dict):
 
 
 def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
+    """This method will add a falsey check box to the start of each row."""
     rows = []
     requests = []
+    add_header = False
 
     metadata_res = service.spreadsheets().get(spreadsheetId=sheet_id).execute()
     if SHEET_TAB_NAME not in [sheet.get('properties', {}).get('title', '') for sheet in metadata_res.get('sheets', [])]:
         # slight bug, if the tab is created wihout the title cols it will not add them ever. not vital though
-        rows.append(FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
+        add_header = True
+        rows.append( MISC_COLS + FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
         requests.append(
             {
                 'addSheet': {
@@ -45,14 +67,20 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
 
     for i in range(len(rows)):
         for j in range(len(rows[i])):
-            rows[i][j] = {'userEnteredValue': {'stringValue': rows[i][j]}}
-        rows[i] = {'values': rows[i]}
+            if j == 0 and (not add_header or i != 0) and rows[i][j]:
+                rows[i][j] = get_gmail_link_cell(rows[i][j])
+            else:
+                rows[i][j] = {'userEnteredValue': {'stringValue': rows[i][j]}}
+        if add_header and i == 0:
+            rows[i] = {'values': rows[i]}
+        else:
+            rows[i] = {'values': [UNCHECKED_BOOLEAN_CELL] + rows[i]}
 
     requests.append({
         'appendCells': {
             'rows': rows,
             'sheetId': SHEET_TAB_ID,
-            'fields': 'userEnteredValue'
+            'fields': 'userEnteredValue,dataValidation,textFormatRuns'
         }
     })
 

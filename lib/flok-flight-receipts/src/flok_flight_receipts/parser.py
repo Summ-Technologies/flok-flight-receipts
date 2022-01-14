@@ -70,25 +70,19 @@ def parse_emails(emails, logging=False):
             tuple of list of parsed results and list of errors
     """
     # processing
-    emails_cleaned, emails_full, errs = [], [], []
-    for email in emails:
-        if 'part' in email:
-            cleaned, full = preprocess(email['part'])
-            emails_cleaned.append(cleaned)
-            emails_full.append(full)
-        else:
-            errs.append(email)
+    errs = []
             
     results = []
-    num_emails = [i for i in range(len(emails_cleaned))]
-    if len(num_emails) == 0:
-        return [], errs
-    for i in progressBar(num_emails, prefix = 'Progress:', suffix = 'Complete', length = 50, logging=logging):
-        info = parse(emails_cleaned[i], emails_full[i])
+    for email in progressBar(emails, prefix = 'Progress:', suffix = 'Complete', length = 50, logging=logging):
+        if 'part' not in email:
+            errs.append(email)
+            continue
+        cleaned, full = preprocess(email['part'])
+        info = parse(cleaned, full)
         if info:
-            results.append({**info, 'address': emails[i]['address'], 'subject': emails[i]['subject']})
+            results.append({**info, 'address': email['address'], 'subject': email['subject'], 'id': email['id']})
         else:
-            errs.append({'id': emails[i]['id'], 'err': 'not a receipt', 'address': emails[i]['address'], 'subject': emails[i]['subject']})
+            errs.append({'id': email['id'], 'err': 'not a receipt', 'address': email['address'], 'subject': email['subject']})
 
     return results, errs
     
