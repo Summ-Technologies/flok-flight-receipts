@@ -17,15 +17,15 @@ UNCHECKED_BOOLEAN_CELL = {
     "dataValidation": {"condition": {"type": "BOOLEAN"}, "showCustomUi": True},
 }
 
-def get_gmail_link_cell(emailId: str):
+def get_gmail_link_cell(subject:str, fromAddr: str):
     """Sets cell value for id column that has link to email"""
     return {
-        "userEnteredValue": {"stringValue": emailId},
+        "userEnteredValue": {"stringValue": "link"},
         "textFormatRuns": [
             {
                 "startIndex": 0,
                 "format": {
-                    "link": {"uri": f"https://mail.google.com/#all/{emailId}"}
+                    "link": {"uri": f"https://mail.google.com/#search/subject:{subject} from:{fromAddr}"}
                 }
             }
         ]
@@ -50,7 +50,7 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
     if SHEET_TAB_NAME not in [sheet.get('properties', {}).get('title', '') for sheet in metadata_res.get('sheets', [])]:
         # slight bug, if the tab is created wihout the title cols it will not add them ever. not vital though
         add_header = True
-        rows.append( MISC_COLS + FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
+        rows.append(MISC_COLS + FLIGHT_OVERVIEW_INFO + FLIGHT_SINGLE_INFO)
         requests.append(
             {
                 'addSheet': {
@@ -68,7 +68,12 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
     for i in range(len(rows)):
         for j in range(len(rows[i])):
             if j == 0 and (not add_header or i != 0) and rows[i][j]:
-                rows[i][j] = get_gmail_link_cell(rows[i][j])
+                subject_col_index = 2
+                from_col_index = 1
+                if len(rows[i]) >= 3:
+                    rows[i][j] = get_gmail_link_cell(rows[i][subject_col_index], rows[i][from_col_index])
+                else:
+                    rows[i][j] = {'userEnteredValue': {'stringValue': 'link cant be processed'}}
             else:
                 rows[i][j] = {'userEnteredValue': {'stringValue': rows[i][j]}}
         if add_header and i == 0:

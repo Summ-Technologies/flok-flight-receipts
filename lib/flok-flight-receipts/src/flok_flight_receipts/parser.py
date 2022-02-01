@@ -880,11 +880,7 @@ def fetch_email_html(service, messages, _userId):
             if exception is not None:
                 ret.append({'id': id, 'err': exception})
             else:
-                if "payload" in response and "parts" in response["payload"]:
-                    part = list(
-                        filter(lambda p: p["mimeType"] == "text/html", response["payload"]["parts"])
-                    )
-
+                if "payload" in response:
                     from_address = ''
                     subject_line = ''
                     for header in response["payload"]["headers"]:
@@ -892,14 +888,18 @@ def fetch_email_html(service, messages, _userId):
                             from_address = header["value"].split('\u003c')[-1][:-1]
                         elif header["name"] == "Subject":
                             subject_line = header["value"]
-                        
                         if from_address and subject_line:
                             break
-
-                    if part:
-                        ret.append({'id': id,'part': part[0], 'address': from_address, 'subject': subject_line})
+                    if "parts" in response["payload"]:
+                        part = list(
+                            filter(lambda p: p["mimeType"] == "text/html", response["payload"]["parts"])
+                        ) 
+                        if part:
+                            ret.append({'id': id,'part': part[0], 'address': from_address, 'subject': subject_line})
+                        else:
+                            ret.append({'id': id, 'err': 'no part', 'address': from_address, 'subject': subject_line})
                     else:
-                        ret.append({'id': id, 'err': 'no part', 'address': from_address, 'subject': subject_line})
+                        ret.append({'id': id, 'err': 'no parts in payload', 'address': from_address, 'subject': subject_line})
                 else:
                     ret.append({'id': id, 'err': 'no payload', 'address': '', 'subject': ''})
         return callback

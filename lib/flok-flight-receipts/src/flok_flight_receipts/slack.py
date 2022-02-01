@@ -74,6 +74,6 @@ def group_summary(email_log, results, errs):
         summary += f"\tReceived from: {e['address']}\n"
         summary += f"\tSubject: {e['subject']}\n"
         summary += f"\tError Message: {e['err']}\n"
-        summary += f"\thttps://mail.google.com/#all/{e['id']}\n"
+        summary += f"\thttps://mail.google.com/#search/subject:{e['subject']} from:{e['address']}\n"
 
     return summary
