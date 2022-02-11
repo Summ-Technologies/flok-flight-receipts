@@ -897,7 +897,19 @@ def fetch_email_html(service, messages, _userId):
                         if part:
                             ret.append({'id': id,'part': part[0], 'address': from_address, 'subject': subject_line})
                         else:
-                            ret.append({'id': id, 'err': 'no part', 'address': from_address, 'subject': subject_line})
+                            alternative_part = list(
+                                filter(lambda p: p["mimeType"] == "multipart/alternative", response["payload"]["parts"])
+                            )
+                            if alternative_part:
+                                part_from_alt = list(
+                                    filter(lambda p: p["mimeType"] == "text/html", alternative_part[0]["parts"])
+                                )
+                                if part_from_alt:
+                                    ret.append({'id': id,'part': part_from_alt[0], 'address': from_address, 'subject': subject_line})
+                                else:
+                                    ret.append({'id': id, 'err': 'no part in alt part', 'address': from_address, 'subject': subject_line})
+                            else:
+                                ret.append({'id': id, 'err': 'no part/alt part', 'address': from_address, 'subject': subject_line})
                     else:
                         ret.append({'id': id, 'err': 'no parts in payload', 'address': from_address, 'subject': subject_line})
                 else:

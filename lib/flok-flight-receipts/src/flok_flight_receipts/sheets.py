@@ -83,7 +83,7 @@ def write_to_sheet(service, sheet_id, results, errs, sheet_idx=0):
 
     requests.append({
         'appendCells': {
-            'rows': rows,
+            'rows': list(reversed(rows)),
             'sheetId': SHEET_TAB_ID,
             'fields': 'userEnteredValue,dataValidation,textFormatRuns'
         }
