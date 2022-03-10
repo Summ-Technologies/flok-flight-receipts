@@ -33,43 +33,48 @@ def parse_new_flight_receipt(config: dict) -> None:
         groups = session.query(EmailLog).filter(
             EmailLog.active.is_(True)).all()
         for res in groups:
-            # get list of emails (most recent first)
-            logger.info("Fetching emails for %s", res.address)
-            messages = fetch_email_list(
-                gmail_service, _userId=userId, count=500, to=res.address)
-            print("Loaded", len(messages), "messages addressed to", res.address)
-            if len(messages) == 0:
-                logger.info("No emails found")
-                continue
-
-            # check if email ids match most recent
-            index = len(messages)
-            if res != None:
-                for i, message in enumerate(messages):
-                    if message['id'] == res.email_id:
-                        index = i
-                        break
-
-            if index == 0:
-                logger.info("No new emails")
-                continue
-
-            emails = fetch_email_html(
-                gmail_service, messages[:index], _userId=userId)
-
-            print(f"parsing {len(emails)} emails")
-            results, errs = parse_emails(emails, logging=True)
-
-            tot_emails += len(emails)
-            n_errs += len(errs)
-            slack_summary += group_summary(res, results, errs)
-
             try:
-                write_to_sheet(sheets_service, res.sheet, results, errs)
+                # get list of emails (most recent first)
+                logger.info("Fetching emails for %s", res.address)
+                messages = fetch_email_list(
+                    gmail_service, _userId=userId, count=500, to=res.address)
+                print("Loaded", len(messages), "messages addressed to", res.address)
+                if len(messages) == 0:
+                    logger.info("No emails found")
+                    continue
+
+                # check if email ids match most recent
+                index = len(messages)
+                if res != None:
+                    for i, message in enumerate(messages):
+                        if message['id'] == res.email_id:
+                            index = i
+                            break
+
+                if index == 0:
+                    logger.info("No new emails")
+                    continue
+
+                emails = fetch_email_html(
+                    gmail_service, messages[:index], _userId=userId)
+
+                print(f"parsing {len(emails)} emails")
+                results, errs = parse_emails(emails, logging=True)
+
+                tot_emails += len(emails)
+                n_errs += len(errs)
+                slack_summary += group_summary(res, results, errs)
+
+                try:
+                    write_to_sheet(sheets_service, res.sheet, results, errs)
+                except Exception as e:
+                    logger.error("Something went wrong writing to the google sheet. email={%s}, sheet={%s}.", res.address, res.sheet, exc_info=e)
+                    slack_summary += f'THERE WAS AN ERROR WRITING TO THE GOOGLE SHEET for email={res.address}.'
+                    continue
             except Exception as e:
-                logger.error("Something went wrong writing to the google sheet. email={%s}, sheet={%s}.", res.address, res.sheet, exc_info=e)
-                slack_summary += 'THERE WAS AN ERROR WRITING TO THE GOOGLE SHEET.'
-                continue
+                    logger.error("Something went wrong with %s. Skipping...", res.address, exc_info=e)
+                    slack_summary += f'THERE WAS AN ERROR WITH {res.address}.'
+                    continue
 
             logger.info(
                 f"Successfully parsed emails",

@@ -1,4 +1,4 @@
-version=1.1
+version=1.1.1
 docker-user=jaredhanson11
 name=${docker-user}/flok-flight-receipts-job
 
